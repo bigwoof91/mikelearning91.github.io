@@ -26,10 +26,54 @@
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
 
     </head>
+    <body>
+ <div class="container">
+            <div class="jumbotron">
+                <div class="col-xs-8" id="top">
+                    <h2>NYTIMES SEARCH</h2>
+                </div>
+                <div class="col-xs-8" id="form">
+                    <form>
+                          <div class="form-group">
+                            <label for="search">Search Term</label>
+                            <input type="text" class="form-control" id="search" placeholder="Search Here">
+                          </div>
 
-    <body data-spy="scroll" data-target="#navbar-scroll">
+                            <label>Numbers to Retrieve</label>
+                          <select class="form-control" id="number">
 
-       
+                              <option>5</option>
+                              <option>10</option>
+                              <option>20</option>
+                              <option>50</option>
+                            </select>
+
+                            <div class="form-group">
+                            <label for="startYear">Start Year</label>
+                            <input type="number" class="form-control" id="startYear" placeholder="Start Year">
+                          </div>
+
+                             <div class="form-group">
+                            <label for="endYear">End Year</label>
+                            <input type="number" class="form-control" id="endYear" placeholder="End Year">
+                          </div>
+
+
+                        
+                          <button type="submit" class="btn btn-default" id="search-button">Search</button> 
+                          <span><button type="submit" class="btn btn-default">Clear</button></span>
+                    </form>
+
+                    <div id="holder">
+                        
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+ 
 
         <!-- /.javascript files -->
         <script src="js/jquery.js"></script>
@@ -38,5 +82,6 @@
         <script src="js/jquery.sticky.js"></script>
         <script src="js/wow.min.js"></script>
         <script src="js/owl.carousel.min.js"></script>
+        <script src="app.js"></script>
     </body>
 </html>
