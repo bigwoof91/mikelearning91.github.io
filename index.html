@@ -1,87 +1,179 @@
 <!DOCTYPE html>
-<html>
-    <head>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>MOODO</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='http://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='http://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head> 
 
-        <!-- /.website title -->
-        <title>Backyard Landing Page</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
-
-        <!-- CSS Files -->
-        <link href="css/bootstrap.min.css" rel="stylesheet" media="screen">
-        <link href="css/font-awesome.min.css" rel="stylesheet">
-        <link href="fonts/icon-7-stroke/css/pe-icon-7-stroke.css" rel="stylesheet">
-        <link href="css/animate.css" rel="stylesheet" media="screen">
-        <link href="css/owl.theme.css" rel="stylesheet">
-        <link href="css/owl.carousel.css" rel="stylesheet">
-
-        <!-- Colors -->
-        <link href="css/css-index.css" rel="stylesheet" media="screen">
-        <!-- <link href="css/css-index-green.css" rel="stylesheet" media="screen"> -->
-        <!-- <link href="css/css-index-purple.css" rel="stylesheet" media="screen"> -->
-        <!-- <link href="css/css-index-red.css" rel="stylesheet" media="screen"> -->
-        <!-- <link href="css/css-index-orange.css" rel="stylesheet" media="screen"> -->
-        <!-- <link href="css/css-index-yellow.css" rel="stylesheet" media="screen"> -->
-
-        <!-- Google Fonts -->
-        <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lato:100,300,400,700,900,100italic,300italic,400italic,700italic,900italic" />
-
-    </head>
-    <body>
- <div class="container">
-            <div class="jumbotron">
-                <div class="col-xs-8" id="top">
-                    <h2>NYTIMES SEARCH</h2>
-                </div>
-                <div class="col-xs-8" id="form">
-                    <form>
-                          <div class="form-group">
-                            <label for="search">Search Term</label>
-                            <input type="text" class="form-control" id="search" placeholder="Search Here">
-                          </div>
-
-                            <label>Numbers to Retrieve</label>
-                          <select class="form-control" id="number">
-
-                              <option>5</option>
-                              <option>10</option>
-                              <option>20</option>
-                              <option>50</option>
-                            </select>
-
-                            <div class="form-group">
-                            <label for="startYear">Start Year</label>
-                            <input type="number" class="form-control" id="startYear" placeholder="Start Year">
-                          </div>
-
-                             <div class="form-group">
-                            <label for="endYear">End Year</label>
-                            <input type="number" class="form-control" id="endYear" placeholder="End Year">
-                          </div>
-
-
-                        
-                          <button type="submit" class="btn btn-default" id="search-button">Search</button> 
-                          <span><button type="submit" class="btn btn-default">Clear</button></span>
-                    </form>
-
-                    <div id="holder">
-                        
-                    </div>
-
-                </div>
-            </div>
+<body data-spy="scroll">
+<div class="scroller">next</div>
+    <!-- ******HEADER****** --> 
+    <header id="header" class="header">  
+        <div class="container">            
+            <h1 class="logo pull-left">
+                <a class="scrollto" href="#promo">
+                    <span class="logo-title">MOODO</span>
+                </a>
+            </h1><!--//logo-->              
+            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
+                <div class="navbar-header">
+                    <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button><!--//nav-toggle-->
+                </div><!--//navbar-header-->            
+                <div class="navbar-collapse collapse" id="navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#about">About</a></li>
+                        <li class="nav-item last"><a class="scrollto" href="#contact">Contact</a></li>
+                    </ul><!--//nav-->
+                </div><!--//navabr-collapse-->
+            </nav><!--//main-nav-->
         </div>
+    </header><!--//header-->
+    
+    <!-- ******PROMO****** -->
+    <section id="promo" class="promo section offset-header">
+        <div class="container text-center">
+            <h2 class="title">MOO<span class="highlight">DO</span></h2>
+            <p class="intro">An AI that understands you and what you can do, <br class="hideOn640" />in a snap of a photo.</p>
+            <div class="btns">
+                <a class="btn btn-cta-primary" href="http://themes.3rdwavemedia.com/" target="_blank">Login</a>
+                <a class="btn btn-cta-secondary" href="http://themes.3rdwavemedia.com/website-templates/devaid-free-bootstrap-theme-developers/" target="_blank">Sign Up</a>
+            </div>
+            <ul class="meta list-inline">
+                <li><a href="#" target="_blank">Powered by: Microsoft Cognitive Services</a></li>
+            </ul><!--//meta-->
+        </div><!--//container-->
+    </section><!--//promo-->
+    
+    <!-- ******ABOUT****** --> 
+    <section id="about" class="about section">
+        <div class="container">
+            <h2 class="title text-center">What is MOODO?</h2>
+            <p class="intro text-center">Snap your photo and MOODO will analyze your facial expression, identify your mood and suggest things you can do. Based on your mood and interests MOODO will find shopping deals of the day, give you quotes &amp; excerpts to lift you up, give you music playlists, find special events &amp; recreational activities and more. Moodo understands you and tries to help!</p>
+            <div class="row">
+                <div class="item col-md-6 col-sm-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-heart"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Find Your Fun</h3>
+                        <p>Find fun things to do based on your mood. and when &amp; where the "happening" is happening.</p>
+                    </div><!--//content-->
+                </div><!--//item-->
+                <div class="item col-md-6 col-sm-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-crosshairs"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Explore New Things</h3>
+                        <p>Find new and coming activities based on your interests. In this day and age there's always fun events, sports gatherings and recreational activies. MOODO helps you find them!</p>
+                    </div><!--//content-->
+                </div><!--//item-->
+                <div class="item col-md-6 col-sm-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-clock-o"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Be Your Best</h3>
+                        <p>Feeling down? Just show MOODO and you'll get suggestions that may help you be the best you that you can be. Music suggestions, funny videos, inspiring quotes and excerpts... MOODO's got your back!</p>
+                    </div><!--//content-->
+                </div><!--//item-->           
+                <div class="clearfix visible-md"></div>    
+                <div class="item col-md-6 col-sm-6 col-xs-12">
+                    <div class="icon-holder">
+                        <i class="fa fa-tablet"></i>
+                    </div>
+                    <div class="content">
+                        <h3 class="sub-title">Any Time, Anywhere</h3>
+                        <p>Whip out your phone, open up your laptop, snap a phot of you, show MOODO how you feel, and get quick suggestions on what you can do based on your mood. Find your fun - any time anywhere.</p>
+                    </div><!--//content-->
+                </div><!--//item-->                
+            </div><!--//row-->            
+        </div><!--//container-->
+    </section><!--//about-->
+    
+    
+    <!-- ******CONTACT****** --> 
+    <section id="contact" class="contact section has-pattern">
+        <div class="container">
+            <div class="contact-inner">
+                <h2 class="title  text-center">Contact</h2>
+                <p class="intro  text-center">We hope you find this App very useful. <br />Feel free to get in touch if you have any questions or suggestions. We love feedback!</p>
+                <div class="author-message">                      
+                    <div class="profile">
+                        <img class="img-responsive" src="assets/images/profile.png" alt="" />
+                    </div><!--//profile-->
+                    <div class="speech-bubble">
+                        <h3 class="sub-title">A Message From The Developers</h3>
+                        <p>We developed this app in less than two weeks and we're still crunching code!</a> 
+                        <p>So don't worry. We will be adding more features so MOODO can be exponentially more helpful to you :)</p>
+                        <div class="source">
+                            <span class="name">
+                            <a href="#" target="_blank">Michael Wolf - Team Leader, Front-End/Back-End</a><br />
+                            <a href="#" target="_blank">Juan John-Charles - Back-End Developer</a><br />
+                            <a href="#" target="_blank">Aparna Thirthapura - Back-End</a></span>
+                            <br />
+                        </div><!--//source-->
+                    </div><!--//speech-bubble-->                        
+                </div><!--//author-message-->
+                <div class="clearfix"></div>
+                <div class="info text-center">
+                    <h4 class="sub-title">Connect With Us</h4>
+                    <ul class="social-icons list-inline">
+                        <li><a href="#" target="_blank"><i class="fa fa-twitter"></i></a></li>
+                        <li><a href="#" target="_blank"><i class="fa fa-facebook"></i></a></li>
+                        <li><a href="#"><i class="fa fa-linkedin"></i></a></li>
+                        <li><a href="#"><i class="fa fa-instagram"></i></a></li>  
+                        <li><a href="#"><i class="fa fa-dribbble"></i></a></li>   
+                        <li class="last"><a href="#"><i class="fa fa-envelope"></i></a></li>              
+                    </ul>
+                </div><!--//info-->
+            </div><!--//contact-inner-->
+        </div><!--//container-->
+    </section><!--//contact-->  
+      
+    <!-- ******FOOTER****** --> 
+    <footer class="footer">
+        <div class="container text-center">
+            <small class="copyright">Built with <i class="fa fa-heart"></i> by <a href="http://themes.3rdwavemedia.com" target="_blank">the MOODO Team</a></small>
+        </div><!--//container-->
+    </footer><!--//footer-->
+     
+    <!-- Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery.easing.1.3.js"></script>   
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script> 
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/js/main.js"></script>       
+</body>
+</html> 
 
-
- 
-
-        <!-- /.javascript files -->
-        <script src="js/jquery.js"></script>
-        <script src="js/bootstrap.min.js"></script>
-        <script src="js/custom.js"></script>
-        <script src="js/jquery.sticky.js"></script>
-        <script src="js/wow.min.js"></script>
-        <script src="js/owl.carousel.min.js"></script>
-        <script src="app.js"></script>
-    </body>
-</html>

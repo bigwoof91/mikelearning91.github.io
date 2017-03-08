@@ -1,0 +1,76 @@
+-------------------------------- Prospective App Names --------------------------------
+
+1. MoodLifter
+2. Moodify
+3. imBETTER
+4. allBetter
+5. Feelin' Better
+6. A-Feeling
+7. ExciToday
+8. betterNow
+9. BETTERafter
+
+-------------------------------- API for facial recognition and analysis --------------------------------
+
+https://www.microsoft.com/cognitive-services/en-us/emotion-api
+
+JSON:
+[
+  {
+    "faceRectangle": {
+      "left": 488,
+      "top": 263,
+      "width": 148,
+      "height": 148
+    },
+    "scores": {
+      "anger": 9.075572e-13,
+      "contempt": 7.048959e-9,
+      "disgust": 1.02152783e-11,
+      "fear": 1.778957e-14,
+      "happiness": 0.9999999,
+      "neutral": 1.31694478e-7,
+      "sadness": 6.04054263e-12,
+      "surprise": 3.92249462e-11
+    }
+    };
+];
+
+-------------------------------- WHAT DOES THE APP DO? --------------------------------
+
+Takes a photo, recognizes the mood, then responds with content to lift the user's mood or maintain a good feeling. 
+
+-------------------------------- HOW APP WORKS --------------------------------
+
+1. User Authentication - login
+	1.1 capture user attributes
+		1.1a Age
+		1.1b Gender
+		1.1c Location
+		1.1d Optional (too many complexities): Interest ------------------------------ not yet, maybe for future
+		1.1e Optional (too many complexities): Marital Status ------------------------------ not yet, maybe for future
+
+2. Input/take photo - store in database (firebase)
+
+3. Calls API to analyze photo and determine mood
+
+    3.1  Confirms mood, asks if the user wants to retake the photo
+    3.1a If want to retake photo, start over (restart)
+    3.1b If doesn't want to retake photo, continue to 3.2
+
+    3.2 Apply conditions for each emotion. eg. if fear > 0.051923849 (store the response and respond with some content) 
+
+4. Deliver content to the user based on emotion analysis conditions (3.2) and user attributes (1.1).
+	4.Notes: Content may make new api calls such as: groupon, giphy, event/activity finders (maybe), quotes, comfort food,
+
+	(categories: want to shop? are you hungry? just need a pick-me-up? want to do something fun? listen to music?) 
+      
+	4.1 Deliver content (categories) as visual options based on condition made in 2.2 for: anger. User gets to choose.
+	4.2 Deliver content (categories) as visual options based on condition made in 2.2 for: contempt. User gets to choose.
+	4.3 Deliver content (categories) as visual options based on condition made in 2.2 for: disgust. User gets to choose.
+	4.4 Deliver content (categories) as visual options based on condition made in 2.2 for: fear. User gets to choose.
+	4.5 Deliver content (categories) as visual options based on condition made in 2.2 for: happiness. User gets to choose.
+	4.6 Deliver content (categories) as visual options based on condition made in 2.2 for: neutral. User gets to choose.
+	4.7 Deliver content (categories) as visual options based on condition made in 2.2 for: sadness. User gets to choose.
+	4.8 Deliver content (categories) as visual options based on condition made in 2.2 for: surprise. User gets to choose.
+
