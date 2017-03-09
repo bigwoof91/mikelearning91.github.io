@@ -1,3 +1,4 @@
+// firebase connection
 var config = {
     apiKey: "AIzaSyAcxQ--hNXgtAP2ysfa5tGXq3lR_PgxRnQ",
     authDomain: "moodo-9a993.firebaseapp.com",
@@ -102,15 +103,17 @@ take_photo_btn.addEventListener("click", function(e){
 download_photo_btn.addEventListener("click", function(e) {
     var snap = takeSnapshot();
     var blob = dataURItoBlob(snap);
+    blob.replace("gs://moodo-9a993.appspot.com/selfies/gs:/moodo-9a993.appspot.com/selfie", "")
 
     // Create a root reference
     var storageRef = firebase.storage().ref();
 
     // Create a reference to 'mountains.jpg'
-    var selfieRef = storageRef.child('selfie');
+    var selfieRef = storageRef.child('selfie.png');
 
     // Create a reference to 'images/mountains.jpg'
-    var selfieImagesRef = storageRef.child('/selfies/' + selfieRef);
+    var selfieImagesRef = storageRef.child('/selfies' + selfieRef);
+
 
     // While the file names are the same, the references point to different files
     selfieRef.name === selfieImagesRef.name            // true
