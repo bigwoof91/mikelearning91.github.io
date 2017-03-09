@@ -129,7 +129,7 @@ $("#download-photo").on("click", function() {
   var snap = takeSnapshot();
   var imgData = snap;
   var message = 'imgData';
-  ref.putString(message, 'data_url').then(function(snapshot) {
+  def.putString(message, 'data_url').then(function(snapshot) {
   console.log('Uploaded a data_url string!');
   })
 });
