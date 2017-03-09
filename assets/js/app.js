@@ -94,7 +94,7 @@ download_photo_btn.addEventListener("click", function(e) {
     selfieRef.fullPath === selfieImagesRef.fullPath    // false
 
     var file = blob; // use the Blob or File API
-    ref.put(file).then(function(snapshot) {
+    selfieImagesRef.put(file).then(function(snapshot) {
     console.log('Uploaded a blob or file!');
 });
 });
@@ -216,6 +216,10 @@ function dataURItoBlob(dataURI) {
 
     return new Blob([ia], {type:mimeString});
 };
+
+
+
+
 // var 
 // var dataURL = canvas.toDataURL('image/jpeg', 0.5);
 // var blob = dataURItoBlob(dataURL);
