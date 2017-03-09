@@ -195,12 +195,12 @@ function uploadToFirebase() {
 
 };
 
-$('#download-photo').on("click", function() {
-  var database = firebase.database();
-  var snap = takeSnapshot();
-  var imgData = snap;
-  var message = 'imgData';
-  database.ref().putString(message, 'data_url').then(function(snapshot) {
-  console.log('Uploaded a data_url string!');
-  })
-});
+// $('#download-photo').on("click", function() {
+//   var database = firebase.database();
+//   var snap = takeSnapshot();
+//   var imgData = snap;
+//   var message = 'imgData';
+//   database.ref().putString(message, 'data_url').then(function(snapshot) {
+//   console.log('Uploaded a data_url string!');
+//   })
+// });
