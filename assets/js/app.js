@@ -92,7 +92,7 @@ take_photo_btn.addEventListener("click", function(e){
   download_photo_btn.classList.remove("disabled");
 
   // Set the href attribute of the download button to the snap url.
-  download_photo_btn.href = snap;
+  // download_photo_btn.href = snap;
 
   // Pause video playback of stream.
   video.pause();
