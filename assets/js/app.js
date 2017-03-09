@@ -145,7 +145,7 @@ function takeSnapshot(){
     context.drawImage(video, 0, 0, width, height);
 
     // Turn the canvas image into a dataURL that can be used as a src for our photo.
-    return hidden_canvas.toDataURL('image/png');
+    return hidden_canvas.toDataURL('image/png').put(blob);
   }
 }
 
@@ -210,46 +210,59 @@ function hideUI(){
 //   })
 // });
 
-$(document).on("click", "#download-photo", dataURItoBlob);
+// $(document).on("click", "#download-photo", dataURItoBlob);
 
-function dataURItoBlob(dataURI) {
-    var snap = $("#snap").attr('src');
-    // convert base64 to raw binary data held in a string
-    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-    var snap = atob(dataURI.split(',')[1]);
+// function dataURItoBlob(dataURI) {
+//     var snap = $("#snap").attr('src');
+//     // convert base64 to raw binary data held in a string
+//     // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+//     var snap = atob(dataURI.split(',')[1]);
 
-    // separate out the mime component
-    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+//     // separate out the mime component
+//     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
 
-    // write the bytes of the string to an ArrayBuffer
-    var ab = new ArrayBuffer(byteString.length);
-    var ia = new Uint8Array(ab);
-    for (var i = 0; i < byteString.length; i++) {
-        ia[i] = byteString.charCodeAt(i);
-    }
+//     // write the bytes of the string to an ArrayBuffer
+//     var ab = new ArrayBuffer(byteString.length);
+//     var ia = new Uint8Array(ab);
+//     for (var i = 0; i < byteString.length; i++) {
+//         ia[i] = byteString.charCodeAt(i);
+//     }
 
-    //Old Code
-    //write the ArrayBuffer to a blob, and you're done
-    //var bb = new BlobBuilder();
-    //bb.append(ab);
-    //return bb.getBlob(mimeString);
+//     //Old Code
+//     //write the ArrayBuffer to a blob, and you're done
+//     //var bb = new BlobBuilder();
+//     //bb.append(ab);
+//     //return bb.getBlob(mimeString);
 
-    //New Code
-    return new Blob([ab], {type: mimeString});
+//     //New Code
+//     return new Blob([ab], {type: mimeString});
 
 
-    var filename = Blob([ab], {type: mimeString}).name;
-    var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
-    var uploadTask = storageRef.put(selfie);
+//     var filename = Blob([ab], {type: mimeString}).name;
+//     var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
+//     var uploadTask = storageRef.put(selfie);
 
-    uploadTask.on('state_changed', function(snapshot) {
+//     uploadTask.on('state_changed', function(snapshot) {
 
-    }, function(error) {
+//     }, function(error) {
 
-    }, function() {
+//     }, function() {
 
-        var downloadURL = uploadTask.snapshot.downloadURL;
-        console.log(downloadURL);
-    });
+//         var downloadURL = uploadTask.snapshot.downloadURL;
+//         console.log(downloadURL);
+//     });
 
-};s
+// };
+
+// // Create a root reference
+// var storageRef = firebase.storage().ref('/selfies' + filename);
+
+// // Create a reference to 'mountains.jpg'
+// var mountainsRef = storageRef.child('mountains.jpg');
+
+// // Create a reference to 'images/mountains.jpg'
+// var mountainImagesRef = storageRef.child('images/mountains.jpg');
+
+// // While the file names are the same, the references point to different files
+// mountainsRef.name === mountainImagesRef.name            // true
+// mountainsRef.fullPath === mountainImagesRef.fullPath    // false
