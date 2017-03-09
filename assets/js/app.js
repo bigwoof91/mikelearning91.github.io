@@ -16,7 +16,8 @@ var video = document.querySelector('#camera-stream'),
     take_photo_btn = document.querySelector('#take-photo'),
     delete_photo_btn = document.querySelector('#delete-photo'),
     download_photo_btn = document.querySelector('#download-photo'),
-    error_message = document.querySelector('#error-message');
+    error_message = document.querySelector('#error-message'),
+    selfie;
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -24,7 +25,8 @@ var video = document.querySelector('#camera-stream'),
 navigator.getMedia = ( navigator.getUserMedia ||
                       navigator.webkitGetUserMedia ||
                       navigator.mozGetUserMedia ||
-                      navigator.msGetUserMedia);
+                      navigator.msGetUserMedia ||
+                      navigator.oGetUserMedia );
 
 
 if(!navigator.getMedia){
@@ -123,18 +125,6 @@ function showVideo(){
   controls.classList.add("visible");
 }
 
-
-$('#download-photo').on("click", function() {
-  var database = firebase.database();
-  var snap = takeSnapshot();
-  var imgData = snap;
-  var message = 'imgData';
-  database.ref().putString(message, 'data_url').then(function(snapshot) {
-  console.log('Uploaded a data_url string!');
-  })
-});
-
-
 function takeSnapshot(){
   // Here we're using a trick that involves a hidden canvas element.  
 
@@ -182,3 +172,35 @@ function hideUI(){
   error_message.classList.remove("visible");
 };
 
+//------------------------- upload selfie to firebase -------------------------//
+
+$('#download-photo').on('change', function(event) {
+  selfie = event.target.files[0];
+})
+
+function uploadToFirebase() {
+    var filename = selfie.name;
+    var storageRef = firebase.storage().ref(/selfies);
+    var uploadTask = storageRef.put(selfie);
+
+    uploadTask.on('state_changed', function(snapshot) {
+
+    }, function(error) {
+
+    }, function() {
+
+        var downloadURL = uploadTask.snapshot.downloadURL;
+        console.log(downloadURL);
+    });
+
+};
+
+$('#download-photo').on("click", function() {
+  var database = firebase.database();
+  var snap = takeSnapshot();
+  var imgData = snap;
+  var message = 'imgData';
+  database.ref().putString(message, 'data_url').then(function(snapshot) {
+  console.log('Uploaded a data_url string!');
+  })
+});
