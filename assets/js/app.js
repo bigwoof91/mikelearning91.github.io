@@ -120,7 +120,7 @@ function storeImg() {
   var postData = JSON.stringify({ imageData: imgData });
   var proxy = 'https://cors-anywhere.herokuapp.com/';
   $.ajax({
-    url: proxy + 'https://mikelearning91.github.com/private/images',
+    url: proxy + 'https://mikelearning91.github.com/private/imgs/',
     type: "Post",
     data: postData,
     contentType: "application/json",
