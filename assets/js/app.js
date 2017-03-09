@@ -238,7 +238,7 @@ function dataURItoBlob(dataURI) {
     return new Blob([ab], {type: mimeString});
 
 
-    var filename = return new Blob([ab], {type: mimeString}).name;
+    var filename = Blob([ab], {type: mimeString}).name;
     var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
     var uploadTask = storageRef.put(selfie);
 
