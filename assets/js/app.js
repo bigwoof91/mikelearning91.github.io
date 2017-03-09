@@ -17,7 +17,8 @@ var video = document.querySelector('#camera-stream'),
     delete_photo_btn = document.querySelector('#delete-photo'),
     download_photo_btn = document.querySelector('#download-photo'),
     error_message = document.querySelector('#error-message'),
-    selfie;
+    selfie,
+    database = firebase.database();
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -174,13 +175,71 @@ function hideUI(){
 
 //------------------------- upload selfie to firebase -------------------------//
 
-$('#download-photo').on('change', function(event) {
-  selfie = event.target.files[0];
-})
+// function onSuccess(imageData) {
+//   var image = $document[0].getElementById('snap');
+//   image.src = "data:image/png;base64," + imageData;
+// }
 
-function uploadToFirebase() {
-    var filename = selfie.name;
-    var storageRef = firebase.storage().ref('/selfies' + filename);
+// $('#download-photo').on('change', function(event) {
+//   selfie = event.target.files[0];
+// })
+
+// function uploadToFirebase() {
+//     var filename = selfie.name;
+//     var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
+//     var uploadTask = storageRef.put(selfie);
+
+//     uploadTask.on('state_changed', function(snapshot) {
+
+//     }, function(error) {
+
+//     }, function() {
+
+//         var downloadURL = uploadTask.snapshot.downloadURL;
+//         console.log(downloadURL);
+//     });
+
+// };
+
+// $('#download-photo').on("click", function() {
+//   var snap = takeSnapshot();
+//   var imgData = snap;
+//   var message = 'imgData';
+//   database.ref().putString(message, 'data_url').then(function(snapshot) {
+//   console.log('Uploaded a data_url string!');
+//   })
+// });
+
+$(document).on("click", "#download-photo", dataURItoBlob);
+
+function dataURItoBlob(dataURI) {
+    var snap = $("#snap").attr('src');
+    // convert base64 to raw binary data held in a string
+    // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
+    var snap = atob(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to an ArrayBuffer
+    var ab = new ArrayBuffer(byteString.length);
+    var ia = new Uint8Array(ab);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    //Old Code
+    //write the ArrayBuffer to a blob, and you're done
+    //var bb = new BlobBuilder();
+    //bb.append(ab);
+    //return bb.getBlob(mimeString);
+
+    //New Code
+    return new Blob([ab], {type: mimeString});
+
+
+    var filename = return new Blob([ab], {type: mimeString}).name;
+    var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
     var uploadTask = storageRef.put(selfie);
 
     uploadTask.on('state_changed', function(snapshot) {
@@ -193,14 +252,4 @@ function uploadToFirebase() {
         console.log(downloadURL);
     });
 
-};
-
-// $('#download-photo').on("click", function() {
-//   var database = firebase.database();
-//   var snap = takeSnapshot();
-//   var imgData = snap;
-//   var message = 'imgData';
-//   database.ref().putString(message, 'data_url').then(function(snapshot) {
-//   console.log('Uploaded a data_url string!');
-//   })
-// });
+};s
