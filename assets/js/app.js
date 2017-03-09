@@ -123,7 +123,10 @@ function storeImg() {
     url:'https://mikelearning91.github.com/private/images',
     type: "Post",
     data: postData,
-    contentType: "application/json"
+    contentType: "application/json",
+    header: {
+      "Access-Control-Allow-Origin": "*";
+    }
     });
 };
 
