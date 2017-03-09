@@ -116,7 +116,7 @@ function showVideo(){
 function storeImg() {
   var snap = takeSnapshot();
   var imgData = snap;
-  imgData = imageData.replace('data:image/png;base64,', '');
+  imgData = imgData.replace('data:image/png;base64,', '');
   var postData = JSON.stringify({ imageData: imgData });
 
   $.ajax({
