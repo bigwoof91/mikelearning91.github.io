@@ -615,15 +615,15 @@ pre code {
     position: absolute;
     top: 0;
     left: 0;
-    width: 100%;
+    width: 70%;
     height: 100%;
     z-index: 20;
-
     display: flex;
     align-items: flex-end;
     justify-content: space-between;
     padding: 30px;
     display: none;
+    margin-left: 140px;
 }
 
 .app .controls a{
