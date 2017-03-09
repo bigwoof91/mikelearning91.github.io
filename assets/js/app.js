@@ -1,3 +1,13 @@
+var config = {
+    apiKey: "AIzaSyAcxQ--hNXgtAP2ysfa5tGXq3lR_PgxRnQ",
+    authDomain: "moodo-9a993.firebaseapp.com",
+    databaseURL: "https://moodo-9a993.firebaseio.com",
+    storageBucket: "moodo-9a993.appspot.com",
+    messagingSenderId: "269081263117"
+  };
+
+firebase.initializeApp(config);
+
 // References to all the element we will need.
 var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
@@ -117,17 +127,10 @@ function storeImg() {
   var snap = takeSnapshot();
   var imgData = snap;
   imgData = imgData.replace('data:image/png;base64,', '');
-  var postData = JSON.stringify({ imageData: imgData });
-  var proxy = 'https://cors-anywhere.herokuapp.com/';
-  $.ajax({
-    url: proxy + 'https://mikelearning91.github.com/private/imgs/',
-    type: "Post",
-    data: postData,
-    contentType: "application/json",
-    header: {
-      "Access-Control-Allow-Origin": "*"
-    }
-    });
+  var message = 'imgData';
+  ref.putString(message, 'data_url').then(function(snapshot) {
+  console.log('Uploaded a data_url string!');
+});
 };
 
 function takeSnapshot(){
