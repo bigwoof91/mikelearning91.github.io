@@ -76,6 +76,28 @@ start_camera.addEventListener("click", function(e){
 
 });
 
+download_photo_btn.addEventListener("click", function(e) {
+    var snap = takeSnapshot();
+    var blob = dataURItoBlob(snap);
+
+    // Create a root reference
+    var storageRef = firebase.storage().ref();
+
+    // Create a reference to 'mountains.jpg'
+    var selfieRef = storageRef.child('selfie.png');
+
+    // Create a reference to 'images/mountains.jpg'
+    var selfieImagesRef = storageRef.child('selfies/' + selfieRef);
+
+    // While the file names are the same, the references point to different files
+    selfieRef.name === selfieImagesRef.name            // true
+    selfieRef.fullPath === selfieImagesRef.fullPath    // false
+
+    var file = blob; // use the Blob or File API
+    ref.put(file).then(function(snapshot) {
+    console.log('Uploaded a blob or file!');
+});
+});
 
 take_photo_btn.addEventListener("click", function(e){
 
@@ -85,7 +107,7 @@ take_photo_btn.addEventListener("click", function(e){
   var blob = dataURItoBlob(snap);
 
   // Show image. 
-  image.setAttribute('src', blob);
+  image.setAttribute('src', snap);
   image.classList.add("visible");
 
   // Enable delete and save buttons
@@ -238,7 +260,7 @@ function dataURItoBlob(dataURI) {
 //   })
 // });
 
-$(document).on("click", "#download-photo", dataURItoBlob);
+// $(document).on("click", "#download-photo", dataURItoBlob);
 
 
 
