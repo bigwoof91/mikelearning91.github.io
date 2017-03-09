@@ -76,27 +76,6 @@ start_camera.addEventListener("click", function(e){
 
 });
 
-download_photo_btn.addEventListener("click", function(e) {
-    var snap = takeSnapshot();
-    var blob = dataURItoBlob(snap);
-
-    // Create a root reference
-    var storageRef = firebase.storage().ref();
-
-    // Create a reference to 'mountains.jpg'
-    var selfieRef = storageRef.child('selfie.png');
-
-    // Create a reference to 'images/mountains.jpg'
-    var selfieImagesRef = storageRef.child('selfies/' + selfieRef);
-
-    // While the file names are the same, the references point to different files
-    selfieRef.name === selfieImagesRef.name            // true
-    selfieRef.fullPath === selfieImagesRef.fullPath    // false
-
-    var file = blob; // use the Blob or File API
-    var uploadTask = selfieImagesRef.put(file);
-});
-
 take_photo_btn.addEventListener("click", function(e){
 
   e.preventDefault();
@@ -118,6 +97,27 @@ take_photo_btn.addEventListener("click", function(e){
   // Pause video playback of stream.
   video.pause();
 
+});
+
+download_photo_btn.addEventListener("click", function(e) {
+    var snap = takeSnapshot();
+    var blob = dataURItoBlob(snap);
+
+    // Create a root reference
+    var storageRef = firebase.storage().ref();
+
+    // Create a reference to 'mountains.jpg'
+    var selfieRef = storageRef.child('selfie.png');
+
+    // Create a reference to 'images/mountains.jpg'
+    var selfieImagesRef = storageRef.child('/selfies/' + selfieRef);
+
+    // While the file names are the same, the references point to different files
+    selfieRef.name === selfieImagesRef.name            // true
+    selfieRef.fullPath === selfieImagesRef.fullPath    // false
+
+    var file = blob; // use the Blob or File API
+    var uploadTask = selfieImagesRef.put(file);
 });
 
 delete_photo_btn.addEventListener("click", function(e){
