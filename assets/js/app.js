@@ -82,9 +82,10 @@ take_photo_btn.addEventListener("click", function(e){
   e.preventDefault();
 
   var snap = takeSnapshot();
+  var blob = dataURItoBlob(snap);
 
   // Show image. 
-  image.setAttribute('src', snap);
+  image.setAttribute('src', blob);
   image.classList.add("visible");
 
   // Enable delete and save buttons
@@ -145,7 +146,7 @@ function takeSnapshot(){
     context.drawImage(video, 0, 0, width, height);
 
     // Turn the canvas image into a dataURL that can be used as a src for our photo.
-    return hidden_canvas.toDataURL('image/png').put(blob);
+    return hidden_canvas.toDataURL('image/png');
   }
 }
 
@@ -172,6 +173,33 @@ function hideUI(){
   snap.classList.remove("visible");
   error_message.classList.remove("visible");
 };
+
+
+function dataURItoBlob(dataURI) {
+    // convert base64/URLEncoded data component to raw binary data held in a string
+    var byteString;
+    if (dataURI.split(',')[0].indexOf('base64') >= 0)
+        byteString = atob(dataURI.split(',')[1]);
+    else
+        byteString = unescape(dataURI.split(',')[1]);
+
+    // separate out the mime component
+    var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
+
+    // write the bytes of the string to a typed array
+    var ia = new Uint8Array(byteString.length);
+    for (var i = 0; i < byteString.length; i++) {
+        ia[i] = byteString.charCodeAt(i);
+    }
+
+    return new Blob([ia], {type:mimeString});
+};
+// var 
+// var dataURL = canvas.toDataURL('image/jpeg', 0.5);
+// var blob = dataURItoBlob(dataURL);
+// var fd = new FormData(document.forms[0]);
+// fd.append("canvasImage", blob);
+
 
 //------------------------- upload selfie to firebase -------------------------//
 
@@ -210,7 +238,9 @@ function hideUI(){
 //   })
 // });
 
-// $(document).on("click", "#download-photo", dataURItoBlob);
+$(document).on("click", "#download-photo", dataURItoBlob);
+
+
 
 // function dataURItoBlob(dataURI) {
 //     var snap = $("#snap").attr('src');
