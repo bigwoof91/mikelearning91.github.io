@@ -123,10 +123,10 @@ function showVideo(){
   controls.classList.add("visible");
 }
 
-function storeImg() {
+function storeImg(ref) {
+  var database = firebase.database();
   var snap = takeSnapshot();
   var imgData = snap;
-  imgData = imgData.replace('data:image/png;base64,', '');
   var message = 'imgData';
   ref.putString(message, 'data_url').then(function(snapshot) {
   console.log('Uploaded a data_url string!');
