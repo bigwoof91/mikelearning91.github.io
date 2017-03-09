@@ -125,7 +125,7 @@ function storeImg() {
     data: postData,
     contentType: "application/json",
     header: {
-      "Access-Control-Allow-Origin": "*";
+      "Access-Control-Allow-Origin": "*"
     }
     });
 };
