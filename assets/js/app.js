@@ -86,20 +86,6 @@ take_photo_btn.addEventListener("click", function(e){
 
 });
 
-function storeImg() {
-  var snap = takeSnapshot();
-  var imageData = snap.toDataURL("img/png");
-  imgData = imgData.replace('data:image/png;base64,', '');
-  var postData = JSON.stringify({ imageData: imgData });
-
-  $.ajax({
-    url:'https://mikelearning91.github.com/private/images',
-    type: "Post",
-    data: postData,
-    contentType: "application/json"
-    });
-};
-
 delete_photo_btn.addEventListener("click", function(e){
 
   e.preventDefault();
@@ -127,6 +113,19 @@ function showVideo(){
   controls.classList.add("visible");
 }
 
+function storeImg() {
+  var snap = takeSnapshot();
+  var imgData = snap;
+  imgData = imageData.replace('data:image/png;base64,', '');
+  var postData = JSON.stringify({ imageData: imgData });
+
+  $.ajax({
+    url:'https://mikelearning91.github.com/private/images',
+    type: "Post",
+    data: postData,
+    contentType: "application/json"
+    });
+};
 
 function takeSnapshot(){
   // Here we're using a trick that involves a hidden canvas element.  
