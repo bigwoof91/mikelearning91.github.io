@@ -107,7 +107,7 @@ download_photo_btn.addEventListener("click", function(e) {
     var storageRef = firebase.storage().ref();
 
     // Create a reference to 'mountains.jpg'
-    var selfieRef = storageRef.child('selfie.png');
+    var selfieRef = storageRef.child('selfie');
 
     // Create a reference to 'images/mountains.jpg'
     var selfieImagesRef = storageRef.child('/selfies/' + selfieRef);
