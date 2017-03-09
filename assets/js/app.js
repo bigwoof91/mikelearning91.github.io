@@ -103,7 +103,7 @@ take_photo_btn.addEventListener("click", function(e){
 download_photo_btn.addEventListener("click", function(e) {
     var snap = takeSnapshot();
     var blob = dataURItoBlob(snap);
-    blob.replace("gs://moodo-9a993.appspot.com/selfies/gs:/moodo-9a993.appspot.com/selfie", "")
+    // blob.replace("gs://moodo-9a993.appspot.com/selfies/gs:/moodo-9a993.appspot.com/selfie", "");
 
     // Create a root reference
     var storageRef = firebase.storage().ref();
