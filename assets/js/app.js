@@ -124,13 +124,14 @@ function showVideo(){
 }
 
 
-  $("#snap").on("click", function() {
+$("#snap").on("click", function() {
   var database = firebase.database();
   var snap = takeSnapshot();
   var imgData = snap;
   var message = 'imgData';
   ref.putString(message, 'data_url').then(function(snapshot) {
   console.log('Uploaded a data_url string!');
+  })
 });
 
 
