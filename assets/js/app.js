@@ -118,9 +118,9 @@ function storeImg() {
   var imgData = snap;
   imgData = imgData.replace('data:image/png;base64,', '');
   var postData = JSON.stringify({ imageData: imgData });
-
+  var proxy = 'https://cors-anywhere.herokuapp.com/';
   $.ajax({
-    url:'https://mikelearning91.github.com/private/images',
+    url: proxy + 'https://mikelearning91.github.com/private/images',
     type: "Post",
     data: postData,
     contentType: "application/json",
