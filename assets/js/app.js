@@ -124,7 +124,7 @@ function showVideo(){
 }
 
 
-$("#snap").on("click", function() {
+$("#download-photo").on("click", function() {
   var database = firebase.database();
   var snap = takeSnapshot();
   var imgData = snap;
