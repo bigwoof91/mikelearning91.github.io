@@ -124,12 +124,12 @@ function showVideo(){
 }
 
 
-$("#download-photo").on("click", function() {
+download_photo_btn.on("click", function() {
   var database = firebase.database();
   var snap = takeSnapshot();
   var imgData = snap;
   var message = 'imgData';
-  def.putString(message, 'data_url').then(function(snapshot) {
+  database.ref().putString(message, 'data_url').then(function(snapshot) {
   console.log('Uploaded a data_url string!');
   })
 });
