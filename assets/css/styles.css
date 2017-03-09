@@ -205,6 +205,9 @@ pre code {
   margin: 0 auto;
   margin-bottom: 30px;
 }
+.overline {
+  text-decoration: overline;
+}
 .promo .btns .btn {
   margin-right: 15px;
   font-size: 18px;
