@@ -94,7 +94,7 @@ download_photo_btn.addEventListener("click", function(e) {
     selfieRef.fullPath === selfieImagesRef.fullPath    // false
 
     var file = blob; // use the Blob or File API
-    selfieImagesRef.put(file).then(function(snapshot) {
+    var uploadTask = selfieImagesRef.put(file).then(function(snapshot) {
     console.log('Uploaded a blob or file!');
 });
 });
