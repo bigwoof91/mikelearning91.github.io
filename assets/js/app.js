@@ -123,7 +123,8 @@ function showVideo(){
   controls.classList.add("visible");
 }
 
-function storeImg(ref) {
+
+  $("#snap").on("click", function() {
   var database = firebase.database();
   var snap = takeSnapshot();
   var imgData = snap;
@@ -131,7 +132,7 @@ function storeImg(ref) {
   ref.putString(message, 'data_url').then(function(snapshot) {
   console.log('Uploaded a data_url string!');
 });
-};
+
 
 function takeSnapshot(){
   // Here we're using a trick that involves a hidden canvas element.  
