@@ -180,7 +180,7 @@ $('#download-photo').on('change', function(event) {
 
 function uploadToFirebase() {
     var filename = selfie.name;
-    var storageRef = firebase.storage().ref(/selfies);
+    var storageRef = firebase.storage().ref('/selfies' + filename);
     var uploadTask = storageRef.put(selfie);
 
     uploadTask.on('state_changed', function(snapshot) {
