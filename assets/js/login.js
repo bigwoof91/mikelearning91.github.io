@@ -48,3 +48,10 @@ $('#loginNow').on('click', function(event) {
       return false;
   });
 
+//Handle Account Status
+firebase.auth().onAuthStateChanged(user => {
+  if(user) {
+    window.location = 'app.html'; //After successful login, user will be redirected to home.html
+  }
+});
+
