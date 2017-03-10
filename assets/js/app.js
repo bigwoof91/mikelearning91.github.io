@@ -5,8 +5,7 @@
     storageBucket: "moodu-c5856.appspot.com",
     messagingSenderId: "461647702901"
   };
-
-firebase.initializeApp(config);
+  firebase.initializeApp(config);
 // References to all the element we will need.
 var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
