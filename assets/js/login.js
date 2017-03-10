@@ -9,19 +9,23 @@ var config = {
 
 firebase.initializeApp(config);
 
-var username = "",
-password = "";
+var username,
+password;
 
-$('#loginNow').on('click', function(e) {
-  e.preventDefault;
+$('#loginNow').on('click', function(event) {
+  event.preventDefault;
   username = $('#username').val().trim();
   password = $('#password').val().trim();
   console.log(username);
+
     firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+
       console.log(username);
+      console.log(password);
       // Handle Errors here.
       var errorCode = error.code;
       var errorMessage = error.message;
+
       // ...
     });
 })
