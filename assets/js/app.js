@@ -118,6 +118,14 @@ take_photo_btn.addEventListener("click", function(e){
 });
 
 download_photo_btn.addEventListener("click", function(e) {
+    var user = firebase.auth().currentUser;
+    var uid, ;
+
+    if (user != null) {
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
+                     // this value to authenticate with your backend server, if
+                     // you have one. Use User.getToken() instead.
+    }
     var snap = takeSnapshot();
     var blob = dataURItoBlob(snap);
     // blob.replace("gs://moodo-9a993.appspot.com/selfies/gs:/moodo-9a993.appspot.com/selfie", "");
@@ -129,10 +137,10 @@ download_photo_btn.addEventListener("click", function(e) {
     var selfieID = 0;
 
     // Create a reference to 'mountains.jpg'
-    var selfieRef = storageRef.child('selfie' + selfieID++ + '.png');
+    var selfieRef = storageRef.child(uid + '-' + selfieID++ + '.png');
 
     // Create a reference to 'images/mountains.jpg'
-    var selfieImagesRef = storageRef.child('/selfies/selfie'  + selfieID++ + '.png');
+    var selfieImagesRef = storageRef.child('/selfies/'uid  + '-' + selfieID++ + '.png');
 
 
     // While the file names are the same, the references point to different files
@@ -141,6 +149,8 @@ download_photo_btn.addEventListener("click", function(e) {
 
     var file = blob; // use the Blob or File API
     var uploadTask = selfieImagesRef.put(file);
+
+
 });
 
 delete_photo_btn.addEventListener("click", function(e){
