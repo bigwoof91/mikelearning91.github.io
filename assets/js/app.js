@@ -125,11 +125,14 @@ download_photo_btn.addEventListener("click", function(e) {
     // Create a root reference
     var storageRef = firebase.storage().ref();
 
+    // Initial UID for images
+    var selfieID = 0;
+
     // Create a reference to 'mountains.jpg'
-    var selfieRef = storageRef.child('selfie.png');
+    var selfieRef = storageRef.child('selfie.png' + selfieID++);
 
     // Create a reference to 'images/mountains.jpg'
-    var selfieImagesRef = storageRef.child('/selfies/selfie.png');
+    var selfieImagesRef = storageRef.child('/selfies/selfie.png'  + selfieID++);
 
 
     // While the file names are the same, the references point to different files
