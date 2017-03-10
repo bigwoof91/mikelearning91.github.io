@@ -784,9 +784,11 @@ pre code {
 
 
 @media(max-width: 1000px){
+    .promo .container {
+        margin-bottom: 0;
+    }
     .container{
         margin: 20px 40px;
-        margin-bottom: 0;
     }
 
     .app #start-camera.visible{
@@ -805,7 +807,6 @@ pre code {
 @media(max-width: 600px){
     .container{
         margin: 10px;
-        margin-bottom: 0;
     }
 
     .app #error-message{
