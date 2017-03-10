@@ -1,3 +1,12 @@
+  var config = {
+    apiKey: "AIzaSyBrINciYykzgm93-J0NsRSLADGwsjUQREU",
+    authDomain: "moodu-c5856.firebaseapp.com",
+    databaseURL: "https://moodu-c5856.firebaseio.com",
+    storageBucket: "moodu-c5856.appspot.com",
+    messagingSenderId: "461647702901"
+  };
+
+firebase.initializeApp(config);
 // References to all the element we will need.
 var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
