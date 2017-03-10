@@ -119,10 +119,10 @@ take_photo_btn.addEventListener("click", function(e){
 
 download_photo_btn.addEventListener("click", function(e) {
     var user = firebase.auth().currentUser;
-    var email;
+    var uid;
 
     if (user != null) {
-    email = user.email;  // The user's ID, unique to the Firebase project. Do NOT use
+    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
                      // this value to authenticate with your backend server, if
                      // you have one. Use User.getToken() instead.
     }
@@ -137,10 +137,10 @@ download_photo_btn.addEventListener("click", function(e) {
     var selfieID = 0;
 
     // Create a reference to 'mountains.jpg'
-    var selfieRef = storageRef.child(email + '-' + selfieID++ + '.png');
+    var selfieRef = storageRef.child(uid + '-' + selfieID++ + '.png');
 
     // Create a reference to 'images/mountains.jpg'
-    var selfieImagesRef = storageRef.child('/selfies/' + email  + '-' + selfieID++ + '.png');
+    var selfieImagesRef = storageRef.child('/selfies/' + uid  + '-' + selfieID++ + '.png');
 
 
     // While the file names are the same, the references point to different files
