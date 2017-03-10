@@ -14,20 +14,36 @@ jQuery(document).ready(function($) {
          }
     });
 
-    /* ======= navbar toggle fade in on scroll on small screens ======= */
-   $(window).on('resize', function(event){
-    var windowSize = $(window).width(); 
-        if(windowSize < 768){
-            $(window).bind('scroll', function() {
-                 if ($(window).scrollTop() > 20) {
-                     $('.navbar-toggle').fadeIn();
-                 }
-                 else {
-                     $('.navbar-toggle').fadeOut();
-                 }        
-            });
-        }
+    /* ======= navbar toggle fade in on scroll ======= */
+    $(window).bind('scroll', function() {
+         if ($(window).scrollTop() > 20) {
+             $('.navbar-toggle').fadeIn();
+         }
+         else {
+             $('.navbar-toggle').fadeOut();
+         }        
     });
+
+    /* ======= navbar toggle animation ======= */
+    (function() {
+
+      "use strict";
+
+      var toggles = document.querySelectorAll(".c-hamburger");
+
+      for (var i = toggles.length - 1; i >= 0; i--) {
+        var toggle = toggles[i];
+        toggleHandler(toggle);
+      };
+
+      function toggleHandler(toggle) {
+        toggle.addEventListener( "click", function(e) {
+          e.preventDefault();
+          (this.classList.contains("is-active") === true) ? this.classList.remove("is-active") : this.classList.add("is-active");
+        });
+      }
+
+    })();
 
     /* ======= ScrollTo ======= */
     $('a.scrollto').on('click', function(e){
