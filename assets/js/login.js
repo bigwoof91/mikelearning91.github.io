@@ -12,9 +12,8 @@ firebase.initializeApp(config);
 var username = "",
 password = "";
 
-  $(document).on("click", "#loginNow", addUser);
-
-function addUser() {
+$('#loginNow').on('click', function(e) {
+  e.preventDefault;
   username = $('#username').val().trim();
   password = $('#password').val().trim();
   console.log(username);
@@ -25,5 +24,4 @@ function addUser() {
       var errorMessage = error.message;
       // ...
     });
-
-};
+})
