@@ -9,12 +9,26 @@ var config = {
 
 firebase.initializeApp(config);
 
-firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-  // Handle Errors here.
-  var errorCode = error.code;
-  var errorMessage = error.message;
-  // ...
-});
+var username = "",
+password = "";
+
+  $(document).on("click", "#loginNow", addUser);
+
+function addUser() {
+  username = $('#username').val().trim();
+  password = $('#password').val().trim();
+
+    firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
+
+      // Handle Errors here.
+      var errorCode = error.code;
+      var errorMessage = error.message;
+      // ...
+    });
+
+};
+
+
 
 // References to all the element we will need.
 var video = document.querySelector('#camera-stream'),

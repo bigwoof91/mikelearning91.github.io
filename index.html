@@ -63,7 +63,7 @@
             <h2 class="title">MOO<span class="highlight">DÜ</span></h2>
             <p class="intro">The app that understands you and what you can do, <br class="hideOn640" />in a snap of a photo.</p>
             <div class="btns">
-                <a class="btn btn-cta-primary" href="#" target="_blank">Login</a>
+                <a class="btn btn-cta-primary" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
                 <a class="btn btn-cta-secondary" href="#" target="_blank">Sign Up</a>
             </div>
             <ul class="meta list-inline">
@@ -72,6 +72,24 @@
         </div><!--//container-->
     </section><!--//promo-->
     
+<div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Login to Your Account</h1><br>
+                  <form>
+                    <input type="text" name="user" placeholder="Username" id="username">
+                    <input type="password" name="pass" placeholder="Password" id="password">
+                    <input type="submit" name="login" class="login loginmodal-submit" value="Login" id="loginNow">
+                  </form>
+                    
+                  <div class="login-help">
+                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
+                  </div>
+                </div>
+            </div>
+          </div>
+
+
     <!-- ******ABOUT****** --> 
     <section id="about" class="about section">
         <div class="container">
@@ -173,7 +191,8 @@
     <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
     <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script> 
     <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
-    <script type="text/javascript" src="assets/js/main.js"></script>       
+    <script type="text/javascript" src="assets/js/main.js"></script>  
+    <script type="text/javascript" src="assets/js/app.js"></script>       
 </body>
 </html> 
 
