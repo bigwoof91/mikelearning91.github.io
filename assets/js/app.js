@@ -122,7 +122,7 @@ download_photo_btn.addEventListener("click", function(e) {
     var email;
 
     if (user != null) {
-    uid = user.email;  // The user's ID, unique to the Firebase project. Do NOT use
+    email = user.email;  // The user's ID, unique to the Firebase project. Do NOT use
                      // this value to authenticate with your backend server, if
                      // you have one. Use User.getToken() instead.
     }
