@@ -704,7 +704,11 @@ pre code {
     }
 }
 
-
+@media(min-width: 768){
+  .navbar-toggle{
+    display: none;
+  }
+}
 @media(max-width: 600px){
     .container{
         margin: 10px;
