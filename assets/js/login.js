@@ -18,14 +18,9 @@ $('#loginNow').on('click', function(event) {
   password = $('#password').val().trim();
   console.log(username);
 
-    firebase.auth().createUserWithEmailAndPassword(username, password).catch(function(error) {
-
+    firebase.auth().createUserWithEmailAndPassword(username, password);
       console.log(username);
       console.log(password);
-      // Handle Errors here.
-      var errorCode = error.code;
-      var errorMessage = error.message;
 
-      // ...
     });
-})
+
