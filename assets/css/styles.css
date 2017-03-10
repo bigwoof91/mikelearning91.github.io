@@ -866,6 +866,12 @@ pre code {
   }
 }
 
+@media (min-width: 768px) {
+  #navBarToggle {
+    display: none !important;
+  }
+}
+
 @media (max-width: 640px) {
   .hideOn640 {
     display: none;

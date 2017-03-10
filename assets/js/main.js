@@ -14,19 +14,21 @@ jQuery(document).ready(function($) {
          }
     });
 
-    /* ======= navbar toggle fade in on scroll ======= */
-    var windowWidth = $(window).width();
-        if(windowWidth < 768){
+    /* ======= navbar toggle fade in on scroll on small screens ======= */
+   $(window).on('resize', function(event){
+    var windowSize = $(window).width(); 
+        if(windowSize < 768){
             $(window).bind('scroll', function() {
                  if ($(window).scrollTop() > 20) {
                      $('.navbar-toggle').fadeIn();
                  }
                  else {
                      $('.navbar-toggle').fadeOut();
-                 }
+                 }        
             });
-    };
-   
+        }
+    });
+
     /* ======= ScrollTo ======= */
     $('a.scrollto').on('click', function(e){
         
