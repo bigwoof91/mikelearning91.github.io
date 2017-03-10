@@ -140,7 +140,7 @@ download_photo_btn.addEventListener("click", function(e) {
     var selfieRef = storageRef.child(uid + '-' + selfieID++ + '.png');
 
     // Create a reference to 'images/mountains.jpg'
-    var selfieImagesRef = storageRef.child('/selfies/'uid  + '-' + selfieID++ + '.png');
+    var selfieImagesRef = storageRef.child('/selfies/' + uid  + '-' + selfieID++ + '.png');
 
 
     // While the file names are the same, the references point to different files
