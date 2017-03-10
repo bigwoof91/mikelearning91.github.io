@@ -119,7 +119,7 @@ take_photo_btn.addEventListener("click", function(e){
 
 download_photo_btn.addEventListener("click", function(e) {
     var user = firebase.auth().currentUser;
-    var uid, ;
+    var uid;
 
     if (user != null) {
     uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
