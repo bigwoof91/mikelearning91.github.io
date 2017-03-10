@@ -150,24 +150,30 @@ download_photo_btn.addEventListener("click", function(e) {
     var file = blob; // use the Blob or File API
     var uploadTask = selfieImagesRef.put(file);
   
-  selfieImagesRef.getDownloadURL().then(function(url) {
-  // `url` is the download URL for 'images/stars.jpg'
+      //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
+      // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
+      //-----------------------START-----------------------
 
-  // This can be downloaded directly:
-  var xhr = new XMLHttpRequest();
-  xhr.responseType = 'blob';
-  xhr.onload = function(event) {
-    var blob = xhr.response;
-  };
-  xhr.open('GET', url);
-  xhr.send();
+      //   selfieImagesRef.getDownloadURL().then(function(url) {
+      //   // `url` is the download URL for 'images/stars.jpg'
 
-  // Or inserted into an <img> element:
-  var img = document.getElementById('myimg');
-  img.src = url;
-}).catch(function(error) {
-  // Handle any errors
-});
+      //   // This can be downloaded directly:
+      //   var xhr = new XMLHttpRequest();
+      //   xhr.responseType = 'blob';
+      //   xhr.onload = function(event) {
+      //     var blob = xhr.response;
+      //   };
+      //   xhr.open('GET', url);
+      //   xhr.send();
+
+      //   // Or inserted into an <img> element:
+      //   var img = document.getElementById('myimg');
+      //   img.src = url;
+      // }).catch(function(error) {
+      //   // Handle any errors
+      // });
+      //-----------------------END-----------------------
+
 
 });
 
@@ -265,109 +271,3 @@ function dataURItoBlob(dataURI) {
 
     return new Blob([ia], {type:mimeString});
 };
-
-
-
-
-// var 
-// var dataURL = canvas.toDataURL('image/jpeg', 0.5);
-// var blob = dataURItoBlob(dataURL);
-// var fd = new FormData(document.forms[0]);
-// fd.append("canvasImage", blob);
-
-
-//------------------------- upload selfie to firebase -------------------------//
-
-// function onSuccess(imageData) {
-//   var image = $document[0].getElementById('snap');
-//   image.src = "data:image/png;base64," + imageData;
-// }
-
-// $('#download-photo').on('change', function(event) {
-//   selfie = event.target.files[0];
-// })
-
-// function uploadToFirebase() {
-//     var filename = selfie.name;
-//     var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
-//     var uploadTask = storageRef.put(selfie);
-
-//     uploadTask.on('state_changed', function(snapshot) {
-
-//     }, function(error) {
-
-//     }, function() {
-
-//         var downloadURL = uploadTask.snapshot.downloadURL;
-//         console.log(downloadURL);
-//     });
-
-// };
-
-// $('#download-photo').on("click", function() {
-//   var snap = takeSnapshot();
-//   var imgData = snap;
-//   var message = 'imgData';
-//   database.ref().putString(message, 'data_url').then(function(snapshot) {
-//   console.log('Uploaded a data_url string!');
-//   })
-// });
-
-// $(document).on("click", "#download-photo", dataURItoBlob);
-
-
-
-// function dataURItoBlob(dataURI) {
-//     var snap = $("#snap").attr('src');
-//     // convert base64 to raw binary data held in a string
-//     // doesn't handle URLEncoded DataURIs - see SO answer #6850276 for code that does this
-//     var snap = atob(dataURI.split(',')[1]);
-
-//     // separate out the mime component
-//     var mimeString = dataURI.split(',')[0].split(':')[1].split(';')[0];
-
-//     // write the bytes of the string to an ArrayBuffer
-//     var ab = new ArrayBuffer(byteString.length);
-//     var ia = new Uint8Array(ab);
-//     for (var i = 0; i < byteString.length; i++) {
-//         ia[i] = byteString.charCodeAt(i);
-//     }
-
-//     //Old Code
-//     //write the ArrayBuffer to a blob, and you're done
-//     //var bb = new BlobBuilder();
-//     //bb.append(ab);
-//     //return bb.getBlob(mimeString);
-
-//     //New Code
-//     return new Blob([ab], {type: mimeString});
-
-
-//     var filename = Blob([ab], {type: mimeString}).name;
-//     var storageRef = firebase.storage().ref('/selfies' + filename).put(blob);
-//     var uploadTask = storageRef.put(selfie);
-
-//     uploadTask.on('state_changed', function(snapshot) {
-
-//     }, function(error) {
-
-//     }, function() {
-
-//         var downloadURL = uploadTask.snapshot.downloadURL;
-//         console.log(downloadURL);
-//     });
-
-// };
-
-// // Create a root reference
-// var storageRef = firebase.storage().ref('/selfies' + filename);
-
-// // Create a reference to 'mountains.jpg'
-// var mountainsRef = storageRef.child('mountains.jpg');
-
-// // Create a reference to 'images/mountains.jpg'
-// var mountainImagesRef = storageRef.child('images/mountains.jpg');
-
-// // While the file names are the same, the references point to different files
-// mountainsRef.name === mountainImagesRef.name            // true
-// mountainsRef.fullPath === mountainImagesRef.fullPath    // false
