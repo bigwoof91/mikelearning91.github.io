@@ -61,32 +61,53 @@
             <p class="intro">The app that understands you and what you can do, <br class="hideOn640" />in a snap of a photo.</p>
             <div class="btns">
                 <a class="btn btn-cta-primary" href="#" data-toggle="modal" data-target="#login-modal">Login</a>
-                <a class="btn btn-cta-secondary" href="#" target="_blank">Sign Up</a>
+                <a class="btn btn-cta-secondary" href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a>
             </div>
             <ul class="meta list-inline">
                 <li><a href="#" target="_blank">Powered by: Microsoft Cognitive Services</a></li>
             </ul><!--//meta-->
         </div><!--//container-->
     </section><!--//promo-->
-    
+
+<!-- ******Login****** --> 
 <div class="modal fade" id="login-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
           <div class="modal-dialog">
                 <div class="loginmodal-container">
-                    <h1>Login to Your Account</h1><br>
+                    <h1>Sign In</h1><br>
 
                   <form>
-                    <input type="email" placeholder="Email" id="username">
-                    <input type="password" placeholder="Password" id="password">
-                    <button type="button" class="btn btn-secondary" id="loginNow">Sign Up</button>
+                    <label>Email</label>
+                    <input type="email" placeholder="example@gmail.com" id="usernameLogin">
+                    <label>Password</label>
+                    <input type="password" placeholder="******" id="passwordLogin">
+                    <div class="login-help">
+                    <a href="#">Register</a> | <a href="#">Forgot Password</a>
+                  </div><br />
+                    <button type="button" class="btn btn-secondary loginmodal-submit" id="loginNow">Sign In</button>
                   </form>
-                    
-<!--                   <div class="login-help">
-                    <a href="#">Register</a> - <a href="#">Forgot Password</a>
-                  </div> -->
+                
                 </div>
             </div>
           </div>
 
+<!-- ******Sign UP****** --> 
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                    <h1>Create Your Account</h1><br>
+
+                  <form>
+                    <label>Your Email (will be your username)</label>
+                    <input type="email" placeholder="example@gmail.com" id="username">
+                    <label>Create Password</label>
+                    <input type="password" placeholder="Must be at least 6 characters" id="password">
+                    <button type="button" class="btn btn-secondary loginmodal-submit" id="signUpNow">CREATE ACCOUNT</button>
+                  </form>
+                    
+
+                </div>
+            </div>
+          </div>
 
     <!-- ******ABOUT****** --> 
     <section id="about" class="about section">

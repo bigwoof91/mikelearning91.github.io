@@ -6,14 +6,15 @@
     storageBucket: "moodu-c5856.appspot.com",
     messagingSenderId: "461647702901"
   };
-  firebase.initializeApp(config);
+
+firebase.initializeApp(config);
 
 
 var email = "";
 var password = "";
 
 
-$('#loginNow').on('click', function(event) {
+$('#signUpNow').on('click', function(event) {
   event.preventDefault();
 
     email = $('#username').val().trim();
@@ -26,6 +27,24 @@ $('#loginNow').on('click', function(event) {
 
   console.log(email);
   console.log(password);
+  $('#signup-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
+      return false;
+  });
 
+$('#loginNow').on('click', function(event) {
+  event.preventDefault();
+
+    email = $('#usernameLogin').val().trim();
+    password = $('#passwordLogin').val().trim();
+
+    firebase.auth().signInWithEmailAndPassword(email, password).catch(function(error) {
+      var errorCode = error.code;
+      var errorMessage = error.message;
+    });
+
+  console.log(email);
+  console.log(password);
+  $('#login-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
+      return false;
   });
 

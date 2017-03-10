@@ -1,11 +1,31 @@
-  var config = {
+// firebase connection
+var config = {
     apiKey: "AIzaSyBrINciYykzgm93-J0NsRSLADGwsjUQREU",
     authDomain: "moodu-c5856.firebaseapp.com",
     databaseURL: "https://moodu-c5856.firebaseio.com",
     storageBucket: "moodu-c5856.appspot.com",
     messagingSenderId: "461647702901"
   };
-  firebase.initializeApp(config);
+
+firebase.initializeApp(config);
+
+//Handle Account Status
+firebase.auth().onAuthStateChanged(user => {
+  if(!user) {
+    window.location = 'index.html'; //If User is not logged in, redirect to login page
+  }
+});
+
+// Logout function
+$('#logoutNow').on('click', function(event) {
+  event.preventDefault();
+firebase.auth().signOut().then(function() {
+  // Sign-out successful.
+}).catch(function(error) {
+  // An error happened.
+});
+});
+
 // References to all the element we will need.
 var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
