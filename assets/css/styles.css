@@ -104,6 +104,9 @@ pre code {
   position: fixed;
   width: 100%;
 }
+.navbar-toggle{
+  display: none;
+}
 .header.navbar-fixed-top {
   background: #fff;
   z-index: 9999;
@@ -685,7 +688,7 @@ pre code {
 
 @media(max-width: 1000px){
     .container{
-        margin: 40px;
+        margin: 20px 40px;
     }
 
     .app #start-camera.visible{

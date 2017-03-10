@@ -13,6 +13,15 @@ jQuery(document).ready(function($) {
              $('#header').removeClass('navbar-fixed-top');
          }
     });
+
+    $(window).bind('scroll', function() {
+         if ($(window).scrollTop() > 20) {
+             $('.navbar-toggle').fadeIn();
+         }
+         else {
+             $('.navbar-toggle').fadeOut();
+         }
+    });
    
     /* ======= ScrollTo ======= */
     $('a.scrollto').on('click', function(e){
