@@ -20,7 +20,7 @@ jQuery(document).ready(function($) {
              $('.navbar-toggle').fadeIn();
          }
          else {
-             $('.navbar-toggle').fadeOut();
+             $('.navbar-toggle').fadeOut('fast');
          }        
     });
 

@@ -786,6 +786,7 @@ pre code {
 @media(max-width: 1000px){
     .container{
         margin: 20px 40px;
+        margin-bottom: 0;
     }
 
     .app #start-camera.visible{
@@ -804,6 +805,7 @@ pre code {
 @media(max-width: 600px){
     .container{
         margin: 10px;
+        margin-bottom: 0;
     }
 
     .app #error-message{
@@ -966,6 +968,12 @@ pre code {
 @media (min-width: 768px) {
   #navBarToggle {
     display: none !important;
+  }
+}
+
+@media (max-width: 768px) {
+  #navBarToggle {
+    display: none;
   }
 }
 
