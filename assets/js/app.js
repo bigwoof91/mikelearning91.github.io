@@ -191,6 +191,7 @@ download_photo_btn.addEventListener("click", function(e) {
      {
      var data = JSON.stringify(response);
      console.log(data);
+     $('#dataHere').html(text);
      }
 
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
