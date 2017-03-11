@@ -154,26 +154,44 @@ download_photo_btn.addEventListener("click", function(e) {
 
 
     // `url` is the download URL for 'images/stars.jpg'
-
-
-        $.ajax({
-            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?",
-            beforeSend: function(xhrObj){
-                // Request headers
-                xhrObj.setRequestHeader("Content-Type","application/json");
-                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","f8c966943aa0419ea6b294f135365d95");
-            },
-            type: "POST",
-            // Request body
-            data: blob
-        })
-        .done(function(data) {
-            alert("success");
-        })
-        .fail(function() {
-            alert("error");
-        });
-
+     //apiKey: Replace this with your own Project Oxford Emotion API key, please do not use my key. I include it here so you can get up and running quickly but you can get your own key for free at https://www.projectoxford.ai/emotion 
+     var apiKey = "f8c966943aa0419ea6b294f135365d95";
+     
+     //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
+     var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+     
+     $('#btn').click(function () {
+     //file: The file that will be sent to the api
+     var file = blob;
+     
+     CallAPI(file, apiUrl, apiKey);
+     });
+     
+     function CallAPI(file, apiUrl, apiKey)
+     {
+     $.ajax({
+     url: apiUrl,
+     beforeSend: function (xhrObj) {
+     xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+     xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
+     },
+     type: "POST",
+     data: file,
+     processData: false
+     })
+     .done(function (response) {
+     ProcessResult(response);
+     })
+     .fail(function (error) {
+     $("#response").text(error.getAllResponseHeaders());
+     });
+     }
+     
+     function ProcessResult(response)
+     {
+     var data = JSON.stringify(response);
+     console.log(data);
+     }
 
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
       // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
