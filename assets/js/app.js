@@ -157,7 +157,7 @@ download_photo_btn.addEventListener("click", function(e) {
 
 
         $.ajax({
-            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?" + $.param(params),
+            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?",
             beforeSend: function(xhrObj){
                 // Request headers
                 xhrObj.setRequestHeader("Content-Type","application/json");
