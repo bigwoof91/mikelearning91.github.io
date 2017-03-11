@@ -154,14 +154,30 @@ download_photo_btn.addEventListener("click", function(e) {
 
 
     // `url` is the download URL for 'images/stars.jpg'
-    $.ajax({
-        method: 'POST',
-        address: 'http://welcome.justappraisers.com/selfies',
-        data: handlesImgSaved,
-        contentType: false,
-        processData: false
-    }).done(function(results) {
-      console.log(results);
+    $(function() {
+        var params = {
+            // Request parameters
+        };
+
+        $.ajax({
+            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?" + $.param(params),
+            beforeSend: function(xhrObj){
+                // Request headers
+                xhrObj.setRequestHeader("Content-Type","application/json");
+                xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key","f8c966943aa0419ea6b294f135365d95");
+            },
+            type: "POST",
+            // Request body
+            data: blob,
+        })
+        .done(function(data) {
+            alert("success");
+        })
+        .fail(function() {
+            alert("error");
+        });
+    });
+
     });
 
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
@@ -187,9 +203,6 @@ download_photo_btn.addEventListener("click", function(e) {
       //   // Handle any errors
       // });
       //-----------------------END-----------------------
-
-
-});
 
 delete_photo_btn.addEventListener("click", function(e){
 
