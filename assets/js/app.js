@@ -26,7 +26,7 @@ firebase.auth().signOut().then(function() {
 });
 });
 
-// References to all the element we will need.
+// References to all "take-photo" elements
 var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
     start_camera = document.querySelector('#start-camera'),
@@ -150,6 +150,18 @@ download_photo_btn.addEventListener("click", function(e) {
     var file = blob; // use the Blob or File API
     var uploadTask = selfieImagesRef.put(file);
   
+      selfieImagesRef.getDownloadURL().then(function(url) {
+        // `url` is the download URL for 'images/stars.jpg'
+        console.log(url);
+        // This can be downloaded directly:
+        var xhr = new XMLHttpRequest();
+        xhr.responseType = 'blob';
+        xhr.onload = function(event) {
+          var blob = xhr.response;
+        };
+        xhr.open('GET', url);
+        xhr.send();
+      });
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
       // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
       //-----------------------START-----------------------
