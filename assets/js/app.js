@@ -154,13 +154,10 @@ download_photo_btn.addEventListener("click", function(e) {
 
 
     // `url` is the download URL for 'images/stars.jpg'
-    $(function() {
-        var params = {
-            // Request parameters
-        };
+
 
         $.ajax({
-            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?" + $.param(params),
+            url: "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize?",
             beforeSend: function(xhrObj){
                 // Request headers
                 xhrObj.setRequestHeader("Content-Type","application/json");
@@ -178,7 +175,7 @@ download_photo_btn.addEventListener("click", function(e) {
         });
     });
 
-    });
+
 
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
       // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
