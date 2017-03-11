@@ -1020,6 +1020,19 @@ pre code {
     padding-left: 0 !important;
 }
 
+@media(max-width: 768px) {
+  .box {
+    width: 75%;
+    margin-left: -38%;
+  }
+
+  .controls {
+    width: 80% !important;
+    margin-left: 10% !important;
+    padding: 0 0 5px 0 !important;
+  }
+}
+
 #contentBoxContainer {
   left: -150%;
 }
@@ -1030,6 +1043,7 @@ pre code {
 
 #areYou {
   left: 150%;
+  border: none;
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */

@@ -195,7 +195,7 @@ download_photo_btn.addEventListener("click", function(e) {
       }
 
 
-      $('#dataHere').empty();
+      // $('#dataHere').empty();
       $('#youAreFeeling').empty();
 
 
@@ -207,8 +207,8 @@ download_photo_btn.addEventListener("click", function(e) {
       // $('#dataHere').append("<p>neutral: " + feelingMeasures[3] + "</p>");
 
       var max = Math.max(...feelingMeasures);
-      console.log(feelingMeasures);
-      console.log(max);
+      // console.log(feelingMeasures);
+      // console.log(max);
       // asks if the emotion is correct
       if (feelingMeasures[0] == max) {
         console.log("1");
