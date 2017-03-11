@@ -94,12 +94,12 @@ start_camera.addEventListener("click", function(e){
 
 });
 
+// take photo button function
 take_photo_btn.addEventListener("click", function(e){
 
   e.preventDefault();
 
   var snap = takeSnapshot();
-  var blob = dataURItoBlob(snap);
 
   // Show image. 
   image.setAttribute('src', snap);
@@ -147,52 +147,44 @@ download_photo_btn.addEventListener("click", function(e) {
     selfieRef.name === selfieImagesRef.name            // true
     selfieRef.fullPath === selfieImagesRef.fullPath    // false
 
-    var file = blob; // use the Blob or File API
-    var uploadTask = selfieImagesRef.put(file);
-  
+    var file = blob; // declares new variable for blob as file
+    var uploadTask = selfieImagesRef.put(file); // Puts image in firebase storage reference
+
+    //------------------------------ AJAX Post to Microsoft Cognitive Service, Emotion API ------------------------------//
+    // Get download URL
     var handlesImgSaved = selfieImagesRef.getDownloadURL();
 
-
     // `url` is the download URL for 'images/stars.jpg'
-     //apiKey: Replace this with your own Project Oxford Emotion API key, please do not use my key. I include it here so you can get up and running quickly but you can get your own key for free at https://www.projectoxford.ai/emotion 
-     var apiKey = "f8c966943aa0419ea6b294f135365d95";
+    //apiKey: Replace this with your own Project Oxford Emotion API key, please do not use my key. I include it here so you can get up and running quickly but you can get your own key for free at https://www.projectoxford.ai/emotion 
+    var apiKey = "f8c966943aa0419ea6b294f135365d95";
      
-     //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
-     var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+    //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
+    var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+         
+    CallAPI(file, apiUrl, apiKey);
      
+    function CallAPI(file, apiUrl, apiKey) {
+      $.ajax({
+        url: apiUrl,
+        beforeSend: function (xhrObj) {
+        xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
+        xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
+        },
+        type: "POST",
+        data: file,
+        processData: false
+      }).done(function (response) {
+        ProcessResult(response);
+      }).fail(function (error) {
+        $("#response").text(error.getAllResponseHeaders());
+      });
+    }
 
-     //file: The file that will be sent to the api
-     var file = blob;
-     
-     CallAPI(file, apiUrl, apiKey);
-
-     
-     function CallAPI(file, apiUrl, apiKey)
-     {
-     $.ajax({
-     url: apiUrl,
-     beforeSend: function (xhrObj) {
-     xhrObj.setRequestHeader("Content-Type", "application/octet-stream");
-     xhrObj.setRequestHeader("Ocp-Apim-Subscription-Key", apiKey);
-     },
-     type: "POST",
-     data: file,
-     processData: false
-     })
-     .done(function (response) {
-     ProcessResult(response);
-     })
-     .fail(function (error) {
-     $("#response").text(error.getAllResponseHeaders());
-     });
-     }
-     
-     function ProcessResult(response)
-     {
-     var data = JSON.stringify(response);
-     console.log(data);
-     $('#dataHere').text(data);
-     }
+    function ProcessResult(response) {
+      var data = JSON.stringify(response);
+      console.log(data);
+      $('#dataHere').html(data);
+    };
 
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
       // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
@@ -217,10 +209,9 @@ download_photo_btn.addEventListener("click", function(e) {
       //   // Handle any errors
       // });
       //-----------------------END-----------------------
-
-
 });
 
+// delete photo button on camera
 delete_photo_btn.addEventListener("click", function(e){
 
   e.preventDefault();
