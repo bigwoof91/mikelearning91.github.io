@@ -156,7 +156,7 @@ download_photo_btn.addEventListener("click", function(e) {
     // `url` is the download URL for 'images/stars.jpg'
     $.ajax({
         method: 'POST',
-        address: 'https://mikelearning91.github.com/assets/',
+        address: 'http://welcome.justappraisers.com/selfies',
         data: handlesImgSaved,
         contentType: false,
         processData: false
