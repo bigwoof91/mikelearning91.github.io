@@ -54,8 +54,9 @@
     </header><!--//header-->
     
     <!-- ******CAPTURE SELFIE****** -->
-    <section id="promo" class="promo section offset-header">
-        <div class="container text-center">
+    <section id="appContainer" class="promo section offset-header">
+
+        <div id="snapYou" class="container text-center box">
             <div class="app">
                 <a href="#" id="start-camera" class="visible">Touch Here To Analyze Your Mood</a>
                 <video id="camera-stream"></video>
@@ -66,25 +67,35 @@
                 <div class="controls">
                   <a href="#" id="delete-photo" title="Retake Photo" class="disabled"><i class="material-icons">delete</i></a>
                   <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
-                  <a href="#" id="download-photo" title="Analyze Mood" class="disabled"><i class="material-icons">done</i></a>  
+                  <a href="#" id="download-photo" title="Analyze Mood" class="disabled"><i class="next-step material-icons">done</i></a>  
                 </div>
-
             <!-- Hidden canvas element. Used for taking snapshot of video. -->
                 <canvas></canvas>
+                
             </div>
 
+            <div id="dataHere"></div>
 
         </div><!--//container-->
+
+        <div id="areYou" class="container text-center box">
+
+            <div id="areYouFeeling">
+                <h3 id="youAreFeeling"></h3>
+                <button id="deliverContent" class="next-step">Yes</button><button id="retakePhoto" class="back-step">No</button>
+            </div>
+
+        </div>
+
     </section><!--//promo-->
     
+
 <!-- ******CONTENT DISPLAY****** -->
-<section id="promo" class="promo section offset-header">
+<!-- <section id="content" class="promo section offset-header">
     <div class="container text-center">
         <div class="row">
-            <div id="dataHere"></div>
-            <div class="col-xs-12 col-md-3">BOOKS YOU CAN READ
-                <img src = "assets/images/bookReading.jpg">
-            </div>
+
+
             <div class="col-xs-12 col-md-3">MOVIES YOU CAN WATCH
                 <img src = "assets/images/movieWatching.jpeg">
             </div>
@@ -110,8 +121,8 @@
                 <img src="assets/images/weatherImage.jpg">
             </div>
         </div>
-    </div><!--//container-->
-</section><!--//content-->
+    </div>//container
+</section>//content-->
       
     <!-- ******FOOTER****** --> 
     <footer class="footer">
@@ -128,6 +139,7 @@
     <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script> 
     <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
     <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>  
 </body>

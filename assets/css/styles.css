@@ -999,6 +999,38 @@ pre code {
     display: none;
   }
 }
+
+#appContainer {
+  height: 100vh;
+}
+
+.box {
+    position: absolute;
+    width: 50%;
+/*    height: 300px;
+    line-height: 300px;
+    top: 100px; */
+    font-size: 50px;
+    text-align: center;
+    border: 2px solid black;
+    left: 50%;
+
+    margin-left: -25%;
+    padding-right: 0 !important;
+    padding-left: 0 !important;
+}
+
+#contentBoxContainer {
+  left: -150%;
+}
+
+#snapYou {
+  
+}
+
+#areYou {
+  left: 150%;
+}
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */

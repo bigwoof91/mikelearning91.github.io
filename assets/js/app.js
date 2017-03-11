@@ -182,34 +182,123 @@ download_photo_btn.addEventListener("click", function(e) {
 
     function ProcessResult(response) {
       var data = JSON.stringify(response);
-      console.log(data);
-      $('#dataHere').html(data);
+      console.log(response[0]);
+
+
+      var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral];
+      
+      var x = 0;
+      var len = feelingMeasures.length
+      while(x < len){ 
+          feelingMeasures[x] = feelingMeasures[x].toFixed(7); 
+          x++
+      }
+
+
+      $('#dataHere').empty();
+      $('#youAreFeeling').empty();
+
+
+
+      // appends emotion measurements
+      // $('#dataHere').append("<p>happiness: " + feelingMeasures[0] + "</p>");
+      // $('#dataHere').append("<p>anger: " + feelingMeasures[1] + "</p>");
+      // $('#dataHere').append("<p>disgust: " + feelingMeasures[2] + "</p>");
+      // $('#dataHere').append("<p>neutral: " + feelingMeasures[3] + "</p>");
+
+      var max = Math.max(...feelingMeasures);
+      console.log(feelingMeasures);
+      console.log(max);
+      // asks if the emotion is correct
+      if (feelingMeasures[0] == max) {
+        console.log("1");
+        return $('#youAreFeeling').html('You Seem Happy?')
+      }
+      if (feelingMeasures[1] == max) {
+        console.log("2");
+        return $('#youAreFeeling').html('You Seem Angry?')
+      }
+      if (feelingMeasures[2] == max) {
+        console.log("3");
+        return $('#youAreFeeling').html('You Seem Disgusted?')
+      }
+      if (feelingMeasures[3] == max) {
+        console.log("4");
+        return $('#youAreFeeling').html('Do you feel neutral? Mixed emotions possibly?')
+      }
+
     };
 
-      //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
-      // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
-      //-----------------------START-----------------------
+    nextStep();
 
-      //   selfieImagesRef.getDownloadURL().then(function(url) {
-      //   // `url` is the download URL for 'images/stars.jpg'
-
-      //   // This can be downloaded directly:
-      //   var xhr = new XMLHttpRequest();
-      //   xhr.responseType = 'blob';
-      //   xhr.onload = function(event) {
-      //     var blob = xhr.response;
-      //   };
-      //   xhr.open('GET', url);
-      //   xhr.send();
-
-      //   // Or inserted into an <img> element:
-      //   var img = document.getElementById('myimg');
-      //   img.src = url;
-      // }).catch(function(error) {
-      //   // Handle any errors
-      // });
-      //-----------------------END-----------------------
 });
+
+      // next step transition
+      function nextStep(){
+        $('.box').each(function() {
+          if ($(this).offset().left < 0) {
+              $(this).css("left", "150%");
+          } else if ($(this).offset().left > $('#appContainer').width()) {
+              $(this).animate({
+                  left: '50%',
+              }, 500 );
+          } else {
+              $(this).animate({
+                  left: '-150%',
+              }, 500 );
+          }
+        });
+        }
+
+      // back one step transition
+      $('.back-step').click(function() {
+        $('.box').each(function() {
+          if ($(this).offset().left < 0) {
+              $(this).animate({
+                left: '50%',
+              }, 500);
+          } else if ($(this).offset().left > $('#appContainer').width()) {
+              $(this).animate({
+                  left: '50%',
+              }, 500 );
+          } else {
+              $(this).animate({
+                  left: '150%',
+              }, 500 );
+          }
+        });
+      });
+
+    // button triggers and delivers content boxes
+    // $('#deliverContent').on('click', function() {
+    //   $('contentBox1').fadeIn('slow');
+    //   $('contentBox1').fadeIn('slow', 500);
+    //   $('contentBox1').fadeIn('slow', 1000);
+    //   $('contentBox1').fadeIn('slow', 1500);
+    //   $('contentBox1').fadeIn('slow', 2000);
+    // });
+    // button triggers going back to retake photo
+    // $('#retakePhoto').on('click', function() {
+    //   $('#areYou').fadeOut();
+    //   $('#snapYou').fadeIn();
+    // });
+
+    // slide content out and new content in
+//     $('.box').click(function() {
+//     $('.box').each(function() {
+//         if ($(this).offset().left < 0) {
+//             $(this).css("left", "150%");
+//         } else if ($(this).offset().left > $('#container').width()) {
+//             $(this).animate({
+//                 left: '50%',
+//             }, 500 );
+//         } else {
+//             $(this).animate({
+//                 left: '-150%',
+//             }, 500 );
+//         }
+//     });
+// });
 
 // delete photo button on camera
 delete_photo_btn.addEventListener("click", function(e){
