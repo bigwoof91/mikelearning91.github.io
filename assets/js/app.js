@@ -157,7 +157,9 @@ download_photo_btn.addEventListener("click", function(e) {
     $.ajax({
         method: 'POST',
         address: '/assets/',
-        data: handlesImgSaved,
+        data: handlesImgSaved
+    }).done(function(results) {
+      console.log(results);
     });
 
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
