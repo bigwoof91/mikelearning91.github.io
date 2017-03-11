@@ -156,13 +156,10 @@ download_photo_btn.addEventListener("click", function(e) {
     // `url` is the download URL for 'images/stars.jpg'
     $.ajax({
         method: 'POST',
-        address: 'https://mikelearning91.github.com/assets/',
+        address: '/assets/',
         data: handlesImgSaved,
-        contentType: false,
-        processData: false,
-        cache: false
     });
-        
+
       //----------------------- trying to get downloadURL to send to microsoft service -----------------------//
       // when sending downloadURL to microsoft I am getting an error saying "FailedToDownloadImage" 400 error bad request
       //-----------------------START-----------------------
