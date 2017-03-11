@@ -661,6 +661,9 @@ pre code {
   padding: 15px 0;
   background: #042a36;
   color: #fff;
+  position: fixed;
+  bottom: 0;
+  width: 100%;
 }
 .footer .copyright {
   -webkit-opacity: 0.8;
