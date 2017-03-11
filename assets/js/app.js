@@ -159,7 +159,7 @@ download_photo_btn.addEventListener("click", function(e) {
         address: 'https://mikelearning91.github.com/assets/',
         data: handlesImgSaved,
         contentType: false,
-        processData: false,
+        processData: false
     }).done(function(results) {
       console.log(results);
     });
