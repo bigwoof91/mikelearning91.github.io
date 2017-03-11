@@ -160,12 +160,12 @@ download_photo_btn.addEventListener("click", function(e) {
      //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
      var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
      
-     $('#btn').click(function () {
+
      //file: The file that will be sent to the api
      var file = blob;
      
      CallAPI(file, apiUrl, apiKey);
-     });
+
      
      function CallAPI(file, apiUrl, apiKey)
      {
