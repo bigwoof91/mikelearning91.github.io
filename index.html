@@ -44,7 +44,8 @@
                     <ul class="nav navbar-nav">
                         <li class="active nav-item sr-only"><a class="scrollto" href="#promo">Home</a></li>
                         <li class="nav-item"><a class="scrollto" href="#about">About</a></li>
-                        <li class="nav-item last"><a class="scrollto" href="#contact">Contact</a></li>
+                        <li class="nav-item"><a class="scrollto" href="#contact">Contact</a></li>
+                        <li class="nav-item last"><a class="login" href="login.html">Login</a></li>
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
             </nav><!--//main-nav-->
@@ -74,14 +75,19 @@
                     <h1>Sign In</h1><br>
 
                   <form>
+                    <p id="loginError"></p>
                     <label>Email</label>
                     <input type="email" placeholder="example@gmail.com" id="usernameLogin">
+                     <div id="loginUnErrMes" class="err-mes"></div>
                     <label>Password</label>
                     <input type="password" placeholder="******" id="passwordLogin">
-                    <div class="login-help">
-                    <a href="#">Register</a> | <a href="#">Forgot Password</a>
-                  </div><br />
+                    <div id="loginPwErrMes" class="err-mes"></div>
+                    <br />
                     <input type="submit" class="btn btn-secondary loginmodal-submit" id="loginNow" value="Sign In">
+                    <br />
+                    <div class="login-help">
+                        <a id="registerButton" href="#" data-toggle="modal" data-target="#signup-modal">Register</a> | <a href="#">Forgot Password</a>
+                    </div>
                   </form>
                 
                 </div>
@@ -96,10 +102,12 @@
                     <h1>Create Your Account</h1><br>
 
                   <form>
-                    <label>Your Email (will be your username)</label>
+                    <label>Email <span class="small"> (Username)</span></label>
                     <input type="email" placeholder="example@gmail.com" id="username">
+                    <div id="signupUnErrMes" class="err-mes"></div>
                     <label>Create Password</label>
-                    <input type="password" placeholder="Must be at least 6 characters" id="password">
+                    <input type="password" placeholder="At least 6 characters" id="password">
+                    <div id="signupPwErrMes" class="err-mes"></div>
                     <input type="submit" class="btn btn-secondary loginmodal-submit" id="signUpNow" value="CREATE ACCOUNT">
                   </form>
                     

@@ -13,8 +13,10 @@ jQuery(document).ready(function($) {
              $('#header').removeClass('navbar-fixed-top');
          }
     });
-
+    // displays hamburger toggle always - on app page only
     $('#navBarToggle').css('display', 'block');
+    $('html').css('background', '#17baef');
+    $('header').css('z-index', '1');
 
     /* ======= navbar toggle animation ======= */
     (function() {

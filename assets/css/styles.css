@@ -856,6 +856,7 @@ pre code {
   position: absolute;
   right: 0;
   left: 0;
+  color: #444444;
 }
 
 .loginmodal-container h1 {
@@ -1009,9 +1010,9 @@ pre code {
 
 #appContainer {
   overflow: hidden;
-  overflow-y: auto;
+/*  overflow-y: auto;*/
   position: absolute;
-  margin: 70px 0 0 0;
+  margin: 100px 0 0 0;
   padding: 50px 0 0 0;
   width: 100%;
   height: 100%; 
@@ -1063,6 +1064,42 @@ pre code {
 .card {
   margin: 0 auto;
 }
+
+.login {
+    border: 1px solid #17baef;
+    border-radius: 3px;
+}
+
+.login-adjusted {
+  box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.45);
+  -webkit-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.45);
+  -moz-box-shadow: 0px 0px 60px 0px rgba(0, 0, 0, 0.45);
+}
+
+#loginError {
+  display: none;
+  font-size: 14px;
+  padding: 5px 10px;
+  border: 1px solid rgba(255, 94, 94, .8);
+  border-radius: 5px;
+  background: rgba(255, 166, 165, 0.20);
+  color: black;
+}
+
+.error {
+  border-color: #ff1f1f !important;
+}
+
+.loginmodal-container input:focus {
+  outline: none;
+}
+
+.err-mes {
+  font-size: 12px;
+  margin: -10px 0 12px 5px;
+  color: #ff0039;
+}
+
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */
