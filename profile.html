@@ -46,6 +46,7 @@
                 </div><!--//navbar-header-->             
                 <div class="navbar-collapse collapse" id="navbar-collapse">
                     <ul class="nav navbar-nav">
+                        <li class="nav-item"><a class="scrollto nav-link" href="app.html" id="logoutNow">App</a></li>
                         <li class="nav-item last"><a class="scrollto nav-link" href="#" id="logoutNow">Logout</a></li>
                     </ul><!--//nav-->
                 </div><!--//navabr-collapse-->
@@ -54,133 +55,17 @@
     </header><!--//header-->
     
     <!-- ******App Container****** -->
-    <section id="appContainer" class="promo section offset-header">
+    <section id="profileContainer" class="promo section offset-header">
 
-        <div id="snapYou" class="container text-center box"><!-- Step 1 -->
-            <div class="app">
-                <a href="#" id="start-camera" class="visible">Touch Here To Analyze Your Mood</a>
-                <video id="camera-stream"></video>
-                <img id="snap">
-
-                <p id="error-message"></p>
-
-                <div class="controls">
-                  <a href="#" id="delete-photo" title="Retake Photo" class="disabled"><i class="material-icons">delete</i></a>
-                  <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
-                  <a href="#" id="download-photo" title="Analyze Mood" class="disabled"><i class="next-step material-icons">done</i></a>  
-                </div>
-            
-                <canvas></canvas><!-- Hidden canvas element. Used for taking snapshot of video. -->
+        <div id="profile" class="container text-center"><!-- Step 1 -->
+            firebase current user auth details go here!
                 
             </div>
 
-            <!-- <div id="dataHere"></div> -->
-
         </div><!--//container-->
 
-        <div id="areYou" class="container text-center box"><!-- Step 2 -->
-
-            <div id="areYouFeeling">
-                <h4 id="youAreFeeling"></h4>
-                <button id="deliverContent" class="btn btn-success next-step">Yes</button><button id="retakePhoto" class="btn btn-danger back-step">No</button>
-            </div>
-
-        </div><!--//container-->
-
-        <div id="chooseContent" class="container text-center box"><!-- Step 3 -->
-
-            <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-            <div class="card" style="width: 20rem;">
-              <img class="card-img-top" src="..." alt="Card image cap">
-              <div class="card-block">
-                <h4 class="card-title">Card title</h4>
-                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-                <a href="#" class="btn btn-primary">Go somewhere</a>
-              </div>
-            </div>
-
-        </div><!--//container-->
-
-    </section><!--//App Container-->
+    </section><!--//profile page Container-->
     
-
-<!-- ******CONTENT DISPLAY****** -->
-<!-- <section id="content" class="promo section offset-header">
-    <div class="container text-center">
-        <div class="row">
-
-
-            <div class="col-xs-12 col-md-3">MOVIES YOU CAN WATCH
-                <img src = "assets/images/movieWatching.jpeg">
-            </div>
-            <div class="col-xs-12 col-md-3">SOME INSPIRATIONAL QUOTES
-                <img src="assets/images/quotesPicture.jpeg">
-            </div>
-            <div class="col-xs-12 col-md-3">MUSIC FOR YOUR SOUL
-                <img src="assets/images/musicListening.jpg">
-            </div>
-       </div>
-
-        <div class="row">
-            <div class="col-xs-12 col-md-3">ARE YOU HUNGRY
-                <img src = "assets/images/eatingPicture.jpg">
-            </div>
-            <div class="col-xs-12 col-md-3">LETS GO SHOPPING
-                <img src = "assets/images/shopping.jpg">
-            </div>
-            <div class="col-xs-12 col-md-3">DO YOU WANT TO SEE SOMETHING FUNNY
-                <img src="assets/images/funny.jpg">
-            </div>
-            <div class="col-xs-12 col-md-3">SEE THE WEATHER AND DO SOMETHING
-                <img src="assets/images/weatherImage.jpg">
-            </div>
-        </div>
-    </div>//container
-</section>//content-->
       
     <!-- ******FOOTER****** --> 
     <footer class="footer">
