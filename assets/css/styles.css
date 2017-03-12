@@ -1046,10 +1046,6 @@ pre code {
   }
 }
 
-#contentBoxContainer {
-  left: -150%;
-}
-
 #snapYou {
   
 }
@@ -1060,7 +1056,7 @@ pre code {
 }
 
 #chooseContent {
-  left: -150%;
+  left: 300%;
   border: none;
 }
 

@@ -143,8 +143,8 @@ download_photo_btn.addEventListener("click", function(e) {
     var selfieImagesRef = storageRef.child('/selfies/' + uid  + '-' + selfieID++ + '.png');
 
     // While the file names are the same, the references point to different files
-    selfieRef.name === selfieImagesRef.name            // true
-    selfieRef.fullPath === selfieImagesRef.fullPath    // false
+    selfieRef.name === selfieImagesRef.name;            // true
+    selfieRef.fullPath === selfieImagesRef.fullPath;    // false
 
     var uploadTask = selfieImagesRef.put(blob); // Puts image in firebase storage reference
 
@@ -158,7 +158,10 @@ download_photo_btn.addEventListener("click", function(e) {
      
     //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
     var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
-         
+
+    // redeclaring blob as file
+    var file = blob;
+
     CallAPI(blob, apiUrl, apiKey);
      
     function CallAPI(file, apiUrl, apiKey) {
@@ -207,76 +210,58 @@ download_photo_btn.addEventListener("click", function(e) {
       if (feelingMeasures[0] == max) {
         //console.log("1");
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').html('You Seem Happy?').fadeIn()
+        return $('#youAreFeeling').hide().html('You Seem Happy?').fadeIn();
       }
       if (feelingMeasures[1] == max) {
         // console.log("2");
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').html('You Seem Angry?').fadeIn()
+        return $('#youAreFeeling').hide().html('You Seem Angry?').fadeIn();
       }
       if (feelingMeasures[2] == max) {
         // console.log("3");
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').html('You Seem Disgusted?').fadeIn()
+        return $('#youAreFeeling').hide().html('You Seem Disgusted?').fadeIn();
       }
       if (feelingMeasures[3] == max) {
         // console.log("4");
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').html('Do you feel neutral? Mixed emotions possibly?').fadeIn()
+        return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
       }
 
     };
 
     nextStep();
+        // reset camera
+    image.setAttribute('src', "");
+    image.classList.remove("visible");
+    // Disable delete and save buttons
+    delete_photo_btn.classList.add("disabled");
+    download_photo_btn.classList.add("disabled");
+    // Resume playback of stream.
+    video.play();
 
 });
 
-      $("#deliverContent").click(nextStep);
       
       // next step transition
       function nextStep(){
-        $('.box').each(function() {
-          if ($(this).offset().left < 0) {
-              $(this).css("left", "150%");
-          } else if ($(this).offset().left > $('#appContainer').width()) {
-              $(this).animate({
-                  left: '50%',
-              }, 500 );
-          } else {
-              $(this).animate({
-                  left: '-150%',
-              }, 500 );
-          }
-        });
+        $(this).parents(".box").animate({left: '-150%'}, 500 );
+        $(this).parents(".box").next(".box").animate({left: '50%'},500);
         }
 
-      // back one step transition
-      $('.back-step').click(function() {
-        $('.box').each(function() {
-          if ($(this).offset().left < 0) {
-              $(this).animate({
-                left: '50%',
-              }, 500);
-          } else if ($(this).offset().left > $('#appContainer').width()) {
-              $(this).animate({
-                  left: '50%',
-              }, 500 );
-          } else {
-              $(this).animate({
-                  left: '150%',
-              }, 500 );
-          }
-        });
-          // reset camera
-          image.setAttribute('src', "");
-          image.classList.remove("visible");
-          // Disable delete and save buttons
-          delete_photo_btn.classList.add("disabled");
-          download_photo_btn.classList.add("disabled");
-          // Resume playback of stream.
-          video.play();
+      $('.next-step').click(function() {
+      $(this).parents(".box").animate({left: '-150%'}, 500 );
+      $(this).parents(".box").next(".box").animate({left: '50%'},500);
       });
 
+      $('.back-step').click(function() {
+      $(this).parents(".box").animate({left: '150%'}, 500 );
+      $(this).parents(".box").prev(".box").animate({left: '50%'},500);
+      });
+
+      if ($('#chooseContent').css('left')=='50%') {
+        $('.footer').fadeOut();
+      }
     // button triggers and delivers content boxes
     // $('#deliverContent').on('click', function() {
     //   $('contentBox1').fadeIn('slow');
