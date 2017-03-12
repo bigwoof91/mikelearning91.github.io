@@ -49,19 +49,22 @@
 
           <div class="modal-dialog">
                 <div class="loginmodal-container login-adjusted">
-                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <button type="button" class="close">&times;</button>
                     <h1>Sign In</h1><br>
 
-                  <form id="signin">
+                  <form>
+                    <p id="loginError"></p>
                     <label>Email</label>
                     <input type="email" placeholder="example@gmail.com" id="usernameLogin">
+                     <div id="loginUnErrMes" class="err-mes"></div>
                     <label>Password</label>
                     <input type="password" placeholder="******" id="passwordLogin">
+                    <div id="loginPwErrMes" class="err-mes"></div>
                     <br />
                     <input type="submit" class="btn btn-secondary loginmodal-submit" id="loginNow" value="Sign In">
                     <br />
                     <div class="login-help">
-                    <a href="#" data-toggle="modal" data-target="#signup-modal">Sign Up</a> | <a href="#">Forgot Password</a>
+                        <a id="registerButton" href="#" data-toggle="modal" data-target="#signup-modal">Register</a> | <a href="#">Forgot Password</a>
                     </div>
                   </form>
                 
@@ -75,11 +78,13 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
                     <h1>Create Your Account</h1><br>
 
-                  <form id="signup">
-                    <label>Your Email (will be your username)</label>
+                  <form>
+                    <label>Email <span class="small"> (Username)</span></label>
                     <input type="email" placeholder="example@gmail.com" id="username">
+                    <div id="signupUnErrMes" class="err-mes"></div>
                     <label>Create Password</label>
-                    <input type="password" placeholder="Must be at least 6 characters" id="password">
+                    <input type="password" placeholder="At least 6 characters" id="password">
+                    <div id="signupPwErrMes" class="err-mes"></div>
                     <input type="submit" class="btn btn-secondary loginmodal-submit" id="signUpNow" value="CREATE ACCOUNT">
                   </form>
                     
@@ -107,16 +112,9 @@
     <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
     <script type="text/javascript" src="assets/js/main-app-page.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script type="text/javascript" src="assets/js/login.js"></script>
-    <script type="text/javascript">
-        // If user is logged in, will be redirected to home.html
-        firebase.auth().onAuthStateChanged(user => {
-            if(user) {
-                window.location = 'app.html'; //After successful login, user will be redirected to home.html
-            }
-        });
-    </script>  
 </body>
 </html> 
 

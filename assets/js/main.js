@@ -13,6 +13,11 @@ jQuery(document).ready(function($) {
              $('#header').removeClass('navbar-fixed-top');
          }
     });
+    
+    /* ======= click on logo go to homepage ======= */
+    $(".logo-title").on('click', function () {
+        window.location = "index.html";
+    });
 
     /* ======= navbar toggle fade in on scroll ======= */
     $(window).bind('scroll', function() {
