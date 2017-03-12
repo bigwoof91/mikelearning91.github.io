@@ -53,10 +53,10 @@
         </div>
     </header><!--//header-->
     
-    <!-- ******CAPTURE SELFIE****** -->
+    <!-- ******App Container****** -->
     <section id="appContainer" class="promo section offset-header">
 
-        <div id="snapYou" class="container text-center box">
+        <div id="snapYou" class="container text-center box"><!-- Step 1 -->
             <div class="app">
                 <a href="#" id="start-camera" class="visible">Touch Here To Analyze Your Mood</a>
                 <video id="camera-stream"></video>
@@ -69,25 +69,83 @@
                   <a href="#" id="take-photo" title="Take Photo"><i class="material-icons">camera_alt</i></a>
                   <a href="#" id="download-photo" title="Analyze Mood" class="disabled"><i class="next-step material-icons">done</i></a>  
                 </div>
-            <!-- Hidden canvas element. Used for taking snapshot of video. -->
-                <canvas></canvas>
+            
+                <canvas></canvas><!-- Hidden canvas element. Used for taking snapshot of video. -->
                 
             </div>
 
-            <div id="dataHere"></div>
+            <!-- <div id="dataHere"></div> -->
 
         </div><!--//container-->
 
-        <div id="areYou" class="container text-center box">
+        <div id="areYou" class="container text-center box"><!-- Step 2 -->
 
             <div id="areYouFeeling">
                 <h4 id="youAreFeeling"></h4>
                 <button id="deliverContent" class="btn btn-success next-step">Yes</button><button id="retakePhoto" class="btn btn-danger back-step">No</button>
             </div>
 
-        </div>
+        </div><!--//container-->
 
-    </section><!--//promo-->
+        <div id="chooseContent" class="container text-center box"><!-- Step 3 -->
+
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+            <div class="card" style="width: 20rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-block">
+                <h4 class="card-title">Card title</h4>
+                <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+              </div>
+            </div>
+
+        </div><!--//container-->
+
+    </section><!--//App Container-->
     
 
 <!-- ******CONTENT DISPLAY****** -->
@@ -126,7 +184,7 @@
       
     <!-- ******FOOTER****** --> 
     <footer class="footer">
-        <div class="container text-center">
+        <div class="container text-center footer-adjust">
             <small class="copyright">Built with <i class="fa fa-heart"></i> by <a href="#" target="_blank">the MOODÜ Team</a></small>
         </div><!--//container-->
     </footer><!--//footer-->

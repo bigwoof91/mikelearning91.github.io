@@ -118,14 +118,14 @@ take_photo_btn.addEventListener("click", function(e){
 });
 
 download_photo_btn.addEventListener("click", function(e) {
+    $('#youAreFeeling').empty();
     var user = firebase.auth().currentUser;
     var uid;
 
     if (user != null) {
-    uid = user.uid;  // The user's ID, unique to the Firebase project. Do NOT use
-                     // this value to authenticate with your backend server, if
-                     // you have one. Use User.getToken() instead.
+      uid = user.uid;                     
     }
+
     var snap = takeSnapshot();
     var blob = dataURItoBlob(snap);
     // blob.replace("gs://moodo-9a993.appspot.com/selfies/gs:/moodo-9a993.appspot.com/selfie", "");
@@ -142,13 +142,11 @@ download_photo_btn.addEventListener("click", function(e) {
     // Create a reference to 'images/mountains.jpg'
     var selfieImagesRef = storageRef.child('/selfies/' + uid  + '-' + selfieID++ + '.png');
 
-
     // While the file names are the same, the references point to different files
     selfieRef.name === selfieImagesRef.name            // true
     selfieRef.fullPath === selfieImagesRef.fullPath    // false
 
-    var file = blob; // declares new variable for blob as file
-    var uploadTask = selfieImagesRef.put(file); // Puts image in firebase storage reference
+    var uploadTask = selfieImagesRef.put(blob); // Puts image in firebase storage reference
 
     //------------------------------ AJAX Post to Microsoft Cognitive Service, Emotion API ------------------------------//
     // Get download URL
@@ -161,7 +159,7 @@ download_photo_btn.addEventListener("click", function(e) {
     //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
     var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
          
-    CallAPI(file, apiUrl, apiKey);
+    CallAPI(blob, apiUrl, apiKey);
      
     function CallAPI(file, apiUrl, apiKey) {
       $.ajax({
@@ -184,7 +182,6 @@ download_photo_btn.addEventListener("click", function(e) {
       var data = JSON.stringify(response);
       console.log(response[0]);
 
-
       var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral];
       
       var x = 0;
@@ -193,38 +190,39 @@ download_photo_btn.addEventListener("click", function(e) {
           feelingMeasures[x] = feelingMeasures[x].toFixed(7); 
           x++
       }
-
-
+      // ----------------------- START - data prints on page -----------------------//
       // $('#dataHere').empty();
-      $('#youAreFeeling').empty();
-
-
-
       // appends emotion measurements
       // $('#dataHere').append("<p>happiness: " + feelingMeasures[0] + "</p>");
       // $('#dataHere').append("<p>anger: " + feelingMeasures[1] + "</p>");
       // $('#dataHere').append("<p>disgust: " + feelingMeasures[2] + "</p>");
       // $('#dataHere').append("<p>neutral: " + feelingMeasures[3] + "</p>");
+      // ----------------------- END - data prints on page -----------------------//
 
       var max = Math.max(...feelingMeasures);
       // console.log(feelingMeasures);
       // console.log(max);
-      // asks if the emotion is correct
+
+      // asks user if the emotion is correct
       if (feelingMeasures[0] == max) {
-        console.log("1");
-        return $('#youAreFeeling').html('You Seem Happy?')
+        //console.log("1");
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').html('You Seem Happy?').fadeIn()
       }
       if (feelingMeasures[1] == max) {
-        console.log("2");
-        return $('#youAreFeeling').html('You Seem Angry?')
+        // console.log("2");
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').html('You Seem Angry?').fadeIn()
       }
       if (feelingMeasures[2] == max) {
-        console.log("3");
-        return $('#youAreFeeling').html('You Seem Disgusted?')
+        // console.log("3");
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').html('You Seem Disgusted?').fadeIn()
       }
       if (feelingMeasures[3] == max) {
-        console.log("4");
-        return $('#youAreFeeling').html('Do you feel neutral? Mixed emotions possibly?')
+        // console.log("4");
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').html('Do you feel neutral? Mixed emotions possibly?').fadeIn()
       }
 
     };
@@ -233,6 +231,8 @@ download_photo_btn.addEventListener("click", function(e) {
 
 });
 
+      $("#deliverContent").click(nextStep);
+      
       // next step transition
       function nextStep(){
         $('.box').each(function() {
@@ -267,6 +267,14 @@ download_photo_btn.addEventListener("click", function(e) {
               }, 500 );
           }
         });
+          // reset camera
+          image.setAttribute('src', "");
+          image.classList.remove("visible");
+          // Disable delete and save buttons
+          delete_photo_btn.classList.add("disabled");
+          download_photo_btn.classList.add("disabled");
+          // Resume playback of stream.
+          video.play();
       });
 
     // button triggers and delivers content boxes

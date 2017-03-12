@@ -794,6 +794,9 @@ pre code {
     .container{
         margin: 20px 40px;
     }
+    .footer-adjust {
+      width: 90% !important;
+    }
 
     .app #start-camera.visible{
         display: block;
@@ -1006,6 +1009,7 @@ pre code {
 
 #appContainer {
   overflow: hidden;
+  overflow-y: auto;
   position: absolute;
   margin: 70px 0 0 0;
   padding: 50px 0 0 0;
@@ -1018,8 +1022,8 @@ pre code {
     width: 50%;
 /*    height: 300px;
     line-height: 300px;
-    top: 100px; */
-    font-size: 50px;
+    top: 100px; 
+    font-size: 50px; */
     text-align: center;
     border: 2px solid black;
     left: 50%;
@@ -1053,6 +1057,15 @@ pre code {
 #areYou {
   left: 150%;
   border: none;
+}
+
+#chooseContent {
+  left: -150%;
+  border: none;
+}
+
+.card {
+  margin: 0 auto;
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
