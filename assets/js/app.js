@@ -210,7 +210,7 @@ $('.back-step').click(function() {
 });
 
 $('#startOver').click(function() {
-    $("#appContainer").css('margin-bottom', '0').css('height', '1000%');
+    $("#appContainer").css('margin-bottom', '0').css('height', '100%');
     $(this).parents(".box").animate({ left: '300%' }, 500);
     $(this).parents(".box").prev(".box").css('left', '150%');
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
