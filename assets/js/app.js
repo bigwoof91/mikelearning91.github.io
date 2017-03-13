@@ -117,7 +117,7 @@ take_photo_btn.addEventListener("click", function(e) {
 });
 
 download_photo_btn.addEventListener("click", function(e) {
-    nextStep();
+    
     var user = firebase.auth().currentUser;
     var uid = user.uid;
 
@@ -175,7 +175,7 @@ download_photo_btn.addEventListener("click", function(e) {
             $("#response").text(error.getAllResponseHeaders());
         });
     }
-
+nextStep();
 });
 
 //adjust height of appContainer to fit box
