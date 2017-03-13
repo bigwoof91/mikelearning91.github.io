@@ -9,57 +9,6 @@ var config = {
 
 firebase.initializeApp(config);
 
-var email = "";
-var password = "";
-var signinForm = $('#signinForm');
-var signupForm = $('#signupForm');
-
-$('#signUpNow').on('click', function(event) {
-    event.preventDefault();
-    clearSignupError();
-    email = $('#username').val().trim();
-    password = $('#password').val().trim();
-
-    firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
-        console.log(error.code);
-        console.log(error.message);
-        showSignupError();
-    });
-
-    console.log(email);
-    console.log(password);
-
-    firebase.auth().onAuthStateChanged(user => {
-        if (user) {
-            window.location = 'profile.html';
-        }
-    });
-    // $('#login-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
-    //     return false;  
-});
-
-$('#loginNow').on('click', function(event) {
-    event.preventDefault();
-    clearLoginError();
-    email = $('#usernameLogin').val().trim();
-    password = $('#passwordLogin').val().trim();
-
-    firebase.auth().signInWithEmailAndPassword(email, password).then(function(result) {
-        firebase.auth().onAuthStateChanged(user => {
-            if (user) {
-                window.location = 'app.html';
-            }
-        })
-    }).catch(function(error) {
-        console.log(error.code);
-        console.log(error.message);
-        showLoginError();
-    });
-
-    console.log(email);
-    console.log(password);
-
-});
 
 // register button inside login modal - this will close login modal (as the data attributes are set to open the sign up modal)
 $('#registerButton').on('click', function() {
@@ -110,24 +59,38 @@ $('[data-dismiss=modal]').on('click', function(e) {
     clearLoginError();
 })
 
-// rules for if user is logged in
+// redirect to login page if user is not logged in
 firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        $('.login').attr('href', 'index.html').html('Logout');
-        $('.login').on('click', function(event) {
-            event.preventDefault();
-            firebase.auth().signOut().then(function() {
-                window.location.reload()
-                console.log('sign out success')
-            }).catch(function(error) {
-                // An error happened.
-            });
+    if (!user) {
+        window.location.href = 'login.html';
+    } else {
+        var user = firebase.auth().currentUser;
+        var name, email, photoUrl, uid, emailVerified;
 
-        });
+        if (user != null) {
+            name = user.displayName;
+            email = user.email;
+            photoUrl = user.photoURL;
+            emailVerified = user.emailVerified;
+            uid = user.uid; 
+
+
+        }
     }
 });
 
 // Logout function
+$('.login').on('click', function(event) {
+    event.preventDefault();
+    firebase.auth().signOut().then(function() {
+        window.location.reload()
+        console.log('sign out success')
+    }).catch(function(error) {
+        // An error happened.
+    });
+
+});
+
 
 // -------------------------Need to add forgot password-------------------------//
 // var auth = firebase.auth();

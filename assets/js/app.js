@@ -241,7 +241,6 @@ download_photo_btn.addEventListener("click", function(e) {
     video.play();
 
 });
-
       
       // next step transition
       function nextStep(){
@@ -257,41 +256,16 @@ download_photo_btn.addEventListener("click", function(e) {
       $('.back-step').click(function() {
       $(this).parents(".box").animate({left: '150%'}, 500 );
       $(this).parents(".box").prev(".box").animate({left: '50%'},500);
+      $(this).parents(".box").children("#areYouFeeling").css('display', 'none');
       });
 
-      if ($('#chooseContent').css('left')=='50%') {
-        $('.footer').fadeOut();
-      }
-    // button triggers and delivers content boxes
-    // $('#deliverContent').on('click', function() {
-    //   $('contentBox1').fadeIn('slow');
-    //   $('contentBox1').fadeIn('slow', 500);
-    //   $('contentBox1').fadeIn('slow', 1000);
-    //   $('contentBox1').fadeIn('slow', 1500);
-    //   $('contentBox1').fadeIn('slow', 2000);
-    // });
-    // button triggers going back to retake photo
-    // $('#retakePhoto').on('click', function() {
-    //   $('#areYou').fadeOut();
-    //   $('#snapYou').fadeIn();
-    // });
+      $('#startOver').click(function() {
+      $(this).parents(".box").animate({left: '300%'}, 500 );
+      $(this).parents(".box").prev(".box").css('left', '150%');
+      $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
+      $(this).parents(".box").prev(".box").prev(".box").animate({left: '50%'},500);
+      });
 
-    // slide content out and new content in
-//     $('.box').click(function() {
-//     $('.box').each(function() {
-//         if ($(this).offset().left < 0) {
-//             $(this).css("left", "150%");
-//         } else if ($(this).offset().left > $('#container').width()) {
-//             $(this).animate({
-//                 left: '50%',
-//             }, 500 );
-//         } else {
-//             $(this).animate({
-//                 left: '-150%',
-//             }, 500 );
-//         }
-//     });
-// });
 
 // delete photo button on camera
 delete_photo_btn.addEventListener("click", function(e){

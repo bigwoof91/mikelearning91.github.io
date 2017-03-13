@@ -19,7 +19,7 @@ jQuery(document).ready(function($) {
         window.location = "index.html";
     });
 
-    /* ======= displays hamburger toggle always - on app page only ======= */
+    /* ======= displays hamburger toggle always ======= */
     $('#navBarToggle').css('display', 'block');
     $('html').css('background', '#17baef').css('height', '100%');
     $('header').css('z-index', '1');
@@ -60,5 +60,17 @@ jQuery(document).ready(function($) {
 		}
 		
 	});
+
+    /* ======= adjust height of appContainer to the height of absolute step containers, in order to fit in screens ======= */
+    var biggestHeight = "0";
+    $(".box").each(function(){
+        if ($(this).height() > biggestHeight ) {
+            biggestHeight = $(this).height()
+        }
+    });
+    $("#appContainer").height(biggestHeight);
+
+    /* ======= fade in and fade out tip before taking selfie ======= */
+    $('.overlay-advice').delay(500).fadeIn('slow').delay(1500).fadeOut('slow');
 
 });
