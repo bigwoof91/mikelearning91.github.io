@@ -1072,6 +1072,28 @@ input[type=password]:hover {
     font-size: 12px;
 }
 
+@media(max-width: 768px) {
+    #profileForm {
+        width: 100%;
+        text-align: left;
+        margin: 0 auto;
+    }
+    .overlay-advice {
+        width: 75%;
+    }
+    .box {
+        width: 75%;
+        margin-left: -37.5%;
+    }
+    .controls {
+        width: 80% !important;
+        margin-left: 10% !important;
+        padding: 0 0 5px 0 !important;
+    }
+    .footer {
+        display: none;
+    }
+}
 
 /* Extra small devices (phones, less than 768px) */
 
@@ -1125,10 +1147,9 @@ input[type=password]:hover {
     }
 }
 
-
 /* Hide nav bar toggle on med-lg screens*/
 
-@media (min-width: 768px) {
+@media (min-width: 767px) {
     #navBarToggle {
         display: none !important;
     }
@@ -1242,38 +1263,104 @@ input[type=password]:hover {
 }
 
 #profileForm {
-    width: 50%;
+    width: 90%;
     text-align: left;
-    margin: 0 auto;
+    
 }
 
-@media(max-width: 768px) {
-    #profileForm {
-        width: 100%;
-        text-align: left;
-    }
-    .overlay-advice {
-        width: 75%;
-    }
-    .box {
-        width: 75%;
-        margin-left: -37.5%;
-    }
-    .controls {
-        width: 80% !important;
-        margin-left: 10% !important;
-        padding: 0 0 5px 0 !important;
-    }
-    .footer {
-        display: none;
-    }
+.cust {
+  text-align: left;
 }
 
+.cust-title {
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 0;
+}
 
+.cust-subtitle {
+  letter-spacing: 1px;
+  margin-top: 4px;
+  margin-bottom: 25px;
+  color: white;
+}
+
+#profileForm .form-control {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 3px solid #1b6ab0 !important;
+    border-radius: 0;
+    font-size: 17px;
+    padding: 25px 12px;
+    width: 70%;
+}
+
+#profileForm #email:hover {
+  border-bottom: 3px solid #4c6dee !important;
+}
+
+#profileForm #password:hover {
+  border-bottom: 3px solid #4c6dee !important;
+}
+
+#profileForm #email:focus {
+  border-bottom: 3px solid #4c6dee !important;
+}
+
+#profileForm #password:focus {
+  border-bottom: 3px solid #4c6dee !important;
+}
+
+#profileForm label {
+  font-weight: 400;
+  letter-spacing: 1px;
+}
+
+#profileForm input:disabled {
+    background: transparent !important;
+    border: none !important;
+    border-bottom: 2px solid #1b6ab0 !important;
+    border-radius: 0;
+    font-size: 17px;
+}
+#profileForm input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 1000px #17baef inset !important;
+}
+
+#profileForm input::-webkit-input-placeholder {
+color: rgba(244, 244, 244, 0.50) !important;  
+}
+ 
+#profileForm input:-moz-placeholder { /* Firefox 18- */
+color: rgba(244, 244, 244, 0.50) !important;  
+ 
+#profileForm input::-moz-placeholder {  /* Firefox 19+ */
+color: rgba(244, 244, 244, 0.50) !important;  
+}
+ 
+#profileForm input:-ms-input-placeholder {  
+color: rgba(244, 244, 244, 0.50) !important;  
+}
+
+.change-button {
+  color: white;
+}
+
+#profileContainer {
+  padding-bottom: 150px;
+}
+
+.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    max-width: 220px;
+}
 /* Small devices (tablets, 768px and up) */
-
-
 /* Medium devices (desktops, 992px and up) */
-
-
 /* Large devices (large desktops, 1200px and up) */

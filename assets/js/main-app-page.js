@@ -72,5 +72,6 @@ jQuery(document).ready(function($) {
 
     /* ======= fade in and fade out tip before taking selfie ======= */
     $('.overlay-advice').delay(500).fadeIn('slow').delay(1500).fadeOut('slow');
+    $('.footer').css('padding', '2px 0');
 
 });

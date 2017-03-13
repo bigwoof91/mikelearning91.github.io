@@ -59,11 +59,18 @@ $('[data-dismiss=modal]').on('click', function(e) {
     clearLoginError();
 })
 
-// redirect to login page if user is not logged in
+// Logged in/out rules for users
 firebase.auth().onAuthStateChanged(function(user) {
+    // if user is not logged in then redirect to login.html
     if (!user) {
         window.location.href = 'login.html';
-    } else {
+    }
+    // if user display name exists, then title the page with a message
+    if (user.displayName) {
+        $('#helloThere').html('Hi ' + user.displayName + '! Welcome to your Moodu Profile.')
+    }
+    // fill in display name and email/username inputs with user's current Display Name and Email/Username
+    if (user) {
         var user = firebase.auth().currentUser;
         var name, email, photoUrl, uid, emailVerified;
 
@@ -72,11 +79,36 @@ firebase.auth().onAuthStateChanged(function(user) {
             email = user.email;
             photoUrl = user.photoURL;
             emailVerified = user.emailVerified;
-            uid = user.uid; 
+            uid = user.uid;
 
-
+            $('#email').val(email);
+            $('#displayName').val(name);
         }
     }
+});
+
+
+
+$('#saveProfile').on('click', function(e) {
+    e.preventDefault();
+    // Update logged in user's profile info
+    var user = firebase.auth().currentUser;
+    var newName = $('#displayName').val().trim();
+    var newEmail = $('#email').val().trim();
+
+    user.updateProfile({
+        displayName: newName,
+    }).then(function() {
+        console.log('Updated display name successfully')
+    }, function(error) {
+        // An error happened.
+    });
+
+    user.updateEmail(newEmail).then(function() {
+        console.log('Updated email successfully')
+    }, function(error) {
+        // An error happened.
+    });
 });
 
 // Logout function
@@ -90,6 +122,13 @@ $('.login').on('click', function(event) {
     });
 
 });
+
+
+
+
+// Hide Footer {
+$('.footer').css('display', 'none');
+
 
 
 // -------------------------Need to add forgot password-------------------------//
