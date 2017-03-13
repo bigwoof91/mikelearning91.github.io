@@ -110,7 +110,7 @@ $('[data-dismiss=modal]').on('click', function(e) {
     clearLoginError();
 })
 
-// rules for if user is logged in
+// rules for if user is/isn't logged in
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         $('.login').attr('href', 'index.html').html('Logout');
@@ -124,6 +124,10 @@ firebase.auth().onAuthStateChanged(function(user) {
             });
 
         });
+    }
+    if (!user) {
+        $('#appNavItem').hide();
+        $('#profileNavItem').hide();
     }
 });
 

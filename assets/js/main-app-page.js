@@ -61,17 +61,7 @@ jQuery(document).ready(function($) {
 		
 	});
 
-    /* ======= adjust height of appContainer to the height of absolute step containers, in order to fit in screens ======= */
-    var biggestHeight = "0";
-    $(".box").each(function(){
-        if ($(this).height() > biggestHeight ) {
-            biggestHeight = $(this).height()
-        }
-    });
-    $("#appContainer").height(biggestHeight);
-
-    /* ======= fade in and fade out tip before taking selfie ======= */
-    $('.overlay-advice').delay(500).fadeIn('slow').delay(1500).fadeOut('slow');
+    /* ======= adjust footer for this page ======= */
     $('.footer').css('padding', '2px 0');
 
 });

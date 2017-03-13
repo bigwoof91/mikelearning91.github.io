@@ -127,7 +127,7 @@ $('.login').on('click', function(event) {
 
 
 // Hide Footer {
-$('.footer').css('display', 'none');
+$('.footer').hide();
 
 
 
