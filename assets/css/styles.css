@@ -1098,7 +1098,7 @@ input[type=password]:hover {
     }
     #snapYou {
       width: 100%;
-      left:25%;
+      left:25% !important;
       position: fixed;
       top: 80px;
     }
