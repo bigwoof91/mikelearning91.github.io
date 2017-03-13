@@ -1,3 +1,5 @@
+$( document ).ready(function() {
+
 // firebase connection
 var config = {
     apiKey: "AIzaSyBrINciYykzgm93-J0NsRSLADGwsjUQREU",
@@ -68,7 +70,6 @@ if (!navigator.getMedia) {
             video.onplay = function() {
                 showVideo();
             };
-
         },
         // Error Callback
         function(err) {
@@ -77,8 +78,6 @@ if (!navigator.getMedia) {
     );
 
 }
-
-
 
 // Mobile browsers cannot play video without user input,
 // so here we're using a button to start it manually.
@@ -123,7 +122,6 @@ download_photo_btn.addEventListener("click", function(e) {
 
     var snap = takeSnapshot();
     var blob = dataURItoBlob(snap);
-    // blob.replace("gs://moodo-9a993.appspot.com/selfies/gs:/moodo-9a993.appspot.com/selfie", "");
 
     // Create a root reference
     var storageRef = firebase.storage().ref();
@@ -175,7 +173,7 @@ download_photo_btn.addEventListener("click", function(e) {
             $("#response").text(error.getAllResponseHeaders());
         });
     }
-    nextStep();
+
 });
 
 //adjust height of appContainer to fit box
@@ -320,12 +318,6 @@ function dataURItoBlob(dataURI) {
     return new Blob([ia], { type: mimeString });
 };
 
-// next step transition
-function nextStep() {
-    $(this).parents(".box").animate({ left: '-150%' }, 500);
-    $(this).parents(".box").next(".box").animate({ left: '50%' }, 500);
-};
-
 // Process microsoft cognitive API results to give users emotional analytics feedback
 function ProcessResult(response) {
     var data = JSON.stringify(response);
@@ -376,3 +368,11 @@ function ProcessResult(response) {
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
     }
 };
+
+$('#loading-image').bind('ajaxStart', function(){
+    $(this).show();
+}).bind('ajaxStop', function(){
+    $(this).hide();
+});
+
+});
