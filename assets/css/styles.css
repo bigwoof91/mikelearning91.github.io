@@ -954,9 +954,6 @@ pre code {
     .app .controls #take-photo i {
         font-size: 18px;
     }
-    #snapYou {
-      top: 50px;
-    }
 }
 
 
@@ -1096,11 +1093,8 @@ input[type=password]:hover {
     .footer {
         display: none;
     }
-    #snapYou {
-      width: 100%;
-      left:25% !important;
-      position: fixed;
-      top: 80px;
+    #chooseContent {
+      margin-left: -33.5%;
     }
 }
 

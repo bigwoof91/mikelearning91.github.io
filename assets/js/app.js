@@ -117,13 +117,9 @@ take_photo_btn.addEventListener("click", function(e) {
 });
 
 download_photo_btn.addEventListener("click", function(e) {
-    $('#youAreFeeling').empty();
+    nextStep();
     var user = firebase.auth().currentUser;
-    var uid;
-
-    if (user != null) {
-        uid = user.uid;
-    }
+    var uid = user.uid;
 
     var snap = takeSnapshot();
     var blob = dataURItoBlob(snap);
@@ -160,7 +156,7 @@ download_photo_btn.addEventListener("click", function(e) {
 
     // redeclaring blob as file
     var file = blob;
-
+    
     CallAPI(blob, apiUrl, apiKey);
 
     function CallAPI(file, apiUrl, apiKey) {
@@ -179,66 +175,6 @@ download_photo_btn.addEventListener("click", function(e) {
             $("#response").text(error.getAllResponseHeaders());
         });
     }
-
-    function ProcessResult(response) {
-        var data = JSON.stringify(response);
-        console.log(response[0]);
-
-        var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral];
-
-        var x = 0;
-        var len = feelingMeasures.length
-        while (x < len) {
-            feelingMeasures[x] = feelingMeasures[x].toFixed(7);
-            x++
-        }
-        // ----------------------- START - data prints on page -----------------------//
-        // $('#dataHere').empty();
-        // appends emotion measurements
-        // $('#dataHere').append("<p>happiness: " + feelingMeasures[0] + "</p>");
-        // $('#dataHere').append("<p>anger: " + feelingMeasures[1] + "</p>");
-        // $('#dataHere').append("<p>disgust: " + feelingMeasures[2] + "</p>");
-        // $('#dataHere').append("<p>neutral: " + feelingMeasures[3] + "</p>");
-        // ----------------------- END - data prints on page -----------------------//
-
-        // find max in the array of feelings
-        var max = Math.max(...feelingMeasures);
-          // console.log(feelingMeasures);
-          // console.log(max);
-
-        // asks user if the emotion is correct
-        if (feelingMeasures[0] == max) {
-            //console.log("1");
-            $('#areYouFeeling').fadeIn();
-            return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
-        }
-        if (feelingMeasures[1] == max) {
-            // console.log("2");
-            $('#areYouFeeling').fadeIn();
-            return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
-        }
-        if (feelingMeasures[2] == max) {
-            // console.log("3");
-            $('#areYouFeeling').fadeIn();
-            return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
-        }
-        if (feelingMeasures[3] == max) {
-            // console.log("4");
-            $('#areYouFeeling').fadeIn();
-            return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
-        }
-
-    };
-
-    nextStep();
-    // reset camera
-    image.setAttribute('src', "");
-    image.classList.remove("visible");
-    // Disable delete and save buttons
-    delete_photo_btn.classList.add("disabled");
-    download_photo_btn.classList.add("disabled");
-    // Resume playback of stream.
-    video.play();
 
 });
 
@@ -262,6 +198,15 @@ $('.back-step').click(function() {
     $(this).parents(".box").animate({ left: '150%' }, 500);
     $(this).parents(".box").prev(".box").animate({ left: '50%' }, 500);
     $(this).parents(".box").children("#areYouFeeling").css('display', 'none');
+    $('#youAreFeeling').empty();
+        // reset camera
+    image.setAttribute('src', "");
+    image.classList.remove("visible");
+    // Disable delete and save buttons
+    delete_photo_btn.classList.add("disabled");
+    download_photo_btn.classList.add("disabled");
+    // Resume playback of stream.
+    video.play();
 });
 
 $('#startOver').click(function() {
@@ -270,6 +215,15 @@ $('#startOver').click(function() {
     $(this).parents(".box").prev(".box").css('left', '150%');
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
+    $('#youAreFeeling').empty();
+        // reset camera
+    image.setAttribute('src', "");
+    image.classList.remove("visible");
+    // Disable delete and save buttons
+    delete_photo_btn.classList.add("disabled");
+    download_photo_btn.classList.add("disabled");
+    // Resume playback of stream.
+    video.play();
 });
 
 // delete photo button on camera
@@ -371,3 +325,54 @@ function nextStep() {
     $(this).parents(".box").animate({ left: '-150%' }, 500);
     $(this).parents(".box").next(".box").animate({ left: '50%' }, 500);
 };
+
+    function ProcessResult(response) {
+        var data = JSON.stringify(response);
+        console.log(response[0]);
+
+        var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral];
+
+        // iterate through feeling measures to only include 7 decimal places for each feeling's measurement
+        var x = 0;
+        var len = feelingMeasures.length
+        while (x < len) {
+            feelingMeasures[x] = feelingMeasures[x].toFixed(7);
+            x++
+        }
+        // ----------------------- START - data prints on page -----------------------//
+        // $('#dataHere').empty();
+        // appends emotion measurements
+        // $('#dataHere').append("<p>happiness: " + feelingMeasures[0] + "</p>");
+        // $('#dataHere').append("<p>anger: " + feelingMeasures[1] + "</p>");
+        // $('#dataHere').append("<p>disgust: " + feelingMeasures[2] + "</p>");
+        // $('#dataHere').append("<p>neutral: " + feelingMeasures[3] + "</p>");
+        // ----------------------- END - data prints on page -----------------------//
+
+        // find max in the array of feelings
+        var max = Math.max(...feelingMeasures);
+          // console.log(feelingMeasures);
+          // console.log(max);
+
+        // asks user if the emotion is correct
+        if (feelingMeasures[0] == max) {
+            //console.log("1");
+            $('#areYouFeeling').fadeIn();
+            return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
+        }
+        if (feelingMeasures[1] == max) {
+            // console.log("2");
+            $('#areYouFeeling').fadeIn();
+            return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
+        }
+        if (feelingMeasures[2] == max) {
+            // console.log("3");
+            $('#areYouFeeling').fadeIn();
+            return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
+        }
+        if (feelingMeasures[3] == max) {
+            // console.log("4");
+            $('#areYouFeeling').fadeIn();
+            return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
+        }
+
+    };
