@@ -1,4 +1,4 @@
-    /*   
+/*   
  * Template Name: devAid - Responsive Website Template for developers
  * Version: 1.0
  * Author: Xiaoying Riley at 3rd Wave Media
@@ -1094,10 +1094,9 @@ input[type=password]:hover {
         display: none;
     }
     #chooseContent {
-        margin-left: -33.5%;
+      margin-left: -33.5%;
     }
 }
-
 
 /* Extra small devices (phones, less than 768px) */
 
@@ -1150,7 +1149,6 @@ input[type=password]:hover {
         font-size: 18px;
     }
 }
-
 
 /* Hide nav bar toggle on med-lg screens*/
 
@@ -1268,23 +1266,24 @@ input[type=password]:hover {
 #profileForm {
     width: 90%;
     text-align: left;
+    
 }
 
 .cust {
-    text-align: left;
+  text-align: left;
 }
 
 .cust-title {
-    font-weight: 400;
-    margin-top: 20px;
-    margin-bottom: 0;
+  font-weight: 400;
+  margin-top: 20px;
+  margin-bottom: 0;
 }
 
 .cust-subtitle {
-    letter-spacing: 1px;
-    margin-top: 4px;
-    margin-bottom: 25px;
-    color: white;
+  letter-spacing: 1px;
+  margin-top: 4px;
+  margin-bottom: 25px;
+  color: white;
 }
 
 #profileForm .form-control {
@@ -1298,24 +1297,24 @@ input[type=password]:hover {
 }
 
 #profileForm #email:hover {
-    border-bottom: 3px solid #4c6dee !important;
+  border-bottom: 3px solid #4c6dee !important;
 }
 
 #profileForm #password:hover {
-    border-bottom: 3px solid #4c6dee !important;
+  border-bottom: 3px solid #4c6dee !important;
 }
 
 #profileForm #email:focus {
-    border-bottom: 3px solid #4c6dee !important;
+  border-bottom: 3px solid #4c6dee !important;
 }
 
 #profileForm #password:focus {
-    border-bottom: 3px solid #4c6dee !important;
+  border-bottom: 3px solid #4c6dee !important;
 }
 
 #profileForm label {
-    font-weight: 400;
-    letter-spacing: 1px;
+  font-weight: 400;
+  letter-spacing: 1px;
 }
 
 #profileForm input:disabled {
@@ -1325,297 +1324,44 @@ input[type=password]:hover {
     border-radius: 0;
     font-size: 17px;
 }
-
 #profileForm input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #17baef inset !important;
 }
 
 #profileForm input::-webkit-input-placeholder {
-    color: rgba(244, 244, 244, 0.50) !important;
+color: rgba(244, 244, 244, 0.50) !important;  
+}
+ 
+#profileForm input:-moz-placeholder { /* Firefox 18- */
+color: rgba(244, 244, 244, 0.50) !important;  
+ 
+#profileForm input::-moz-placeholder {  /* Firefox 19+ */
+color: rgba(244, 244, 244, 0.50) !important;  
+}
+ 
+#profileForm input:-ms-input-placeholder {  
+color: rgba(244, 244, 244, 0.50) !important;  
 }
 
-#profileForm input:-moz-placeholder {
-    /* Firefox 18- */
-    color: rgba(244, 244, 244, 0.50) !important;
-    #profileForm input::-moz-placeholder {
-        /* Firefox 19+ */
-        color: rgba(244, 244, 244, 0.50) !important;
-    }
-    #profileForm input:-ms-input-placeholder {
-        color: rgba(244, 244, 244, 0.50) !important;
-    }
-    .change-button {
-        color: white;
-    }
-    #profileContainer {
-        padding-bottom: 150px;
-    }
-    .kv-avatar .file-preview-frame,
-    .kv-avatar .file-preview-frame:hover {
-        margin: 0;
-        padding: 0;
-        border: none;
-        box-shadow: none;
-        text-align: center;
-    }
-    .kv-avatar .file-input {
-        display: table-cell;
-        max-width: 220px;
-    }
-    /* Small devices (tablets, 768px and up) */
-    /* Medium devices (desktops, 992px and up) */
-    /* Large devices (large desktops, 1200px and up) */
-    @keyframes preload - show - 1 {
-        from {
-            transform: rotateZ(60 deg) rotateY(-90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-hide-1 {
-        to {
-            transform: rotateZ(60deg) rotateY(-90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-    }
-    @keyframes preload - cycle - 1 {
-        5 % {
-            transform: rotateZ(60 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-        10%,
-        75% {
-            transform: rotateZ(60deg) rotateY(0) rotateX(0deg);
-            border-left-color: # f7484e;
-        }
-        80 %,
-        100 % {
-            transform: rotateZ(60 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-show-2 {
-        from {
-            transform: rotateZ(120deg) rotateY(-90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-    }
-    @keyframes preload - hide - 2 {
-        to {
-            transform: rotateZ(120 deg) rotateY(-90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-cycle-2 {
-        10% {
-            transform: rotateZ(120deg) rotateY(90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-        15 %,
-        70 % {
-            transform: rotateZ(120 deg) rotateY(0) rotateX(0 deg);
-            border - left - color: #f7484e;
-        }
-        75 %,
-        100 % {
-            transform: rotateZ(120 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-show-3 {
-        from {
-            transform: rotateZ(180deg) rotateY(-90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-    }
-    @keyframes preload - hide - 3 {
-        to {
-            transform: rotateZ(180 deg) rotateY(-90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-cycle-3 {
-        15% {
-            transform: rotateZ(180deg) rotateY(90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-        20 %,
-        65 % {
-            transform: rotateZ(180 deg) rotateY(0) rotateX(0 deg);
-            border - left - color: #f7484e;
-        }
-        70 %,
-        100 % {
-            transform: rotateZ(180 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-show-4 {
-        from {
-            transform: rotateZ(240deg) rotateY(-90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-    }
-    @keyframes preload - hide - 4 {
-        to {
-            transform: rotateZ(240 deg) rotateY(-90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-cycle-4 {
-        20% {
-            transform: rotateZ(240deg) rotateY(90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-        25 %,
-        60 % {
-            transform: rotateZ(240 deg) rotateY(0) rotateX(0 deg);
-            border - left - color: #f7484e;
-        }
-        65 %,
-        100 % {
-            transform: rotateZ(240 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-show-5 {
-        from {
-            transform: rotateZ(300deg) rotateY(-90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-    }
-    @keyframes preload - hide - 5 {
-        to {
-            transform: rotateZ(300 deg) rotateY(-90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-cycle-5 {
-        25% {
-            transform: rotateZ(300deg) rotateY(90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-        30 %,
-        55 % {
-            transform: rotateZ(300 deg) rotateY(0) rotateX(0 deg);
-            border - left - color: #f7484e;
-        }
-        60 %,
-        100 % {
-            transform: rotateZ(300 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-show-6 {
-        from {
-            transform: rotateZ(360deg) rotateY(-90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-    }
-    @keyframes preload - hide - 6 {
-        to {
-            transform: rotateZ(360 deg) rotateY(-90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-cycle-6 {
-        30% {
-            transform: rotateZ(360deg) rotateY(90deg) rotateX(0deg);
-            border-left-color: # 9 c2f2f;
-        }
-        35 %,
-        50 % {
-            transform: rotateZ(360 deg) rotateY(0) rotateX(0 deg);
-            border - left - color: #f7484e;
-        }
-        55 %,
-        100 % {
-            transform: rotateZ(360 deg) rotateY(90 deg) rotateX(0 deg);
-            border - left - color: #9c2f2f;
-        }
-    }
-    @keyframes preload-flip {
-        0% {
-            transform: rotateY(0deg) rotateZ(-60deg);
-        }
-        100% {
-            transform: rotateY(360deg) rotateZ(-60deg);
-        }
-    }
-    body {
-        background: # efefef;
-    }
-    .preloader {
-        position: absolute;
-        top: 50 %;
-        left: 50 %;
-        font - size: 20 px;
-        display: block;
-        width: 3.75e m;
-        height: 4.25e m;
-        margin - left: -1.875e m;
-        margin - top: -2.125e m;
-        transform - origin: center center;
-        transform: rotateY(180 deg) rotateZ(-60 deg);
-    }
-    .preloader.slice {
-        border - top: 1.125e m solid transparent;
-        border - right: none;
-        border - bottom: 1e m solid transparent;
-        border - left: 1.875e m solid# f7484e;
-        position: absolute;
-        top: 0 px;
-        left: 50 %;
-        transform - origin: left bottom;
-        border - radius: 3 px 3 px 0 0;
-    }
-    .preloader.slice: nth - child(1) {
-        transform: rotateZ(60 deg) rotateY(0 deg) rotateX(0);
-        animation: 0.15 s linear 0.82 s preload - hide - 1 both 1;
-    }
-    .preloader.slice: nth - child(2) {
-        transform: rotateZ(120 deg) rotateY(0 deg) rotateX(0);
-        animation: 0.15 s linear 0.74 s preload - hide - 2 both 1;
-    }
-    .preloader.slice: nth - child(3) {
-        transform: rotateZ(180 deg) rotateY(0 deg) rotateX(0);
-        animation: 0.15 s linear 0.66 s preload - hide - 3 both 1;
-    }
-    .preloader.slice: nth - child(4) {
-        transform: rotateZ(240 deg) rotateY(0 deg) rotateX(0);
-        animation: 0.15 s linear 0.58 s preload - hide - 4 both 1;
-    }
-    .preloader.slice: nth - child(5) {
-        transform: rotateZ(300 deg) rotateY(0 deg) rotateX(0);
-        animation: 0.15 s linear 0.5 s preload - hide - 5 both 1;
-    }
-    .preloader.slice: nth - child(6) {
-        transform: rotateZ(360 deg) rotateY(0 deg) rotateX(0);
-        animation: 0.15 s linear 0.42 s preload - hide - 6 both 1;
-    }
-    .preloader.loading {
-        animation: 2 s preload - flip steps(2) infinite both;
-    }
-    .preloader.loading.slice: nth - child(1) {
-        transform: rotateZ(60 deg) rotateY(90 deg) rotateX(0);
-        animation: 2 s preload - cycle - 1 linear infinite both;
-    }
-    .preloader.loading.slice: nth - child(2) {
-        transform: rotateZ(120 deg) rotateY(90 deg) rotateX(0);
-        animation: 2 s preload - cycle - 2 linear infinite both;
-    }
-    .preloader.loading.slice: nth - child(3) {
-        transform: rotateZ(180 deg) rotateY(90 deg) rotateX(0);
-        animation: 2 s preload - cycle - 3 linear infinite both;
-    }
-    .preloader.loading.slice: nth - child(4) {
-        transform: rotateZ(240 deg) rotateY(90 deg) rotateX(0);
-        animation: 2 s preload - cycle - 4 linear infinite both;
-    }
-    .preloader.loading.slice: nth - child(5) {
-        transform: rotateZ(300 deg) rotateY(90 deg) rotateX(0);
-        animation: 2 s preload - cycle - 5 linear infinite both;
-    }
-    .preloader.loading.slice: nth - child(6) {
-        transform: rotateZ(360 deg) rotateY(90 deg) rotateX(0);
-        animation: 2 s preload - cycle - 6 linear infinite both;
-    }
+.change-button {
+  color: white;
+}
+
+#profileContainer {
+  padding-bottom: 150px;
+}
+
+.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+    margin: 0;
+    padding: 0;
+    border: none;
+    box-shadow: none;
+    text-align: center;
+}
+.kv-avatar .file-input {
+    display: table-cell;
+    max-width: 220px;
+}
+/* Small devices (tablets, 768px and up) */
+/* Medium devices (desktops, 992px and up) */
+/* Large devices (large desktops, 1200px and up) */

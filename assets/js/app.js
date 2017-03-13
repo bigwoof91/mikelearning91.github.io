@@ -1,5 +1,3 @@
-$( document ).ready(function() {
-
 // firebase connection
 var config = {
     apiKey: "AIzaSyBrINciYykzgm93-J0NsRSLADGwsjUQREU",
@@ -332,14 +330,6 @@ function ProcessResult(response) {
         feelingMeasures[x] = feelingMeasures[x].toFixed(7);
         x++
     }
-    // ----------------------- START - data prints on page -----------------------//
-    // $('#dataHere').empty();
-    // appends emotion measurements
-    // $('#dataHere').append("<p>happiness: " + feelingMeasures[0] + "</p>");
-    // $('#dataHere').append("<p>anger: " + feelingMeasures[1] + "</p>");
-    // $('#dataHere').append("<p>disgust: " + feelingMeasures[2] + "</p>");
-    // $('#dataHere').append("<p>neutral: " + feelingMeasures[3] + "</p>");
-    // ----------------------- END - data prints on page -----------------------//
 
     // find max in the array of feelings
     var max = Math.max(...feelingMeasures);
@@ -369,10 +359,11 @@ function ProcessResult(response) {
     }
 };
 
-$('#loading-image').bind('ajaxStart', function(){
-    $(this).show();
-}).bind('ajaxStop', function(){
-    $(this).hide();
-});
 
+$(document).ready(function () {
+    $(document).ajaxStart(function () {
+        $('#preloader').show();
+    }).ajaxStop(function () {
+        $('#preloader').hide();
+    });
 });
