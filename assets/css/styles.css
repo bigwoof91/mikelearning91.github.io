@@ -1096,6 +1096,10 @@ input[type=password]:hover {
     #chooseContent {
       margin-left: -33.5%;
     }
+/*    #snapYou {
+      width: 90%;
+      left:30% !important;
+    }*/
 }
 
 /* Extra small devices (phones, less than 768px) */
@@ -1361,6 +1365,26 @@ color: rgba(244, 244, 244, 0.50) !important;
 .kv-avatar .file-input {
     display: table-cell;
     max-width: 220px;
+}
+
+/* Moodu the Bear */
+.moodu {
+  animation: MoveUpDown 1s linear infinite;
+  position: absolute;
+  left: 0;
+  bottom: 0;
+}
+
+@keyframes MoveUpDown {
+  0% {
+    bottom: 0;
+  }
+  50% {
+    bottom: 100px;
+  }
+  100% {
+    bottom: 0;
+  }
 }
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */

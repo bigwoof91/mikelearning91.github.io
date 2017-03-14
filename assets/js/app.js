@@ -321,7 +321,7 @@ function ProcessResult(response) {
     var data = JSON.stringify(response);
     console.log(response[0]);
 
-    var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral];
+    var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral, response[0].scores.surprise, response[0].scores.fear];
 
     // iterate through feeling measures to only include 7 decimal places for each feeling's measurement
     var x = 0;
@@ -356,6 +356,16 @@ function ProcessResult(response) {
         // console.log("4");
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
+    }
+    if (feelingMeasures[4] == max) {
+        // console.log("5");
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').hide().html("You look surprised or simply scared? Are you goofin' around?").fadeIn();
+    }
+    if (feelingMeasures[5] == max) {
+        // console.log("6");
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').hide().html('Are you scared or something?').fadeIn();
     }
 };
 
