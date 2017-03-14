@@ -1300,7 +1300,7 @@ input[type=password]:hover {
   border-bottom: 3px solid #4c6dee !important;
 }
 
-#profileForm #password:hover {
+#profileForm #displayName:hover {
   border-bottom: 3px solid #4c6dee !important;
 }
 
@@ -1308,7 +1308,7 @@ input[type=password]:hover {
   border-bottom: 3px solid #4c6dee !important;
 }
 
-#profileForm #password:focus {
+#profileForm #displayName:focus {
   border-bottom: 3px solid #4c6dee !important;
 }
 
