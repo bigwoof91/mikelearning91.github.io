@@ -1,15 +1,3 @@
-/*   
- * Template Name: devAid - Responsive Website Template for developers
- * Version: 1.0
- * Author: Xiaoying Riley at 3rd Wave Media
- * Website: http://themes.3rdwavemedia.com/
- * Twitter: @3rdwave_themes
-*/
-
-
-/* Default */
-
-
 /* ======= Base ======= */
 
 body {
@@ -116,22 +104,6 @@ pre code {
     font-size: 16px;
 }
 
-
-/* ======= Header ======= */
-
-.header {
-    padding: 10px 0;
-    background: #17baef;
-    color: #fff;
-    position: fixed;
-    width: 100%;
-}
-
-.navbar-toggle {
-    display: none;
-}
-
-
 /* ---------------Custom Navbar Toggle------------------ */
 
 .c-hamburger {
@@ -185,11 +157,6 @@ pre code {
     bottom: -10px;
 }
 
-
-/*.c-hamburger--htx {
-  background-color: #ff3264;
-}*/
-
 .c-hamburger--htx span {
     transition: background 0s 0.3s;
 }
@@ -207,14 +174,6 @@ pre code {
 .c-hamburger--htx span::after {
     transition-property: bottom, transform;
 }
-
-
-/* active state, i.e. menu open */
-
-
-/*.c-hamburger--htx.is-active {
-  background-color: #cb0032;
-}*/
 
 .c-hamburger--htx.is-active span {
     background: none;
@@ -237,6 +196,17 @@ pre code {
 
 
 /* ---------------END Custom Navbar Toggle------------------ */
+.header {
+    padding: 10px 0;
+    background: #17baef;
+    color: #fff;
+    position: fixed;
+    width: 100%;
+}
+
+.navbar-toggle {
+    display: none;
+}
 
 .header.navbar-fixed-top {
     background: #fff;
@@ -486,145 +456,6 @@ pre code {
     color: #fff;
 }
 
-
-/* ======= Docs Section ======= */
-
-.docs {
-    padding: 80px 0;
-    background: #f5f5f5;
-}
-
-.docs .title {
-    color: #074f66;
-    margin-top: 0;
-    margin-bottom: 30px;
-}
-
-.docs .docs-inner {
-    max-width: 800px;
-    background: #fff;
-    padding: 30px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    margin: 0 auto;
-}
-
-.docs .block {
-    margin-bottom: 60px;
-}
-
-.docs .code-block {
-    margin: 30px inherit;
-}
-
-.docs .code-block pre[class*="language-"] {
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-}
-
-
-/* ======= License Section ======= */
-
-.license {
-    padding: 80px 0;
-    background: #f5f5f5;
-}
-
-.license .title {
-    margin-top: 0;
-    margin-bottom: 60px;
-    color: #074f66;
-}
-
-.license .license-inner {
-    max-width: 800px;
-    background: #fff;
-    padding: 30px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    margin: 0 auto;
-}
-
-.license .info {
-    max-width: 760px;
-    margin: 0 auto;
-}
-
-.license .cta-container {
-    max-width: 540px;
-    margin: 0 auto;
-    margin-top: 60px;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-}
-
-.license .cta-container .speech-bubble {
-    background: #d6f3fc;
-    color: #074f66;
-    padding: 30px;
-    margin-bottom: 30px;
-    position: relative;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    -ms-border-radius: 4px;
-    -o-border-radius: 4px;
-    border-radius: 4px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-}
-
-.license .cta-container .speech-bubble:after {
-    position: absolute;
-    left: 50%;
-    bottom: -10px;
-    margin-left: -10px;
-    content: "";
-    display: inline-block;
-    width: 0;
-    height: 0;
-    border-left: 10px solid transparent;
-    border-right: 10px solid transparent;
-    border-top: 10px solid #d6f3fc;
-}
-
-.license .cta-container .icon-holder {
-    margin-bottom: 15px;
-}
-
-.license .cta-container .icon-holder .fa {
-    font-size: 56px;
-}
-
-.license .cta-container .intro {
-    margin-bottom: 30px;
-}
-
-
 /* ======= Contact Section ======= */
 
 .contact {
@@ -787,7 +618,6 @@ pre code {
     padding: 0;
 }
 
-
 /* ======= Footer ======= */
 
 .footer {
@@ -809,9 +639,6 @@ pre code {
 .footer .fa-heart {
     color: #fb866a;
 }
-
-
-/* App Customizations */
 
 .app {
     width: 100%;
@@ -1013,7 +840,6 @@ input[type=password] {
     background: #fff;
     border: 1px solid #d9d9d9;
     border-top: 1px solid #c0c0c0;
-    /* border-radius: 2px; */
     padding: 0 8px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
@@ -1033,20 +859,15 @@ input[type=password]:hover {
     font-weight: 700;
     height: 36px;
     padding: 0 8px;
-    /* border-radius: 3px; */
-    /* -webkit-user-select: none;
-  user-select: none; */
 }
 
 .loginmodal-submit {
-    /* border: 1px solid #3079ed; */
     border: 0px;
     color: white;
     text-shadow: 0 1px rgba(0, 0, 0, 0.1);
     background-color: #1b6ab0;
     padding: 13px 20px;
     font-size: 14px;
-    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#4787ed)); */
 }
 
 .loginmodal-submit:hover {
@@ -1054,7 +875,6 @@ input[type=password]:hover {
     border: 0px;
     text-shadow: 0 1px rgba(0, 0, 0, 0.3);
     background-color: #134e81;
-    /* background-image: -webkit-gradient(linear, 0 0, 0 100%,   from(#4d90fe), to(#357ae8)); */
 }
 
 .loginmodal-container a {
@@ -1096,13 +916,8 @@ input[type=password]:hover {
     #chooseContent {
       margin-left: -33.5%;
     }
-/*    #snapYou {
-      width: 90%;
-      left:30% !important;
-    }*/
 }
 
-/* Extra small devices (phones, less than 768px) */
 
 @media (max-width: 767px) {
     .header .main-nav button {
@@ -1153,9 +968,6 @@ input[type=password]:hover {
         font-size: 18px;
     }
 }
-
-/* Hide nav bar toggle on med-lg screens*/
-
 @media (min-width: 767px) {
     #navBarToggle {
         display: none !important;
@@ -1170,7 +982,6 @@ input[type=password]:hover {
 
 #appContainer {
     overflow: hidden;
-    /*  overflow-y: auto;*/
     position: absolute;
     margin: 100px 0 0 0;
     padding: 50px 0 0 0;
@@ -1181,10 +992,6 @@ input[type=password]:hover {
 .box {
     position: absolute;
     width: 50%;
-    /*    height: 300px;
-    line-height: 300px;
-    top: 100px; 
-    font-size: 50px; */
     text-align: center;
     border: 2px solid black;
     left: 50%;
@@ -1336,10 +1143,11 @@ input[type=password]:hover {
 color: rgba(244, 244, 244, 0.50) !important;  
 }
  
-#profileForm input:-moz-placeholder { /* Firefox 18- */
-color: rgba(244, 244, 244, 0.50) !important;  
+#profileForm input:-moz-placeholder { 
+color: rgba(244, 244, 244, 0.50) !important;
+}
  
-#profileForm input::-moz-placeholder {  /* Firefox 19+ */
+#profileForm input:-moz-placeholder {  
 color: rgba(244, 244, 244, 0.50) !important;  
 }
  
