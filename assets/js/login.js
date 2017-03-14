@@ -13,31 +13,47 @@ var email = "";
 var password = "";
 var signinForm = $('#signinForm');
 var signupForm = $('#signupForm');
+var database = firebase.database();
+var newUser;
+var uid = "";
+// Store user data on sign up
+//Get the firebase reference    
 
+// sign up, add user to firebase and store to database
 $('#signUpNow').on('click', function(event) {
     event.preventDefault();
     clearSignupError();
     email = $('#username').val().trim();
     password = $('#password').val().trim();
 
+    // Adds/authenticates new user to firebase/app
     firebase.auth().createUserWithEmailAndPassword(email, password).catch(function(error) {
         console.log(error.code);
         console.log(error.message);
         showSignupError();
-    });
 
+    });
     console.log(email);
     console.log(password);
 
+    // redirects user to profile
     firebase.auth().onAuthStateChanged(user => {
         if (user) {
+            // user uid to user as user name/key (uid is used as parent node for user details)
+            console.log(user.uid);
+            uid = user.uid;
+            // stores user to database
+            newUser = {
+                email: email
+            };
+            var newRef = database.ref('temp/users/' + uid + '/').set(newUser);
+
             window.location = 'profile.html';
         }
     });
-    // $('#login-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
-    //     return false;  
 });
 
+// Login and redirect
 $('#loginNow').on('click', function(event) {
     event.preventDefault();
     clearLoginError();
@@ -131,7 +147,26 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-// Logout function
+// if user attempts to go to login.html user will be redirected to profile page
+if (window.location.pathname == '/login.html') {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            window.location = 'profile.html';
+        }
+    });
+};
+
+// if on index page, redirect to profile page if user clicks on login/signup modal buttons
+if (window.location.pathname == '/index.html') {
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            $('.to-modal').on('click', function(event) {
+                event.preventDefault();
+                window.location = 'profile.html';
+            });
+        }
+    });
+};
 
 // -------------------------Need to add forgot password-------------------------//
 // var auth = firebase.auth();

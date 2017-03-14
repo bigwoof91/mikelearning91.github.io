@@ -8,8 +8,8 @@ var config = {
 };
 
 firebase.initializeApp(config);
-
-
+var database = firebase.database();
+var uid = "";
 // register button inside login modal - this will close login modal (as the data attributes are set to open the sign up modal)
 $('#registerButton').on('click', function() {
     $('#login-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
@@ -95,6 +95,7 @@ $('#saveProfile').on('click', function(e) {
     var user = firebase.auth().currentUser;
     var newName = $('#displayName').val().trim();
     var newEmail = $('#email').val().trim();
+    var userId = user.uid;
 
     user.updateProfile({
         displayName: newName,
@@ -109,6 +110,40 @@ $('#saveProfile').on('click', function(e) {
     }, function(error) {
         // An error happened.
     });
+    // storing new user-selected-input data to firebase database
+    firebase.auth().onAuthStateChanged(function(user) {
+        if (user) {
+            console.log(user.uid);
+            uid = user.uid;
+            // stores user to database
+            newUserInfo = {
+                name: newName,
+                email: newEmail,
+                interest1: "yoga",
+                interest2: "yoga",
+                interest3: "yoga",
+                interest4: "yoga",
+                interest5: "yoga",
+                interest6: "yoga",
+                interest7: "yoga",
+                interest8: "yoga",
+                interest9: "yoga",
+                interest10: "yoga",
+                interest11: "yoga",
+                interest12: "yoga",
+                interest13: "yoga",
+                interest14: "yoga",
+                interest15: "yoga",
+                interest16: "yoga",
+                interest17: "yoga",
+                interest18: "yoga",
+                interest19: "yoga",
+                interest20: "yoga",
+                interest21: "yoga"
+            };
+            var newRef = database.ref('temp/users/' + uid + '/').set(newUserInfo);
+        }
+    });
 });
 
 // Logout function
@@ -122,6 +157,8 @@ $('.login').on('click', function(event) {
     });
 
 });
+
+
 
 
 
