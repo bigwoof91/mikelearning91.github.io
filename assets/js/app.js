@@ -402,7 +402,7 @@ $("#listenMusic").on("click", function(event) {
         global: false
     }).done(function(categoryResponse) {
         console.log(categoryResponse);
-        var playList = categoryResponse.playlists.items["0"].id;
+        playList = categoryResponse.playlists.items["0"].id;
         var user_id = categoryResponse.playlists.items["0"].owner.id;
 
         var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
@@ -420,7 +420,7 @@ $("#listenMusic").on("click", function(event) {
             console.log(playlistResponse);
 
             var trackId = playlistResponse.tracks.items["1"].track.id;
-            var playlistiFrame = '<iframe src="https://embed.spotify.com/?uri=spotify:'+playlist+'%3A2PXdUld4Ueio2pHcB6sM8j&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+            var playlistiFrame = '<iframe src="https://embed.spotify.com/?uri=spotify:'+playList+'%3A2PXdUld4Ueio2pHcB6sM8j&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
             var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
                 trackId + "' frameborder='0' allowtransparency='true'></iframe>";
             // Appending the new player into the HTML
