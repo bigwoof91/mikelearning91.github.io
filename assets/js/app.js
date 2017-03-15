@@ -376,53 +376,117 @@ function ProcessResult(response) {
 };
 
 
-$(document).ready(function () {
-    $(document).ajaxStart(function () {
+$(document).ready(function() {
+    $(document).ajaxStart(function() {
         $('#preloader').show();
-    }).ajaxStop(function () {
+    }).ajaxStop(function() {
         $('#preloader').hide();
     });
 });
 
+//------------------ Spotify API ------------------//
 $("#listenMusic").on("click", function(event) {
     // Preventing the button from trying to submit the form
     event.preventDefault();
-    
+
     // console.log("hi");
-    var categoryURL = "https://api.spotify.com/v1/browse/categories/" + spotifyCategory + "/playlists"; 
+    var categoryURL = "https://api.spotify.com/v1/browse/categories/" + spotifyCategory + "/playlists";
     console.log(spotifyCategory)
     $.ajax({
-      url: categoryURL,
-      dataType:'json',
-      headers:{
-        "Authorization":"Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
-      },
-      method: "GET",
-      global: false
-    }).done(function(response) {
-      console.log(response);
-      var playList = response.playlists.items["0"].id;
-      var user_id = response.playlists.items["0"].owner.id;
+        url: categoryURL,
+        dataType: 'json',
+        headers: {
+            "Authorization": "Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
+        },
+        method: "GET",
+        global: false
+    }).done(function(categoryResponse) {
+        console.log(categoryResponse);
+        var playList = response.playlists.items["0"].id;
+        var user_id = response.playlists.items["0"].owner.id;
 
-      var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
+        var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
 
 
-      $.ajax({
-        url:playListURL,
-        dataType:'json',
-        headers:{
-        "Authorization":"Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
-      },
-      method: "GET",
-      global: false
-      }).done(function(response2) {
-      console.log(response2);
+        $.ajax({
+            url: playListURL,
+            dataType: 'json',
+            headers: {
+                "Authorization": "Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
+            },
+            method: "GET",
+            global: false
+        }).done(function(playlistResponse) {
+            console.log(playlistResponse);
 
-      var trackId = response2.tracks.items["1"].track.id;
+            var trackId = response2.tracks.items["1"].track.id;
 
-      var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
-          trackId +"' frameborder='0' allowtransparency='true'></iframe>";
-        // Appending the new player into the HTML
-        $("#playerDiv").append(player);
-      });
-    });});
+            var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
+                trackId + "' frameborder='0' allowtransparency='true'></iframe>";
+            // Appending the new player into the HTML
+            $("#playerDiv").append(player);
+        });
+    });
+
+    (function() {
+
+        function login(callback) {
+            var CLIENT_ID = '1fac33a31ac94dcf81404925a1a9fdcd';
+            var REDIRECT_URI = 'https://mikelearning91.github.io/spot-proxy.html';
+
+            function getLoginURL(scopes) {
+                return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
+                    '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
+                    '&scope=' + encodeURIComponent(scopes.join(' ')) +
+                    '&response_type=token';
+            }
+
+            var url = getLoginURL([
+                'user-read-email'
+            ]);
+
+            var width = 450,
+                height = 730,
+                left = (screen.width / 2) - (width / 2),
+                top = (screen.height / 2) - (height / 2);
+
+            window.addEventListener("message", function(event) {
+                var hash = JSON.parse(event.data);
+                if (hash.type == 'access_token') {
+                    callback(hash.access_token);
+                }
+            }, false);
+
+            var w = window.open(url,
+                'Spotify',
+                'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
+            );
+
+        }
+
+        function getUserData(accessToken) {
+            return $.ajax({
+                url: 'https://api.spotify.com/v1/me',
+                headers: {
+                    'Authorization': 'Bearer ' + accessToken
+                }
+            });
+        }
+
+        var templateSource = document.getElementById('result-template').innerHTML,
+            template = Handlebars.compile(templateSource),
+            resultsPlaceholder = document.getElementById('result'),
+            loginButton = document.getElementById('btn-login');
+
+        loginButton.addEventListener('click', function() {
+            login(function(accessToken) {
+                getUserData(accessToken)
+                    .then(function(response) {
+                        loginButton.style.display = 'none';
+                        resultsPlaceholder.innerHTML = template(response);
+                    });
+            });
+        });
+
+    })();
+});
