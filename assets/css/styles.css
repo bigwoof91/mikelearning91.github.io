@@ -990,7 +990,6 @@ input[type=password]:hover {
     width: 100%;
     height: 100%;
 }
-
 .box {
     position: absolute;
     width: 50%;
@@ -1000,24 +999,35 @@ input[type=password]:hover {
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
-
 #areYou {
     left: 150%;
     border: none;
 }
-
+#playerDiv {
+  display: none;
+}
+.hiking-card {
+  display: none;
+}
+#trails {
+  display: none;
+}
+#result-template {
+  display: none;
+}
 #chooseContent {
     left: 300%;
     border: none;
 }
-
+#errorRetake {
+  display: none;
+}
 .spotify-login {
   background: #2ebd59;
 }
 .spotify-login:hover {
   background: #1ed760;
 }
-
 #content {
   left: 450%;
 }

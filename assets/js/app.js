@@ -154,9 +154,9 @@ download_photo_btn.addEventListener("click", function(e) {
     // redeclaring blob as file
     var file = blob;
 
-    CallAPI(blob, apiUrl, apiKey);
+    callAPI(file, apiUrl, apiKey);
 
-    function CallAPI(file, apiUrl, apiKey) {
+    function callAPI(file, apiUrl, apiKey) {
         $.ajax({
             url: apiUrl,
             beforeSend: function(xhrObj) {
@@ -167,22 +167,27 @@ download_photo_btn.addEventListener("click", function(e) {
             data: file,
             processData: false
         }).done(function(response) {
-            ProcessResult(response);
+            processResult(response);
         }).fail(function(error) {
             $("#response").text(error.getAllResponseHeaders());
+            $("#preloader").fadeOut();
+            $("errorRetake").fadeIn();
         });
     }
 
 });
 
 //adjust height of appContainer to fit box
-$('#deliverContent').on('click', function() {
+$('#contentOptions').on('click', function() {
     var biggestHeight = "0";
     if ($(this).parents('.box').next('.box').height() > biggestHeight) {
-        biggestHeight = $(this).parents('.box').next('.box').height()
+        biggestHeight = $(this).parents('.box').next('.box').height();
     }
-    $("#appContainer").height(biggestHeight).css('margin-bottom', '150px');
+    var totHeight = biggestHeight + 200;
+    $("#appContainer").height(totHeight).css('margin-bottom', '150px');
 });
+
+
 
 // animate steps on clicks
 $('.next-step').click(function() {
@@ -196,6 +201,7 @@ $('.back-step').click(function() {
     $(this).parents(".box").prev(".box").animate({ left: '50%' }, 500);
     $(this).parents(".box").children("#areYouFeeling").css('display', 'none');
     $('#youAreFeeling').empty();
+    $('#errorRetake').hide();
     // reset camera
     image.setAttribute('src', "");
     image.classList.remove("visible");
@@ -318,7 +324,7 @@ function dataURItoBlob(dataURI) {
 };
 
 // Process microsoft cognitive API results to give users emotional analytics feedback
-function ProcessResult(response) {
+function processResult(response) {
     var data = JSON.stringify(response);
     console.log(response[0]);
 
@@ -375,7 +381,7 @@ function ProcessResult(response) {
     }
 };
 
-
+// ajax preloader start & stop for emotion api
 $(document).ready(function() {
     $(document).ajaxStart(function() {
         $('#preloader').show();
@@ -420,14 +426,16 @@ $("#listenMusic").on("click", function(event) {
             console.log(playlistResponse);
 
             var trackId = playlistResponse.tracks.items["1"].track.id;
-            var playlistiFrame = '<iframe src="https://embed.spotify.com/?uri=spotify:'+playList+'%3A2PXdUld4Ueio2pHcB6sM8j&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
+            // need to figure out how to use this iframe - work with group on thursday!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            var playlistiFrame = '<iframe src="https://embed.spotify.com/?uri=spotify:' + playList + '%3A2PXdUld4Ueio2pHcB6sM8j&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
             var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
                 trackId + "' frameborder='0' allowtransparency='true'></iframe>";
             // Appending the new player into the HTML
             $("#playerDiv").append(playlistiFrame);
+            $('#result-template').fadeIn('slow');
         });
     });
-  // logs a user in to spotify
+    // logs a user in to spotify
     (function() {
 
         function login(callback) {
@@ -490,3 +498,64 @@ $("#listenMusic").on("click", function(event) {
 
     })();
 });
+
+// Trails API if interest hiking is checked in profile
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var user = firebase.auth().currentUser;
+        var userId = user.uid
+        firebase.database().ref('temp/users/' + userId).once('value').then(function(snapshot) {
+            var hikingTrue = snapshot.val().hiking;
+            console.log(hikingTrue);
+            if (hikingTrue === "hiking") {
+              $('.hiking-card').show();
+            }
+            else {
+              $('.hiking-card').hide();
+            }
+        }).catch(function(error) {
+          console.log("Okay: hiking not found in interests")
+        });
+    }
+});
+
+var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=34.1&lon=-105.2&q[activities_activity_type_name_eq]=hiking&radius=50';
+var longitude;
+var latitude;
+$('#getTrails').on('click', function() {
+    $.ajax({
+        url: trailsUrl,
+        dataType: 'JSON',
+        headers: {
+            'X-Mashape-Key': 'rXe4JWi3fImshsUjJwP4gQhzkBFDp1XOF1HjsntrFYaYzWaaYs'
+        },
+        type: "GET",
+        global: false
+    }).done(function(response) {
+        console.log(response);
+        var trailsResponse = response.places;
+        for (var k = 0; k < trailsResponse.length; k++) {
+            var trailInfo = $('<div class="trailInfo">').fadeIn();
+            trailInfo.append('<img class="trail-image-holder" width="75" height="75" src="assets/images/trail.png">').fadeIn();
+            trailInfo.append('<h3 class="trail-name">' + trailsResponse[k].name + '</h3>').fadeIn();
+            trailInfo.append('<h4 class="trail-city">' + trailsResponse[k].city + '</h4>').fadeIn();
+            trailInfo.append('<p class="trail-des">' + trailsResponse[k].description + '</p>').fadeIn();
+            trailInfo.append('<button class="btn btn-success trail-link" href="' + trailsResponse[k].activities["0"].url + '">Get More Info</button>').fadeIn();
+
+            $('#trails').append(trailInfo);
+            $('#trails').fadeIn('slow');
+
+            var adjustedHeight = "0";
+            if ($('#trails').parents('.box').height() > adjustedHeight) {
+                adjustedHeight = $('#trails').parents('.box').height();
+            }
+            moreHeight = adjustedHeight + 50;
+            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+        }
+    }).fail(function(error) {
+        console.log(error);
+    });
+
+});
+
+// Forismatic API

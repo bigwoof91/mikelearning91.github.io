@@ -8,8 +8,43 @@ var config = {
 };
 
 firebase.initializeApp(config);
+
 var database = firebase.database();
-var uid = "";
+var uid;
+// rules, conditions, reading database for input values
+firebase.auth().onAuthStateChanged(function(user) {
+    // if user is not logged in then redirect to login.html
+    if (!user) {
+        window.location.href = 'login.html';
+    }
+    // fill in display name and email/username inputs with user's current Display Name and Email/Username
+    if (user) {
+        var user = firebase.auth().currentUser;
+        var name, email, photoUrl, uid, emailVerified;
+        var userId = user.uid
+        var hikingTrue = "";
+
+        firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
+            hikingTrue = snapshot.val().hiking;
+            console.log(hikingTrue);
+
+            if (hikingTrue === "hiking") {
+                $('#hiking').prop('checked', true);
+            }
+        });
+
+        if (user != null) {
+            name = user.displayName;
+            email = user.email;
+            photoUrl = user.photoURL;
+            emailVerified = user.emailVerified;
+            uid = user.uid;
+
+            $('#email').val(email);
+            $('#displayName').val(name);
+        }
+    }
+});
 // register button inside login modal - this will close login modal (as the data attributes are set to open the sign up modal)
 $('#registerButton').on('click', function() {
     $('#login-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
@@ -59,36 +94,14 @@ $('[data-dismiss=modal]').on('click', function(e) {
     clearLoginError();
 })
 
-// Logged in/out rules for users
-firebase.auth().onAuthStateChanged(function(user) {
-    // if user is not logged in then redirect to login.html
-    if (!user) {
-        window.location.href = 'login.html';
-    }
-    // if user display name exists, then title the page with a message
-    if (user.displayName) {
-        $('#helloThere').html('Hi ' + user.displayName + '! Welcome to your Moodu Profile.')
-    }
-    // fill in display name and email/username inputs with user's current Display Name and Email/Username
-    if (user) {
-        var user = firebase.auth().currentUser;
-        var name, email, photoUrl, uid, emailVerified;
 
-        if (user != null) {
-            name = user.displayName;
-            email = user.email;
-            photoUrl = user.photoURL;
-            emailVerified = user.emailVerified;
-            uid = user.uid;
 
-            $('#email').val(email);
-            $('#displayName').val(name);
-        }
-    }
-});
+// Check existing interests stored in firebase database
 
 
 
+
+// saving input values to firebase database 
 $('#saveProfile').on('click', function(e) {
     e.preventDefault();
     // Update logged in user's profile info
@@ -96,6 +109,7 @@ $('#saveProfile').on('click', function(e) {
     var newName = $('#displayName').val().trim();
     var newEmail = $('#email').val().trim();
     var userId = user.uid;
+    var hiking = $('#hiking:checked').val() || $('#hiking').val();
 
     user.updateProfile({
         displayName: newName,
@@ -118,7 +132,8 @@ $('#saveProfile').on('click', function(e) {
             // stores user to database
             newUserInfo = {
                 name: newName,
-                email: newEmail
+                email: newEmail,
+                hiking: hiking
             };
             var newRef = database.ref('temp/users/' + uid + '/').set(newUserInfo);
         }
