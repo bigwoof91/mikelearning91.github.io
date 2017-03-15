@@ -396,7 +396,7 @@ $("#listenMusic").on("click", function(event) {
         url: categoryURL,
         dataType: 'json',
         headers: {
-            "Authorization": "Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
+            "Authorization": "Bearer BQDKa4sf-Xg7_V_JI_Hacv-FxZujlsjsBwQt5TAWlYI4sJZl3_T1jCU_Y_AF_cLIRIM1Dftem2xuPkAKd3MwU4kmbkaqrpaQWQQJ7NAjN4Z2jEF-FWclPImXAGhIB-lwqP52KJB29g7LuNlOhA3w-sx6-MJD_d6R1JHzHRMC2l2Oj0VlWPUeEnRZ5vAMou4UhCf0SV71EKVEgc41aiKAfD20JqH3F0bwVJMPS0j-dLok661dhAqwJUdNvCT2PaQPKXTXnmfZPCSpKYk8NqxosJGByuHm8hZsPAkEhIGc3OlyWYtP"
         },
         method: "GET",
         global: false
@@ -412,7 +412,7 @@ $("#listenMusic").on("click", function(event) {
             url: playListURL,
             dataType: 'json',
             headers: {
-                "Authorization": "Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
+                "Authorization": "Bearer BQDKa4sf-Xg7_V_JI_Hacv-FxZujlsjsBwQt5TAWlYI4sJZl3_T1jCU_Y_AF_cLIRIM1Dftem2xuPkAKd3MwU4kmbkaqrpaQWQQJ7NAjN4Z2jEF-FWclPImXAGhIB-lwqP52KJB29g7LuNlOhA3w-sx6-MJD_d6R1JHzHRMC2l2Oj0VlWPUeEnRZ5vAMou4UhCf0SV71EKVEgc41aiKAfD20JqH3F0bwVJMPS0j-dLok661dhAqwJUdNvCT2PaQPKXTXnmfZPCSpKYk8NqxosJGByuHm8hZsPAkEhIGc3OlyWYtP"
             },
             method: "GET",
             global: false
@@ -420,11 +420,11 @@ $("#listenMusic").on("click", function(event) {
             console.log(playlistResponse);
 
             var trackId = playlistResponse.tracks.items["1"].track.id;
-
+            var playlistiFrame = '<iframe src="https://embed.spotify.com/?uri=spotify:'+playlist+'%3A2PXdUld4Ueio2pHcB6sM8j&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
             var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
                 trackId + "' frameborder='0' allowtransparency='true'></iframe>";
             // Appending the new player into the HTML
-            $("#playerDiv").append(player);
+            $("#playerDiv").append(playlistiFrame);
         });
     });
   // logs a user in to spotify

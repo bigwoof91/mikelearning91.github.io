@@ -159,37 +159,36 @@
         <!--//step 3 container-->
         <div id="content" class="container text-center box">
             <!-- Step 2 -->
-            <div id="playerDiv">
+            <div id="playerDiv"></div>
                 <button class="btn btn-primary" id="btn-login">Login</button>
-    <div id="result"></div>
-</div>
-<script id="result-template" type="text/x-handlebars-template">
-    <dl>
-      <img src="{{images.0.url}}">
-      <dt>User Name</dt>
-      <dd>{{id}}</dd>
-      <dt>Display Name</dt>
-      <dd>{{display_name}}</dd>
-      <dt>Country</dt>
-      <dd>{{country}}</dd>
-      <dt>Followers</dt>
-      <dd>{{followers.total}}</dd>
-      <dt>Profile</dt>
-      <dd><a href="{{external_urls.spotify}}" target="_blank">{{external_urls.spotify}}</a></dd>
-      <dt>Email</dt>
-      <dd>{{email}}</dd>
-      <dt>Product</dt>
-      <dd>{{product}}</dd>
-    </dl>
-</script>
+                <div id="result"></div>
             </div>
-            <div id="mapShopping"></div>
-            <div id="mapShoes"></div>
-            <div id="mapFood"></div>
-            <div id="mapBakery"></div>
-            <div id="mapCampGround"></div>
-            
+            <script id="result-template" type="text/x-handlebars-template">
+                <dl>
+                    <img src="{{images.0.url}}">
+                    <dt>User Name</dt>
+                    <dd>{{id}}</dd>
+                    <dt>Display Name</dt>
+                    <dd>{{display_name}}</dd>
+                    <dt>Country</dt>
+                    <dd>{{country}}</dd>
+                    <dt>Followers</dt>
+                    <dd>{{followers.total}}</dd>
+                    <dt>Profile</dt>
+                    <dd><a href="{{external_urls.spotify}}" target="_blank">{{external_urls.spotify}}</a></dd>
+                    <dt>Email</dt>
+                    <dd>{{email}}</dd>
+                    <dt>Product</dt>
+                    <dd>{{product}}</dd>
+                </dl>
+            </script>
         </div>
+        <div id="mapShopping"></div>
+        <div id="mapShoes"></div>
+        <div id="mapFood"></div>
+        <div id="mapBakery"></div>
+        <div id="mapCampGround"></div>
+        
     </section>
     <!--//App Container-->
     <!-- ******FOOTER****** -->
@@ -212,7 +211,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
-    
 </body>
 
 </html>
