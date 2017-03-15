@@ -406,7 +406,7 @@ $("#listenMusic").on("click", function(event) {
         var user_id = categoryResponse.playlists.items["0"].owner.id;
 
         var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
-
+        console.log(playListURL);
 
         $.ajax({
             url: playListURL,
