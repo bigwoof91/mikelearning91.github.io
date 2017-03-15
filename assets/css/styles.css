@@ -1011,10 +1011,10 @@ input[type=password]:hover {
     border: none;
 }
 
-.spotifyLogin {
+.spotify-login {
   background: #2ebd59;
 }
-.spotifyLogin:hover {
+.spotify-login:hover {
   background: #1ed760;
 }
 

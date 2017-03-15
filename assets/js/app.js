@@ -402,8 +402,8 @@ $("#listenMusic").on("click", function(event) {
         global: false
     }).done(function(categoryResponse) {
         console.log(categoryResponse);
-        playList = categoryResponse.playlists.items[0].id;
-        var user_id = categoryResponse.playlists.items[0].owner.id;
+        playList = categoryResponse.playlists.items["0"].id;
+        var user_id = categoryResponse.playlists.items["0"].owner.id;
 
         var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
         console.log(playListURL);
