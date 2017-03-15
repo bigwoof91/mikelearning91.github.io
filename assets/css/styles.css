@@ -979,7 +979,9 @@ input[type=password]:hover {
         display: none;
     }
 }
-
+#snapYou {
+  border: 2px solid black;
+}
 #appContainer {
     overflow: hidden;
     position: absolute;
@@ -993,7 +995,6 @@ input[type=password]:hover {
     position: absolute;
     width: 50%;
     text-align: center;
-    border: 2px solid black;
     left: 50%;
     margin-left: -25%;
     padding-right: 0 !important;

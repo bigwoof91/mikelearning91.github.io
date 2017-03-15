@@ -395,7 +395,7 @@ $("#listenMusic").on("click", function(event) {
       url: categoryURL,
       dataType:'json',
       headers:{
-        "Authorization":"Bearer BQCyU0SvDy2s08zTZRMeaO0OLWKto3TRxSEcAUuof9kYbrlWckjVqxeLBFYDOKe6mOHTDcZHC8XdhtqFPQEY3NVwx5tSs-qW93egb2QzkuTuL9OmvPi3GbXrBXme9wMP5cxyW6JqGZDE"
+        "Authorization":"Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
       },
       method: "GET",
       global: false
@@ -411,7 +411,7 @@ $("#listenMusic").on("click", function(event) {
         url:playListURL,
         dataType:'json',
         headers:{
-        "Authorization":"Bearer BQCyU0SvDy2s08zTZRMeaO0OLWKto3TRxSEcAUuof9kYbrlWckjVqxeLBFYDOKe6mOHTDcZHC8XdhtqFPQEY3NVwx5tSs-qW93egb2QzkuTuL9OmvPi3GbXrBXme9wMP5cxyW6JqGZDE"
+        "Authorization":"Bearer BQCvsFuQ0yG26s9remeDh099uJHQnxwM1008F95wKRplrdYGg7kfJWEuDg_ZCvyUoO7d6KvexIPByAQOv5RFWbx6hts38sHVTlTbWphNs-bHvwvyU-mAO_mVfGRSiNAANtS35cWXQOh-DCHu3DZb2IlyuXv3-YLWqQNFLwRsTQw3mZO5ptGJHCnA6IQpyDcoTgoruWwkVNZ3O9VDr5RDLWE7u_IUtbkNWUWfDlpPgNRl7W56GJ0B9mfLdW42MhOl8pTFuSBFsm2cD1TK4rCu_kK0HpitnW-XVOJIZ9ZSU9ly1efX"
       },
       method: "GET",
       global: false
