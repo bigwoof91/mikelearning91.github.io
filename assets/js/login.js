@@ -37,11 +37,12 @@ $('#signUpNow').on('click', function(event) {
     console.log(password);
 
     // redirects user to profile
-    firebase.auth().onAuthStateChanged(user => {
+    firebase.auth().onAuthStateChanged(function(user) {
         if (user) {
             // user uid to user as user name/key (uid is used as parent node for user details)
             console.log(user.uid);
             uid = user.uid;
+            console.log(uid);
             // stores user to database
             newUser = {
                 email: email

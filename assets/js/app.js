@@ -36,7 +36,8 @@ var video = document.querySelector('#camera-stream'),
     download_photo_btn = document.querySelector('#download-photo'),
     error_message = document.querySelector('#error-message'),
     selfie,
-    database = firebase.database();
+    database = firebase.database(),
+    spotifyCategory;
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -321,7 +322,7 @@ function ProcessResult(response) {
     var data = JSON.stringify(response);
     console.log(response[0]);
 
-    var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral, response[0].scores.surprise, response[0].scores.fear];
+    var feelingMeasures = [response[0].scores.happiness, response[0].scores.anger, response[0].scores.disgust, response[0].scores.neutral, response[0].scores.surprise, response[0].scores.fear, response[0].scores.sadness];
 
     // iterate through feeling measures to only include 7 decimal places for each feeling's measurement
     var x = 0;
@@ -334,38 +335,43 @@ function ProcessResult(response) {
     // find max in the array of feelings
     var max = Math.max(...feelingMeasures);
     // console.log(feelingMeasures);
-    // console.log(max);
 
+    // console.log(max);
     // asks user if the emotion is correct
     if (feelingMeasures[0] == max) {
-        //console.log("1");
+        spotifyCategory = "workout";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
     }
     if (feelingMeasures[1] == max) {
-        // console.log("2");
+        spotifyCategory = "rock";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
     }
     if (feelingMeasures[2] == max) {
-        // console.log("3");
+        spotifyCategory = "metal";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
     }
     if (feelingMeasures[3] == max) {
-        // console.log("4");
+        spotifyCategory = "toplists";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
     }
     if (feelingMeasures[4] == max) {
-        // console.log("5");
+        spotifyCategory = "dance";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("You look surprised or simply scared? Are you goofin' around?").fadeIn();
     }
     if (feelingMeasures[5] == max) {
-        // console.log("6");
+        spotifyCategory = "focus";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Are you scared or something?').fadeIn();
+    }
+    if (feelingMeasures[6] == max) {
+        spotifyCategory = "country";
+        $('#areYouFeeling').fadeIn();
+        return $('#youAreFeeling').hide().html('Are you sad? Is something wrong?').fadeIn();
     }
 };
 
@@ -377,3 +383,46 @@ $(document).ready(function () {
         $('#preloader').hide();
     });
 });
+
+$("#listenMusic").on("click", function(event) {
+    // Preventing the button from trying to submit the form
+    event.preventDefault();
+    
+    // console.log("hi");
+    var categoryURL = "https://api.spotify.com/v1/browse/categories/" + spotifyCategory + "/playlists"; 
+    console.log(spotifyCategory)
+    $.ajax({
+      url: categoryURL,
+      dataType:'json',
+      headers:{
+        "Authorization":"Bearer BQCyU0SvDy2s08zTZRMeaO0OLWKto3TRxSEcAUuof9kYbrlWckjVqxeLBFYDOKe6mOHTDcZHC8XdhtqFPQEY3NVwx5tSs-qW93egb2QzkuTuL9OmvPi3GbXrBXme9wMP5cxyW6JqGZDE"
+      },
+      method: "GET",
+      global: false
+    }).done(function(response) {
+      console.log(response);
+      var playList = response.playlists.items["0"].id;
+      var user_id = response.playlists.items["0"].owner.id;
+
+      var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
+
+
+      $.ajax({
+        url:playListURL,
+        dataType:'json',
+        headers:{
+        "Authorization":"Bearer BQCyU0SvDy2s08zTZRMeaO0OLWKto3TRxSEcAUuof9kYbrlWckjVqxeLBFYDOKe6mOHTDcZHC8XdhtqFPQEY3NVwx5tSs-qW93egb2QzkuTuL9OmvPi3GbXrBXme9wMP5cxyW6JqGZDE"
+      },
+      method: "GET",
+      global: false
+      }).done(function(response2) {
+      console.log(response2);
+
+      var trackId = response2.tracks.items["1"].track.id;
+
+      var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
+          trackId +"' frameborder='0' allowtransparency='true'></iframe>";
+        // Appending the new player into the HTML
+        $("#playerDiv").append(player);
+      });
+    });});

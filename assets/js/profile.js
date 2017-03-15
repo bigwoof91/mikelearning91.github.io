@@ -118,28 +118,7 @@ $('#saveProfile').on('click', function(e) {
             // stores user to database
             newUserInfo = {
                 name: newName,
-                email: newEmail,
-                interest1: "yoga",
-                interest2: "yoga",
-                interest3: "yoga",
-                interest4: "yoga",
-                interest5: "yoga",
-                interest6: "yoga",
-                interest7: "yoga",
-                interest8: "yoga",
-                interest9: "yoga",
-                interest10: "yoga",
-                interest11: "yoga",
-                interest12: "yoga",
-                interest13: "yoga",
-                interest14: "yoga",
-                interest15: "yoga",
-                interest16: "yoga",
-                interest17: "yoga",
-                interest18: "yoga",
-                interest19: "yoga",
-                interest20: "yoga",
-                interest21: "yoga"
+                email: newEmail
             };
             var newRef = database.ref('temp/users/' + uid + '/').set(newUserInfo);
         }
