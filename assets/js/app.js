@@ -503,8 +503,8 @@ $("#listenMusic").on("click", function(event) {
 firebase.auth().onAuthStateChanged(function(user) {
     if (user) {
         var user = firebase.auth().currentUser;
-        var userId = user.uid
-        firebase.database().ref('temp/users/' + userId).once('value').then(function(snapshot) {
+        var userId = user.uid;
+        firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
             var hikingTrue = snapshot.val().hiking;
             console.log(hikingTrue);
             if (hikingTrue === "hiking") {
@@ -513,8 +513,6 @@ firebase.auth().onAuthStateChanged(function(user) {
             else {
               $('.hiking-card').hide();
             }
-        }).catch(function(error) {
-          console.log("Okay: hiking not found in interests")
         });
     }
 });
@@ -535,12 +533,12 @@ $('#getTrails').on('click', function() {
         console.log(response);
         var trailsResponse = response.places;
         for (var k = 0; k < trailsResponse.length; k++) {
-            var trailInfo = $('<div class="trailInfo">').fadeIn();
+            var trailInfo = $('<div class="trail-info">').fadeIn();
             trailInfo.append('<img class="trail-image-holder" width="75" height="75" src="assets/images/trail.png">').fadeIn();
             trailInfo.append('<h3 class="trail-name">' + trailsResponse[k].name + '</h3>').fadeIn();
             trailInfo.append('<h4 class="trail-city">' + trailsResponse[k].city + '</h4>').fadeIn();
             trailInfo.append('<p class="trail-des">' + trailsResponse[k].description + '</p>').fadeIn();
-            trailInfo.append('<button class="btn btn-success trail-link" href="' + trailsResponse[k].activities["0"].url + '">Get More Info</button>').fadeIn();
+            trailInfo.append('<button class="btn btn-success trail-link"><a target="_blank" title="Trail Info" href="' + trailsResponse[k].activities["0"].url + '">Go To Trail</a></button>').fadeIn();
 
             $('#trails').append(trailInfo);
             $('#trails').fadeIn('slow');

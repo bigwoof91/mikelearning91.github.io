@@ -1012,6 +1012,14 @@ input[type=password]:hover {
 #trails {
   display: none;
 }
+.trail-link a {
+  color: white;
+  font-weight: 400;
+  text-decoration: none;
+}
+.trail-info {
+  margin-bottom: 35px;
+}
 #result-template {
   display: none;
 }

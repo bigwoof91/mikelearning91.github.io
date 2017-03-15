@@ -11,28 +11,28 @@ firebase.initializeApp(config);
 
 var database = firebase.database();
 var uid;
-// rules, conditions, reading database for input values
+
+// rules, conditions, fetching for input values
 firebase.auth().onAuthStateChanged(function(user) {
     // if user is not logged in then redirect to login.html
     if (!user) {
         window.location.href = 'login.html';
     }
-    // fill in display name and email/username inputs with user's current Display Name and Email/Username
+    // fetching database for input values
     if (user) {
         var user = firebase.auth().currentUser;
         var name, email, photoUrl, uid, emailVerified;
         var userId = user.uid
-        var hikingTrue = "";
 
         firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
-            hikingTrue = snapshot.val().hiking;
+            var hikingTrue = snapshot.val().hiking;
             console.log(hikingTrue);
 
             if (hikingTrue === "hiking") {
                 $('#hiking').prop('checked', true);
             }
         });
-
+        // populate display name and email/username inputs current firebase auth details
         if (user != null) {
             name = user.displayName;
             email = user.email;
@@ -45,6 +45,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         }
     }
 });
+
 // register button inside login modal - this will close login modal (as the data attributes are set to open the sign up modal)
 $('#registerButton').on('click', function() {
     $('#login-modal').modal('toggle'); //or  $('#IDModal').modal('hide');
@@ -93,13 +94,6 @@ $('[data-dismiss=modal]').on('click', function(e) {
     clearSignupError();
     clearLoginError();
 })
-
-
-
-// Check existing interests stored in firebase database
-
-
-
 
 // saving input values to firebase database 
 $('#saveProfile').on('click', function(e) {
@@ -152,17 +146,10 @@ $('.login').on('click', function(event) {
 
 });
 
-
-
-
-
-
 // Hide Footer {
 $('.footer').hide();
 
-
-
-// -------------------------Need to add forgot password-------------------------//
+// ------------------------- START Need to add forgot password (no mail server) -------------------------//
 // var auth = firebase.auth();
 // var emailAddress = "user@example.com";
 
@@ -171,4 +158,4 @@ $('.footer').hide();
 // }, function(error) {
 //   // An error happened.
 // });
-// -------------------------END Need to add forgot password-------------------------//
+// ------------------------- END Need to add forgot password (no mail server) -------------------------//
