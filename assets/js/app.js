@@ -26,6 +26,21 @@ $('#logoutNow').on('click', function(event) {
     });
 });
 
+
+$('#beginApp').on('click', function(event) {
+  event.preventDefault();
+  $('.bear-message').fadeOut('fast');
+    $('.app').delay(500).fadeIn('slow');
+    $('.moodu-bear-container').animate({ 
+    left: '20px',
+    top: '10%',
+    width: '100px',
+    margin: '0'
+     }, 500);
+
+
+});
+
 // References to all "take-photo" elements
 var video = document.querySelector('#camera-stream'),
     image = document.querySelector('#snap'),
@@ -187,8 +202,6 @@ $('#contentOptions').on('click', function() {
     $("#appContainer").height(totHeight).css('margin-bottom', '150px');
 });
 
-
-
 // animate steps on clicks
 $('.next-step').click(function() {
     $(this).parents(".box").animate({ left: '-150%' }, 500);
@@ -218,6 +231,24 @@ $('#startOver').click(function() {
     $(this).parents(".box").prev(".box").css('left', '150%');
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
+    $('#youAreFeeling').empty();
+    // reset camera
+    image.setAttribute('src', "");
+    image.classList.remove("visible");
+    // Disable delete and save buttons
+    delete_photo_btn.classList.add("disabled");
+    download_photo_btn.classList.add("disabled");
+    // Resume playback of stream.
+    video.play();
+});
+
+$('#restartFromContent').click(function() {
+    $("#appContainer").css('margin-bottom', '0').css('height', '100%');
+    $(this).parents(".box").animate({ left: '450%' }, 500);
+    $(this).parents(".box").prev(".box").css('left', '300%');
+    $(this).parents(".box").prev(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
+    $(this).parents(".box").prev(".box").prev(".box").css('left', '150%');
+    $(this).parents(".box").prev(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
     $('#youAreFeeling').empty();
     // reset camera
     image.setAttribute('src', "");
@@ -367,17 +398,17 @@ function processResult(response) {
     if (feelingMeasures[4] == max) {
         spotifyCategory = "dance";
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').hide().html("You look surprised or simply scared? Are you goofin' around?").fadeIn();
+        return $('#youAreFeeling').hide().html("You look surprised? Are you goofin' around?").fadeIn();
     }
     if (feelingMeasures[5] == max) {
         spotifyCategory = "focus";
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').hide().html('Are you scared or something?').fadeIn();
+        return $('#youAreFeeling').hide().html("AHHH! You seem scared, it's sorta' creepy. Do you feel fearful?").fadeIn();
     }
     if (feelingMeasures[6] == max) {
         spotifyCategory = "country";
         $('#areYouFeeling').fadeIn();
-        return $('#youAreFeeling').hide().html('Are you sad? Is something wrong?').fadeIn();
+        return $('#youAreFeeling').hide().html('You look bothersome. Are you sad or something?').fadeIn();
     }
 };
 

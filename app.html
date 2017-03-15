@@ -84,6 +84,13 @@
         <!--//Preloader-->
         <div id="snapYou" class="container text-center box">
             <!-- Step 1 -->
+            <div class="moodu-bear-container">
+                <img src="assets/images/moodu-bear.svg" class="moodu-bear" alt="Hello, I'm Moodu the Bear!">
+                <img src="assets/images/shadow.svg" class="moodu-shadow" alt="shadow">
+            </div>
+                <span class="bear-message"><h3>Hi there! I'm Moodü the Bear. I am hear to understand how you feel, and try to help! I will do my best at figuring out how you feel based on the beautiful selfie you take. But I warn you, I am not perfect, I am only bear.</h3>
+                <button id="beginApp" class="btn-lg btn-success">Take A Selfie</button></span>
+            
             <div class="app">
                 <a href="#" id="start-camera" class="visible">Touch Here To Analyze Your Mood</a>
                 <video id="camera-stream"></video>
@@ -114,7 +121,7 @@
         <!--//step 2 container-->
         <div id="chooseContent" class="container text-center box">
             <!-- Step 3 -->
-            <button type="button" id="startOver" class="btn btn-default" aria-label="Left Align">
+            <button type="button" id="startOver" class="btn btn-success" aria-label="Left Align">
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
             </button>
             <div class="card">
@@ -124,7 +131,7 @@
                     <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content">Go Listen</a>
                 </div>
             </div>
-<!--             <div class="card">
+            <!--             <div class="card">
                 <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found books">
                 <div class="card-block">
                     <h4 class="card-title">Moodü Found Books</h4>
@@ -160,16 +167,17 @@
         <!--//step 3 container-->
         <div id="content" class="container text-center box">
             <!-- Step 2 -->
+            <button type="button" id="restartFromContent" class="btn btn-success" aria-label="Left Align">
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span>
+            </button>
             <div id="playerDiv">
                 <button class="btn btn-primary" id="btn-login">Login</button>
             </div>
-               
             <div id="mapShopping"></div>
             <div id="mapShoes"></div>
             <div id="mapFood"></div>
             <div id="mapBakery"></div>
             <div id="mapCampGround"></div>
-
             <div id="trails"></div>
         </div>
     </section>
