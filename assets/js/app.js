@@ -192,7 +192,7 @@ download_photo_btn.addEventListener("click", function(e) {
 
 });
 
-//adjust height of appContainer to fit box
+//adjust height of appContainer to fit box of content options
 $('#contentOptions').on('click', function() {
     var biggestHeight = "0";
     if ($(this).parents('.box').next('.box').height() > biggestHeight) {
@@ -200,14 +200,15 @@ $('#contentOptions').on('click', function() {
     }
     var totHeight = biggestHeight + 200;
     $("#appContainer").height(totHeight).css('margin-bottom', '150px');
+    $("#restartFromOptions").animate({top: "0px"});
 });
 
-// animate steps on clicks
+// animate steps on next
 $('.next-step').click(function() {
     $(this).parents(".box").animate({ left: '-150%' }, 500);
     $(this).parents(".box").next(".box").animate({ left: '50%' }, 500);
 });
-
+// animate steps on back
 $('.back-step').click(function() {
     $("#appContainer").css('margin-bottom', '0').css('height', '100%');
     $(this).parents(".box").animate({ left: '150%' }, 500);
@@ -224,10 +225,11 @@ $('.back-step').click(function() {
     // Resume playback of stream.
     video.play();
 });
-
-$('#startOver').click(function() {
+// restart from content options screen
+$('#restartFromOptions').click(function() {
     $("#appContainer").css('margin-bottom', '0').css('height', '100%');
     $(this).parents(".box").animate({ left: '300%' }, 500);
+    $(this).animate({top: "-150px"});
     $(this).parents(".box").prev(".box").css('left', '150%');
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
@@ -241,18 +243,20 @@ $('#startOver').click(function() {
     // Resume playback of stream.
     video.play();
 });
-
+// restart from content screen
 $('#restartFromContent').click(function() {
     $("#appContainer").css('margin-bottom', '0').css('height', '100%');
     $(this).parents(".box").animate({ left: '450%' }, 500);
     $(this).parents(".box").prev(".box").css('left', '300%');
     $(this).parents(".box").prev(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").css('left', '150%');
+    $(this).animate({top: "-150px"});
     $(this).parents(".box").prev(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
     $('#youAreFeeling').empty();
     $("#trails").empty();
     $("#random-quotes").empty();
     $("#groupon").empty();
+    
     // reset camera
     image.setAttribute('src', "");
     image.classList.remove("visible");
@@ -262,6 +266,11 @@ $('#restartFromContent').click(function() {
     // Resume playback of stream.
     video.play();
 });
+
+$('.deliver-content').click(function() {
+  $("#restartFromOptions").animate({top: "-150px"});
+  $("#restartFromContent").animate({top: "0px"});
+  });
 
 // delete photo button on camera
 delete_photo_btn.addEventListener("click", function(e) {
@@ -618,7 +627,7 @@ $('.first-quote').on('click', function() {
             quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
             $("#random-quotes").fadeIn();
         }
-                var adjustedHeight = "0";
+        var adjustedHeight = "0";
         if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#trails').parents('.box').height();
         }
@@ -650,6 +659,12 @@ function newQuote() {
             $('.quote').html(response.quoteText).fadeIn();
             $('.author').html(response.quoteAuthor).fadeIn();
         }
+        var adjustedHeight = "0";
+        if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#trails').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
 };
 
@@ -665,7 +680,7 @@ $('.get-groupon').on('click', function() {
     }).done(function(data) {
         console.log(data);
         $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal"><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><div class="groupon-image"><img src="' + deal.mediumImageUrl + '"></div></div>'
+            var grouponDeals = '<div class="deal"><div class="groupon-image"><img src="' + deal.mediumImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a href="' + deal.dealUrl +'">Get Deal</a></button></div>'
             $("#groupon").append(grouponDeals);
             $("#groupon").fadeIn();
         })

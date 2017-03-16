@@ -932,6 +932,14 @@ input[type=password]:hover {
 #groupon {
   display: none;
 }
+.deal {
+  margin-bottom: 30px;
+}
+.deal-link,
+.trail-link {
+  margin-top: 10px;
+}
+.deal-link a,
 .trail-link a {
   color: white;
   font-weight: 400;
@@ -939,6 +947,16 @@ input[type=password]:hover {
 }
 .trail-info {
   margin-bottom: 35px;
+}
+#restartFromOptions,
+#restartFromContent {
+  position: fixed;
+  top: -100px;
+  left: 50%;
+  right: 50%;
+  z-index: 1;
+  margin-left: -60px;
+  text-align: center;
 }
 #result-template {
   display: none;
