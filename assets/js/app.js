@@ -699,7 +699,9 @@ $('.go-maps').on('click', function() {
     $.ajax({
         type: 'GET',
         url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50&types=food&key=AIzaSyCclGQLwgHmpp6DZ1fswbU-qgmMUbpwH2o",
-
+        header: {
+          "Access-Control-Allow-Origin": "*"
+        },
         global: false
     }).done(function(data) {
         console.log(data);
