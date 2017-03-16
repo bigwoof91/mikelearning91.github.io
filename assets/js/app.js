@@ -683,7 +683,7 @@ $('.get-groupon').on('click', function() {
         })
         $("#groupon").prepend("<h2>Check out these Deals!</h2><hr>");
         $("#groupon").fadeIn();
-        
+
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#trails').parents('.box').height();
@@ -705,7 +705,7 @@ var directionsDisplay;
 
 
 function initAutocomplete() {
-  var map = new google.maps.Map(document.getElementById('map'), {
+  var map = new google.maps.Map($('#map'), {
     center: {lat: 40.328126, lng: -74.562241},
     zoom: 13,
     mapTypeId: 'roadmap'
@@ -1042,4 +1042,18 @@ function getJSON(url) {
 
     return response;
 }
+// animate next step to map
+$('.next-step-maps').click(function() {
+    $('#appContainer').animate({ top: '-200%' }, 500);
+    $('#mapContainer').animate({ top: '5%' }, 500);
+    $('#goBackFromMaps').animate({ top: '0' }, 500);
+    $("#restartFromOptions").animate({ top: "-150px" });
+});
+// animate back one step from map
+$('#goBackFromMaps').click(function() {
+    $(this).animate({ top: "150px" });
+    $("#restartFromOptions").animate({ top: "0" });
+    $('#appContainer').animate({ top: '0' }, 500);
+    
+});
 // Comic API

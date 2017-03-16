@@ -955,7 +955,8 @@ input[type=password]:hover {
   margin-bottom: 35px;
 }
 #restartFromOptions,
-#goBackFromContent {
+#goBackFromContent,
+#goBackFromMaps {
   position: fixed;
   top: -100px;
   left: 50%;
@@ -986,6 +987,9 @@ input[type=password]:hover {
 #content {
   left: 450%;
   top: -20px;
+}
+#mapContainer{
+  top: 250%;
 }
 
 #areYouFeeling {
