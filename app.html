@@ -125,7 +125,7 @@
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
             </button>
             <div class="row">
-                <div class="card col-sm-12 col-lg-4">
+                <div class="card col-sm-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found music">
                     <div class="card-block">
                         <h3 class="card-title">Moodü Found Music</h3>
@@ -133,20 +133,22 @@
                         <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content">Go Listen</a>
                     </div>
                 </div>
-                <div class="col-sm-12 col-lg-4">
-                    <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found books">
-                    <div class="card-block">
-                        <h4 class="card-title">Moodü Found Places</h4>
-                        <p class="card-text"></p>
-                        <a href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-4">
+                <div class="card col-sm-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/quotes.png" height="150" width="150" alt="Card image cap">
                     <div class="card-block">
                         <h3 class="card-title">Moodü Found Quotes</h3>
                         <p class="card-text"></p>
                         <a href="#" id="readAQuote" class="btn btn-primary deliver-content first-quote next-step">Go Read</a>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12 col-lg-6">
+                    <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found books">
+                    <div class="card-block">
+                        <h4 class="card-title">Moodü Found Places</h4>
+                        <p class="card-text"></p>
+                        <a href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
                     </div>
                 </div>
             </div>
@@ -188,9 +190,9 @@
     </section>
     <!-- STEP 4: MAPS -->
     <section id="mapContainer" class="promo section offset-header">
-    <button type="button" id="goBackFromMaps" class="btn btn-success" aria-label="Left Align">
-                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
-            </button>
+        <button type="button" id="goBackFromMaps" class="btn btn-success" aria-label="Left Align">
+            <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
+        </button>
         <div id="mapInnerContainer">
             <input id="pac-input" class="controls" type="text" placeholder="Search Box">
             <div id="parent">
@@ -225,7 +227,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyFWoqDcUxSKzdsN3BCbKHWSRT86m8OQo&libraries=places,geometry&callback=initAutocomplete" async defer></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAyFWoqDcUxSKzdsN3BCbKHWSRT86m8OQo&libraries=places,geometry" async defer></script>
     <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
 </body>
