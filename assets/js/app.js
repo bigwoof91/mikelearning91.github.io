@@ -600,11 +600,11 @@ $('#getTrails').on('click', function() {
 
 // Forismatic API
 $('.first-quote').on('click', function() {
-
+    var proxy = 'https://cors-anywhere.herokuapp.com/';
     var queryURL = "https://api.forismatic.com/api/1.0/";
 
     $.ajax({
-        url: queryURL,
+        url: proxy + queryURL,
         jsonp: "jsonp",
         dataType: "jsonp",
         data: {
@@ -638,10 +638,11 @@ $('.first-quote').on('click', function() {
 // fetch new quote function for button in quote content section
 function newQuote() {
     event.preventDefault();
-    var queryURL = "https://api.forismatic.com/api/1.0/";
+    var proxy = 'https://cors-anywhere.herokuapp.com/';
+    var queryURL = "http://api.forismatic.com/api/1.0/";
 
     $.ajax({
-        url: queryURL,
+        url: proxy + queryURL,
         jsonp: "jsonp",
         dataType: "jsonp",
         data: {
