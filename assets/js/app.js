@@ -601,7 +601,7 @@ $('#getTrails').on('click', function() {
 // Forismatic API
 $('.first-quote').on('click', function() {
 
-    var queryURL = "http://api.forismatic.com/api/1.0/";
+    var queryURL = "https://api.forismatic.com/api/1.0/";
 
     $.ajax({
         url: queryURL,
