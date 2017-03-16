@@ -678,7 +678,7 @@ $('.get-groupon').on('click', function() {
     }).done(function(data) {
         console.log(data);
         $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal"><div class="groupon-image"><img src="' + deal.mediumImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a href="' + deal.dealUrl + '">Get Deal</a></button></div>'
+            var grouponDeals = '<div class="deal"><div class="groupon-image"><img src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div>'
             $("#groupon").append(grouponDeals);
         })
         $("#groupon").prepend("<h2>Check out these Deals!</h2><hr>");

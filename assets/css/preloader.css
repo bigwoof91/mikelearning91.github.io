@@ -232,3 +232,36 @@ header .container {
     display: none;
   }
 }
+
+/* custom #chooseContent elements */
+.deliver-content {
+  background: #8c3cae;
+}
+.deliver-content:hover {
+  background: #7818a1;
+}
+#chooseContent > div > div > div > h3 {
+  margin-top: 0;
+}
+
+#listenMusic {
+  background: #1bc663;
+}
+#listenMusic:hover {
+  background: #11b355;
+}
+
+#readAQuote {
+  background: #e74c3c;
+}
+#readAQuote:hover {
+  background: #cf3929;
+}
+
+#getTrails {
+  background: #3752b6;
+}
+
+#getTrails:hover {
+  background: #2640a3;
+}

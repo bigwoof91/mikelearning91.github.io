@@ -934,6 +934,9 @@ input[type=password]:hover {
 }
 .deal {
   margin-bottom: 30px;
+  border: 4px solid;
+  padding: 5px;
+  border-radius: 5px;
 }
 .deal-link,
 .trail-link {
@@ -964,7 +967,7 @@ input[type=password]:hover {
 #chooseContent {
     left: 300%;
     border: none;
-    top: -30px;
+    top: 10px;
 }
 #errorRetake {
   display: none;
@@ -986,10 +989,11 @@ input[type=password]:hover {
 
 .card {
     width: 50%;
+    margin: 0 auto;
 }
 
-.card {
-    margin: 0 auto;
+.card-block h3 {
+  color: #fff;
 }
 
 .login {
@@ -1175,7 +1179,7 @@ color: rgba(244, 244, 244, 0.50) !important;
     }
     #chooseContent {
       margin-left: -33.5%;
-      top: -20px;
+      top: 0;
     }
     #appContainer {
       height: 100%;
