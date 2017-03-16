@@ -989,7 +989,14 @@ input[type=password]:hover {
   top: -20px;
 }
 #mapContainer{
-  top: 250%;
+  position: fixed !important;
+  top: -500%;
+  left: 0;
+  right: 0;
+  height: 400px;
+  width: 50%;
+  margin: 0 auto;
+  border: 5px solid #413bc1;
 }
 
 #areYouFeeling {

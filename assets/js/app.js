@@ -695,14 +695,14 @@ $('.get-groupon').on('click', function() {
 
 // Google Maps/Places/Books API
 
-$('.go-maps').on('click', function() {
+
     var map;
       var infowindow;
 
       function initMap() {
         var pyrmont = {lat: -33.867, lng: 151.195};
 
-        map = new google.maps.Map(document.getElementById('map'), {
+        map = new google.maps.Map(document.getElementById('mapContainer'), {
           center: pyrmont,
           zoom: 15
         });
@@ -736,11 +736,11 @@ $('.go-maps').on('click', function() {
           infowindow.open(map, this);
         });
       }
-});
+
 // animate next step to map
 $('.next-step-maps').click(function() {
     $('#appContainer').animate({ top: '-500%' }, 500);
-    $('#mapContainer').animate({ top: '5%' }, 500);
+    $('#mapContainer').animate({ top: '12%' }, 500);
     $('#goBackFromMaps').animate({ top: '0' }, 500);
     $("#restartFromOptions").animate({ top: "-150px" });
 });

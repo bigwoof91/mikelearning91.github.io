@@ -189,14 +189,14 @@
         </div>
     </section>
     <!-- STEP 4: MAPS -->
-    <section id="mapContainer" class="promo section offset-header">
+    <section id="mapContainer" class="promo section">
         <button type="button" id="goBackFromMaps" class="btn btn-success" aria-label="Left Align">
             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
         </button>
-        <div id="mapInnerContainer">
-                <div id="map"></div>
-            </div>
-        </div>
+
+                <div id="mapper"></div>
+
+
     </section>
     <!--//App Container-->
     <!-- ******FOOTER****** -->
@@ -218,7 +218,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-    <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclGQLwgHmpp6DZ1fswbU-qgmMUbpwH2o&libraries=places"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclGQLwgHmpp6DZ1fswbU-qgmMUbpwH2o&libraries=places&callback=initMap" async defer></script>
 
     <script type="text/javascript" src="assets/js/app.js"></script>
 </body>
