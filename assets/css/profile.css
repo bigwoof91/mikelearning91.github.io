@@ -1145,6 +1145,12 @@ color: rgba(244, 244, 244, 0.50) !important;
 .change-button {
   color: white;
 }
+.btn span.glyphicon {         
+  opacity: 0;       
+}
+.btn.active span.glyphicon {        
+  opacity: 1;       
+}
 
 #profileContainer {
   padding-bottom: 150px;

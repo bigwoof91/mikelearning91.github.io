@@ -88,7 +88,7 @@
                 <img src="assets/images/moodu-bear.svg" class="moodu-bear" alt="Hello, I'm Moodu the Bear!">
                 <img src="assets/images/shadow.svg" class="moodu-shadow" alt="shadow">
             </div>
-            <span class="bear-message"><h3>Hi there! I'm Moodü the Bear. I am hear to understand how you feel, and try to help remedy or maintain a good mood! <span class="showon768">Take a selfie and I'll try to help you out.</span><span class="hideon768">I will do my best at figuring out how you feel based on the beautiful selfie you take. But I warn you, I am not perfect, I am only Bear.</span></h3>
+            <span class="bear-message"><h3>Hi there! I'm Moodü the Bear. I am here to understand how you feel, and try to help remedy or maintain a good mood! <span class="showon768">Take a selfie and I'll try to help you out.</span><span class="hideon768">I will do my best at figuring out how you feel based on the beautiful selfie you take. But I warn you, I am not perfect, I am only Bear.</span></h3>
             <button id="beginApp" class="btn-lg btn-success">Take A Selfie</button>
             </span>
             <div class="app">
@@ -144,11 +144,19 @@
             </div>
             <div class="row">
                 <div class="col-sm-12 col-lg-6">
-                    <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found books">
+                    <img class="card-img-top" src="assets/images/places.png" height="150" width="150" alt="Moodu found books">
                     <div class="card-block">
                         <h4 class="card-title">Moodü Found Places</h4>
                         <p class="card-text"></p>
-                        <a href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
+                        <a id="getPlaces" href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
+                    </div>
+                </div>
+                <div class="col-sm-12 col-lg-6">
+                    <img class="card-img-top" src="assets/images/places.png" height="150" width="150" alt="Moodu found books">
+                    <div class="card-block">
+                        <h4 class="card-title">Moodü Found Comics/Books</h4>
+                        <p class="card-text"></p>
+                        <a id="getPlaces" href="#" class="btn btn-primary">Go See ????</a>
                     </div>
                 </div>
             </div>
@@ -178,7 +186,6 @@
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
             </button>
             <div id="playerDiv">
-                <button class="btn btn-primary" id="btn-login">Login</button>
             </div>
             <div id="groupon"></div>
             <div id="mapShoes"></div>
@@ -189,15 +196,13 @@
         </div>
     </section>
     <!-- STEP 4: MAPS -->
-    <section id="mapContainer" class="promo section">
+    <div id="mapper">
         <button type="button" id="goBackFromMaps" class="btn btn-success" aria-label="Left Align">
             <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
         </button>
-
-                <div id="mapper"></div>
-
-
-    </section>
+        <section id="mapContainer" class="promo section">
+        </section>
+    </div>
     <!--//App Container-->
     <!-- ******FOOTER****** -->
     <footer class="footer">
@@ -219,7 +224,6 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclGQLwgHmpp6DZ1fswbU-qgmMUbpwH2o&libraries=places&callback=initMap" async defer></script>
-
     <script type="text/javascript" src="assets/js/app.js"></script>
 </body>
 

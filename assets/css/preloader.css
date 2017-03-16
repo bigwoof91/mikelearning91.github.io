@@ -152,7 +152,7 @@ header .container {
 }
 
 .moodu-bear {
-    width: 100px;
+    width: 120px;
     animation: hideshow 1.5s infinite;
     -webkit-transition: all 1.5s cubic-bezier(.455, .005, .49, .975);
     -moz-transition: all 1.5s cubic-bezier(.455, .005, .49, .975);
@@ -175,7 +175,7 @@ header .container {
 }
 
 .moodu-shadow {
-    width: 70px;
+    width: 80px;
     animation: grow 1.5s ease infinite;
     top: 40%;
 }
@@ -252,7 +252,6 @@ header .container {
 
 #listenMusic {
   background: #1bc663;
-  border: 1px solid #1299c5;
 }
 #listenMusic:hover {
   background: #11b355;
@@ -273,4 +272,12 @@ header .container {
 
 #getTrails:hover {
   background: #2640a3;
+}
+
+#getPlaces {
+  background: #ec9e3d;
+}
+
+#getPlaces:hover {
+  background: #e08c23;
 }

@@ -28,7 +28,7 @@ firebase.auth().onAuthStateChanged(function(user) {
             var hikingTrue = snapshot.val().hiking;
             console.log(hikingTrue);
 
-            if (hikingTrue === "hiking") {
+            if (hikingTrue == "hiking") {
                 $('#hiking').prop('checked', true);
             }
         });

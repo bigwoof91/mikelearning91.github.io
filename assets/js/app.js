@@ -34,7 +34,7 @@ $('#beginApp').on('click', function(event) {
     $('.moodu-bear-container').animate({
         left: '20px',
         top: '10%',
-        width: '100px',
+        width: '120px',
         margin: '0'
     }, 500);
 
@@ -443,7 +443,7 @@ $("#listenMusic").on("click", function(event) {
         url: categoryURL,
         dataType: 'json',
         headers: {
-            "Authorization": "Bearer BQDKa4sf-Xg7_V_JI_Hacv-FxZujlsjsBwQt5TAWlYI4sJZl3_T1jCU_Y_AF_cLIRIM1Dftem2xuPkAKd3MwU4kmbkaqrpaQWQQJ7NAjN4Z2jEF-FWclPImXAGhIB-lwqP52KJB29g7LuNlOhA3w-sx6-MJD_d6R1JHzHRMC2l2Oj0VlWPUeEnRZ5vAMou4UhCf0SV71EKVEgc41aiKAfD20JqH3F0bwVJMPS0j-dLok661dhAqwJUdNvCT2PaQPKXTXnmfZPCSpKYk8NqxosJGByuHm8hZsPAkEhIGc3OlyWYtP"
+            "Authorization": "Bearer BQAu76xcs9fHczdZNchgSb3g9tkxsM4ir6budWONx8zxue9VdUZWGaUQloArFel3dGm-vN8-oUinb1ZgpPFgkPwrIZ2rd1K9WluSQHVI66w6JOWlTk5sqheR0X_szka-LNtDtJAdxXVvkGKIhqDbp44xQ5TRxGzq7G8r1j7K193wTABgUknw8f90MMyrq5Gk-BV9VSym4dQWZg2VCCvIlWxKxJroxhKP_1mFlDyCYrHlaYPh4Dm-PWTUseQjTnR2LF-kpiosVj5PHiuHQKXFavAudRVDpJqj8kTvwEstnsngDQ0V"
         },
         method: "GET",
         global: false
@@ -459,7 +459,7 @@ $("#listenMusic").on("click", function(event) {
             url: playListURL,
             dataType: 'json',
             headers: {
-                "Authorization": "Bearer BQDKa4sf-Xg7_V_JI_Hacv-FxZujlsjsBwQt5TAWlYI4sJZl3_T1jCU_Y_AF_cLIRIM1Dftem2xuPkAKd3MwU4kmbkaqrpaQWQQJ7NAjN4Z2jEF-FWclPImXAGhIB-lwqP52KJB29g7LuNlOhA3w-sx6-MJD_d6R1JHzHRMC2l2Oj0VlWPUeEnRZ5vAMou4UhCf0SV71EKVEgc41aiKAfD20JqH3F0bwVJMPS0j-dLok661dhAqwJUdNvCT2PaQPKXTXnmfZPCSpKYk8NqxosJGByuHm8hZsPAkEhIGc3OlyWYtP"
+                "Authorization": "Bearer BQAu76xcs9fHczdZNchgSb3g9tkxsM4ir6budWONx8zxue9VdUZWGaUQloArFel3dGm-vN8-oUinb1ZgpPFgkPwrIZ2rd1K9WluSQHVI66w6JOWlTk5sqheR0X_szka-LNtDtJAdxXVvkGKIhqDbp44xQ5TRxGzq7G8r1j7K193wTABgUknw8f90MMyrq5Gk-BV9VSym4dQWZg2VCCvIlWxKxJroxhKP_1mFlDyCYrHlaYPh4Dm-PWTUseQjTnR2LF-kpiosVj5PHiuHQKXFavAudRVDpJqj8kTvwEstnsngDQ0V"
             },
             method: "GET",
             global: false
@@ -473,71 +473,10 @@ $("#listenMusic").on("click", function(event) {
                 trackId + "' frameborder='0' allowtransparency='true'></iframe>";
             // Appending the new player into the HTML
             $("#playerDiv").append(playlistiFrame);
+            $("#playerDiv").append(player);
             $('#result-template').fadeIn('slow');
         });
     });
-    // logs a user in to spotify
-    (function() {
-
-        function login(callback) {
-            var CLIENT_ID = '1fac33a31ac94dcf81404925a1a9fdcd';
-            var REDIRECT_URI = 'https://mikelearning91.github.io/spot-proxy.html';
-
-            function getLoginURL(scopes) {
-                return 'https://accounts.spotify.com/authorize?client_id=' + CLIENT_ID +
-                    '&redirect_uri=' + encodeURIComponent(REDIRECT_URI) +
-                    '&scope=' + encodeURIComponent(scopes.join(' ')) +
-                    '&response_type=token';
-            }
-
-            var url = getLoginURL([
-                'user-read-email'
-            ]);
-
-            var width = 450,
-                height = 730,
-                left = (screen.width / 2) - (width / 2),
-                top = (screen.height / 2) - (height / 2);
-
-            window.addEventListener("message", function(event) {
-                var hash = JSON.parse(event.data);
-                if (hash.type == 'access_token') {
-                    callback(hash.access_token);
-                }
-            }, false);
-
-            var w = window.open(url,
-                'Spotify',
-                'menubar=no,location=no,resizable=no,scrollbars=no,status=no, width=' + width + ', height=' + height + ', top=' + top + ', left=' + left
-            );
-
-        }
-
-        function getUserData(accessToken) {
-            return $.ajax({
-                url: 'https://api.spotify.com/v1/me',
-                headers: {
-                    'Authorization': 'Bearer ' + accessToken
-                }
-            });
-        }
-
-        var templateSource = document.getElementById('result-template').innerHTML,
-            template = Handlebars.compile(templateSource),
-            resultsPlaceholder = document.getElementById('result'),
-            loginButton = document.getElementById('btn-login');
-
-        loginButton.addEventListener('click', function() {
-            login(function(accessToken) {
-                getUserData(accessToken)
-                    .then(function(response) {
-                        loginButton.style.display = 'none';
-                        resultsPlaceholder.innerHTML = template(response);
-                    });
-            });
-        });
-
-    })();
 });
 
 // Trails API if interest hiking is checked in profile
@@ -696,58 +635,366 @@ $('.get-groupon').on('click', function() {
 // Google Maps/Places/Books API
 
 
-    var map;
-      var infowindow;
+ pos = {
+  
+  lat: 40.328126,
+  lng: -74.562241
+};
 
-      function initMap() {
-        var pyrmont = {lat: -33.867, lng: 151.195};
+var directionsService;
+var directionsDisplay;
 
-        map = new google.maps.Map(document.getElementById('mapContainer'), {
-          center: pyrmont,
-          zoom: 15
-        });
 
-        infowindow = new google.maps.InfoWindow();
-        var service = new google.maps.places.PlacesService(map);
-        service.nearbySearch({
-          location: pyrmont,
-          radius: 500,
-          type: ['store']
-        }, callback);
+function initAutocomplete() {
+  var map = new google.maps.Map(document.getElementById('mapper'), {
+    center: {lat: 40.328126, lng: -74.562241},
+    zoom: 13,
+    mapTypeId: 'roadmap'
+  });
+
+  directionsDisplay = new google.maps.DirectionsRenderer;
+  directionsService = new google.maps.DirectionsService;
+
+  directionsDisplay.setMap(map);
+  directionsDisplay.setPanel(document.getElementById('right-panel'));
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(function(position) {
+      pos = {
+        lat: position.coords.latitude,
+        lng: position.coords.longitude
+      };
+
+      var infoWindow = new google.maps.InfoWindow({map: map});
+
+      infoWindow.setPosition(pos);
+      infoWindow.setContent('You are here!!');
+      map.setCenter(pos);
+    }, function() {
+      handleLocationError(true, infoWindow, map.getCenter());
+    });
+  } else {
+    handleLocationError(false, infoWindow, map.getCenter());
+  }
+
+  function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+  infoWindow.setPosition(pos);
+  infoWindow.setContent(browserHasGeolocation ?
+                        'Error: The Geolocation service failed.' :
+                        'Error: Your browser doesn\'t support geolocation.');
+  }
+
+  // Create the search box and link it to the UI element.
+  var input = document.getElementById('pac-input');
+  var searchBox = new google.maps.places.SearchBox(input);
+  map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+  // Bias the SearchBox results towards current map's viewport.
+  map.addListener('bounds_changed', function() {
+    searchBox.setBounds(map.getBounds());
+  });
+
+  var markers = [];
+  // Listen for the event fired when the user selects a prediction and retrieve
+  // more details for that place.
+  searchBox.addListener('places_changed', function() {
+    var places = searchBox.getPlaces();
+
+    if (places.length == 0) {
+      return;
+    }
+
+    loadResults(places.length, places);
+
+    // Clear out the old markers.
+    markers.forEach(function(marker) {
+      marker.setMap(null);
+    });
+    markers = [];
+
+    // For each place, get the icon, name and location.
+    var bounds = new google.maps.LatLngBounds();
+    places.forEach(function(place) {
+      if (!place.geometry) {
+        console.log("Returned place contains no geometry");
+        return;
       }
+      var icon = {
+        url: place.icon,
+        size: new google.maps.Size(71, 71),
+        origin: new google.maps.Point(0, 0),
+        anchor: new google.maps.Point(17, 34),
+        scaledSize: new google.maps.Size(25, 25)
+      };
 
-      function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-          for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+      // Create a marker for each place.
+      markers.push(new google.maps.Marker({
+        map: map,
+        icon: icon,
+        title: place.name,
+        position: place.geometry.location
+      }));
+
+      if (place.geometry.viewport) {
+        // Only geocodes have viewport.
+        bounds.union(place.geometry.viewport);
+      } else {
+        bounds.extend(place.geometry.location);
+      }
+    });
+    map.fitBounds(bounds);
+  });
+}
+
+function loadResults(numResults, placeResults) {
+  date = new Date();
+  hours = date.getHours();
+  minutes = date.getMinutes();
+  day = date.getDay();
+  currentTime = hours*100+minutes;
+  console.log(currentTime);
+
+  document.getElementById("results").innerHTML = "<h1>Optimized Place Search</h1> <h3>Find places you can get to when they're open</h3>";
+  console.log(numResults);
+  for (i = 0; i < numResults; i++) {
+    var p1 = document.createElement("button");
+    p1.setAttribute("id", String(i));
+
+
+
+    var p2 = document.createElement("p");
+    p2.setAttribute("id", "description_"+String(i));
+    var resultDiv = document.createElement("div");
+    resultDiv.setAttribute("id", "div_"+String(i));
+    resultDiv.setAttribute("class", "resultDiv");
+
+    var openNowStatus = document.createElement("p");
+    openNowStatus.setAttribute("id", "openNow_"+String(i));
+
+    var travelTimeData = document.createElement("p");
+    travelTimeData.setAttribute("id", "travelTime_"+String(i));
+
+    var etaTime = document.createElement("p");
+    etaTime.setAttribute("id", "eta_"+String(i));
+
+    console.log(placeResults[i].place_id);
+    try{
+      openHours = placeResults[i].opening_hours.periods[day].open.time;
+    }
+    catch(e){
+      openHours='No work time';
+    }
+
+    try{
+      closeHours = placeResults[i].opening_hours.periods[day].close.time;
+    }
+    catch(e){
+      closeHours='No work time';
+    }
+    flag1 = true;
+    if ((openHours!="No work time")&&(closeHours=="No work time")) {
+      closeHours = "0000";
+      flag1 = false;
+    }
+    flag = true;
+    if ((openHours=="No work time")&&(closeHours=="No work time")) {
+      flag = false;
+    } else {
+      openHoursFormatted = openHours.substring(0, 2) + ":" + openHours.substring(2, 4);
+      closeHoursFormatted = closeHours.substring(0, 2) + ":" + closeHours.substring(2, 4);
+      var businessHours = document.createElement("p");
+      businessHours.setAttribute("id", "busHours_"+String(i));
+    }
+    if (!flag1) {
+      closeHours = "2400";
+    }
+    if (closeHours < openHours) {
+      closeHours = parseInt(closeHours) + 2400;
+    }
+
+    console.log(openHours + " " + closeHours);
+
+    try{
+      open = placeResults[i].opening_hours.open_now ? "Open Now" : "Closed";
+    }
+    catch(e){
+      open='No opening status available';
+    }
+
+    console.log(open);
+
+
+    mapsTravelTime=getJSON("http://www.mapquestapi.com/directions/v2/route?key=0HG8b7rdqIkwZdFNGenpycewpmvze9KB&from=" + pos.lat + "," + pos.lng + "&to=" + placeResults[i].geometry.location.lat() + "," + placeResults[i].geometry.location.lng() + "&callback=renderNarrative");
+
+    travelTimeBeg = mapsTravelTime.indexOf("formattedTime") + 16;
+    travelTimeSub = mapsTravelTime.substring(travelTimeBeg);
+
+    travelTimeString = travelTimeSub.substring(0, 5);
+
+    travelTimeHours = travelTimeString.substring(0, 2);
+
+    travelTimeMinutes = travelTimeString.substring(3);
+
+    travelTimeSingle = parseInt(travelTimeHours)*100+parseInt(travelTimeMinutes);
+    console.log(travelTimeSingle);
+
+    if (travelTimeHours.substring(0, 1)=="0") {
+      travelTimeHours = travelTimeHours.substring(1);
+    }
+
+    if (travelTimeMinutes.substring(0, 1)=="0") {
+      travelTimeMinutes = travelTimeMinutes.substring(1);
+    }
+
+    projectedTime = travelTimeSingle + currentTime;
+    if (projectedTime > 2400) {
+      projectedTime = projectedTime - 2400;
+    }
+    if (flag) {
+      if ((projectedTime >= parseInt(openHours)) && (projectedTime <= parseInt(closeHours))) {
+        console.log(projectedTime + " YOU CAN GO");
+        willMakeIt = "You will arrive during business hours";
+      } else {
+        console.log(projectedTime + " YOU WILL NOT BE ABLE TO GO");
+        willMakeIt = "You will NOT arrive during business hours";
+      }
+    } else {
+      willMakeIt = "No business hours data available";
+    }
+
+
+
+    console.log("http://www.mapquestapi.com/directions/v2/route?key=0HG8b7rdqIkwZdFNGenpycewpmvze9KB&from=" + pos.lat + "," + pos.lng + "&to=" + placeResults[i].geometry.location.lat() + "," + placeResults[i].geometry.location.lng() + "&callback=renderNarrative");
+
+    console.log(travelTimeHours + " " + travelTimeMinutes);
+
+    etaMinutes = String(projectedTime%100);
+    if (etaMinutes.length == 1) {
+      etaMinutes = "0" + String(projectedTime%100);
+    }
+
+    eta = String(Math.floor(projectedTime/100)) + ":" + etaMinutes;
+    if (parseInt(etaMinutes) >= 60) {
+      etaMinutes = String(parseInt(etaMinutes)-60);
+      eta = String(Math.floor(projectedTime/100)+1) + ":" + etaMinutes;
+      if ((Math.floor(projectedTime/100)+1)>= 24) {
+        eta = String(Math.floor(projectedTime/100)+1-24) + ":" + etaMinutes;
+      }
+    }
+    console.log(eta);
+
+    var willMakeItData = document.createElement("p");
+    willMakeItData.setAttribute("id", "willMakeIt_"+String(i));
+    if (willMakeIt == "You will arrive during business hours") {
+      willMakeItData.setAttribute("style", "color: green;");
+    } else if (willMakeIt == "You will NOT arrive during business hours"){
+      willMakeItData.setAttribute("style", "color: red;");
+    }
+
+    var image = document.createElement("img");
+    image.setAttribute("id", "image_"+String(i));
+    try  {
+      imageUrl = placeResults[i].photos[0].getUrl();
+    } catch (e) {
+      imageUrl = "error";
+    }
+    if (imageUrl != "error") {
+      imgFlag = true;
+    } else {
+      imgFlag = false;
+    }
+    if (imgFlag) {
+      image.setAttribute("src", imageUrl);
+    }
+
+
+
+    document.getElementById("results").appendChild(resultDiv);
+    document.getElementById("div_"+String(i)).appendChild(p1);
+    document.getElementById("div_"+String(i)).appendChild(p2);
+    document.getElementById("div_"+String(i)).appendChild(openNowStatus);
+    document.getElementById("div_"+String(i)).appendChild(travelTimeData);
+    document.getElementById("div_"+String(i)).appendChild(etaTime);
+    document.getElementById("div_"+String(i)).appendChild(willMakeItData);
+    document.getElementById("div_"+String(i)).appendChild(document.createElement("p"));
+    document.getElementById("div_"+String(i)).appendChild(image);
+
+
+    document.getElementById(String(i)).innerHTML = placeResults[i].name;
+    document.getElementById("description_"+String(i)).innerHTML = placeResults[i].formatted_address;
+    document.getElementById("openNow_"+String(i)).innerHTML = open;
+    document.getElementById("travelTime_"+String(i)).innerHTML = travelTimeHours + " hr " + travelTimeMinutes + " min";
+    document.getElementById("eta_"+String(i)).innerHTML = "Best-case Estimated Time of Arrival: " + eta;
+    document.getElementById("willMakeIt_"+String(i)).innerHTML = willMakeIt;
+
+    placeLat = placeResults[i].geometry.location.lat();
+    placeLng = placeResults[i].geometry.location.lng();
+    placeAddress = placeResults[i].formatted_address;
+
+    document.getElementById(String(i)).addEventListener("click", function() {
+        getDirections(directionsService, directionsDisplay, pos.lat, pos.lng, placeAddress)
+    }, false);
+
+    if (flag) {
+      document.getElementById("div_"+String(i)).appendChild(businessHours);
+      document.getElementById("busHours_"+String(i)).innerHTML = "Hours: " + openHoursFormatted + " to " + closeHoursFormatted;
+    }
+
+    if (imgFlag) {
+      console.log(imageUrl);
+      document.getElementById("image_"+String(i)).innerHTML = image;
+    }
+  }
+
+}
+
+function getDirections(directionsService, directionsDisplay, startLat, startLng, endPlace) {
+        var start = {lat: startLat, lng: startLng};
+        var end = endPlace;
+        directionsService.route({
+          origin: start,
+          destination: end,
+          travelMode: 'DRIVING'
+        }, function(response, status) {
+          if (status === 'OK') {
+            directionsDisplay.setDirections(response);
+          } else {
+            window.alert('Directions request failed due to ' + status);
           }
-        }
-      }
-
-      function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-          map: map,
-          position: place.geometry.location
         });
 
-        google.maps.event.addListener(marker, 'click', function() {
-          infowindow.setContent(place.name);
-          infowindow.open(map, this);
-        });
       }
+
+
+
+function getJSON(url) {
+    var response;
+    var xmlHttp;
+
+    response  = "";
+    xmlHTTP = new XMLHttpRequest();
+
+    if(xmlHTTP !== null)
+    {
+        xmlHTTP.open( "GET", url, false );
+        xmlHTTP.send( null );
+        response = xmlHTTP.responseText;
+    }
+
+    return response;
+}
 
 // animate next step to map
 $('.next-step-maps').click(function() {
-    $('#appContainer').animate({ top: '-500%' }, 500);
-    $('#mapContainer').animate({ top: '12%' }, 500);
+    $('#appContainer').animate({ top: '-500%' }, 800);
+    $('#mapContainer').animate({ top: '12%' }, 800);
     $('#goBackFromMaps').animate({ top: '0' }, 500);
     $("#restartFromOptions").animate({ top: "-150px" });
 });
 // animate back one step from map
 $('#goBackFromMaps').click(function() {
-    $('#mapContainer').animate({ top: '-500%' }, 500);
-    $('#appContainer').animate({ top: '0' }, 500);
+    $('#mapContainer').animate({ top: '500%' }, 800);
+    $('#appContainer').animate({ top: '0' }, 800);
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: "0" });
 
