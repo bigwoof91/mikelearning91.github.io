@@ -198,9 +198,9 @@ $('#contentOptions').on('click', function() {
     if ($(this).parents('.box').next('.box').height() > biggestHeight) {
         biggestHeight = $(this).parents('.box').next('.box').height();
     }
-    var totHeight = biggestHeight + 200;
+    var totHeight = biggestHeight + 100;
     $("#appContainer").height(totHeight).css('margin-bottom', '150px');
-    $("#restartFromOptions").animate({top: "0px"});
+    $("#restartFromOptions").animate({ top: "0px" });
 });
 
 // animate steps on next
@@ -229,7 +229,7 @@ $('.back-step').click(function() {
 $('#restartFromOptions').click(function() {
     $("#appContainer").css('margin-bottom', '0').css('height', '100%');
     $(this).parents(".box").animate({ left: '300%' }, 500);
-    $(this).animate({top: "-150px"});
+    $(this).animate({ top: "-150px" });
     $(this).parents(".box").prev(".box").css('left', '150%');
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
@@ -244,19 +244,17 @@ $('#restartFromOptions').click(function() {
     video.play();
 });
 // restart from content screen
-$('#restartFromContent').click(function() {
+$('#goBackFromContent').click(function() {
     $("#appContainer").css('margin-bottom', '0').css('height', '100%');
     $(this).parents(".box").animate({ left: '450%' }, 500);
-    $(this).parents(".box").prev(".box").css('left', '300%');
-    $(this).parents(".box").prev(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
-    $(this).parents(".box").prev(".box").prev(".box").css('left', '150%');
-    $(this).animate({top: "-150px"});
-    $(this).parents(".box").prev(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
+    $(this).parents(".box").prev(".box").animate({ left: '50%' }, 500);
+    $(this).animate({ top: "-150px" });
+    $("#restartFromOptions").animate({ top: '0' });
     $('#youAreFeeling').empty();
     $("#trails").empty();
     $("#random-quotes").empty();
     $("#groupon").empty();
-    
+
     // reset camera
     image.setAttribute('src', "");
     image.classList.remove("visible");
@@ -268,9 +266,9 @@ $('#restartFromContent').click(function() {
 });
 
 $('.deliver-content').click(function() {
-  $("#restartFromOptions").animate({top: "-150px"});
-  $("#restartFromContent").animate({top: "0px"});
-  });
+    $("#restartFromOptions").animate({ top: "-150px" });
+    $("#goBackFromContent").animate({ top: "0px" });
+});
 
 // delete photo button on camera
 delete_photo_btn.addEventListener("click", function(e) {
@@ -598,81 +596,72 @@ $('#getTrails').on('click', function() {
 
 });
 
-// Forismatic API
+// Random Quote API
+
 $('.first-quote').on('click', function() {
-
-    var queryURL = "http://api.forismatic.com/api/1.0/";
-
+    var quoteUrl = 'https://quotes.rest/quote/random';
     $.ajax({
-        url: queryURL,
-        jsonp: "jsonp",
-        dataType: "jsonp",
-        data: {
-            method: "getQuote",
-            lang: "en",
-            format: "jsonp"
-        },        
-        header: {
-          "Access-Control-Allow-Origin": "*"
+        headers: {
+            "Accept": "application/json",
+            "X-TheySaidSo-Api-Secret": "AT6ONGFY2IWNpQRVwpbuuAeF"
         },
-        global: false
-    }).done(function(response) {
-        console.log(response);
-        console.log(response.quoteText);
-        var quotesContainer = $("#random-quotes");
-        if (response.quoteAuthor == "") {
-            quotesContainer.append('<h3 class="quote">' + response.quoteText + '</h3>')
-            quotesContainer.append('<p class="author">- Unkown Author</p>')
-            quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
-            $("#random-quotes").fadeIn();
-        } else {
-            quotesContainer.append('<h3 class="quote">' + response.quoteText + '</h3>')
-            quotesContainer.append('<p class="author">---' + response.quoteAuthor + '</p>')
-            quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
-            $("#random-quotes").fadeIn();
+        url: quoteUrl,
+        global: false,
+        success: function(response) {
+            console.log(response);
+
+            var quotesContainer = $("#random-quotes");
+            if (response.contents.author == "") {
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">- Unkown Author</p>')
+                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
+                $("#random-quotes").fadeIn();
+            } else {
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>')
+                quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
+                $("#random-quotes").fadeIn();
+            }
+            var adjustedHeight = "0";
+            if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
+                adjustedHeight = $('#trails').parents('.box').height();
+            }
+            moreHeight = adjustedHeight + 50;
+            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
         }
-        var adjustedHeight = "0";
-        if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
-            adjustedHeight = $('#trails').parents('.box').height();
-        }
-        moreHeight = adjustedHeight + 50;
-        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
 });
+
+
 // fetch new quote function for button in quote content section
 function newQuote() {
     event.preventDefault();
-    var queryURL = "http://api.forismatic.com/api/1.0/";
-
+    var quoteUrl = 'https://quotes.rest/quote/random';
     $.ajax({
-        url: queryURL,
-        jsonp: "jsonp",
-        dataType: "jsonp",
-        data: {
-            method: "getQuote",
-            lang: "en",
-            format: "jsonp"
+        headers: {
+            "Accept": "application/json",
+            "X-TheySaidSo-Api-Secret": "AT6ONGFY2IWNpQRVwpbuuAeF"
         },
-        header: {
-          "Access-Control-Allow-Origin": "*"
-        },
-        global: false
-    }).done(function(response) {
-        console.log(response);
-        console.log(response.quoteText);
-        if (response.quoteAuthor == "") {
-            $('.quote').html(response.quoteText).fadeIn();
-            $('.author').html('- Unknown Author').fadeIn();
-        } else {
-            $('.quote').html(response.quoteText).fadeIn();
-            $('.author').html(response.quoteAuthor).fadeIn();
+        url: quoteUrl,
+        global: false,
+        success: function(response) {
+            // console.log(response);
+            // console.log(response.quoteText);
+
+            if (response.contents.author == "") {
+                $('.quote').html(response.contents.quote).fadeIn();
+                $('.author').html('- Unknown Author').fadeIn();
+            } else {
+                $('.quote').html(response.contents.quote).fadeIn();
+                $('.author').html(response.contents.author).fadeIn();
+            }
+            var adjustedHeight = "0";
+            if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
+                adjustedHeight = $('#trails').parents('.box').height();
+            }
+            moreHeight = adjustedHeight + 50;
+            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
         }
-        var adjustedHeight = "0";
-        if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
-            adjustedHeight = $('#trails').parents('.box').height();
-        }
-        moreHeight = adjustedHeight + 50;
-        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
 };
 
@@ -689,10 +678,11 @@ $('.get-groupon').on('click', function() {
     }).done(function(data) {
         console.log(data);
         $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal"><div class="groupon-image"><img src="' + deal.mediumImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a href="' + deal.dealUrl +'">Get Deal</a></button></div>'
+            var grouponDeals = '<div class="deal"><div class="groupon-image"><img src="' + deal.mediumImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a href="' + deal.dealUrl + '">Get Deal</a></button></div>'
             $("#groupon").append(grouponDeals);
-            $("#groupon").fadeIn();
         })
+        $("#groupon").prepend("<h2>Check out these Deals!</h2><hr>");
+        $("#groupon").fadeIn();
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#trails').parents('.box').height();
@@ -701,3 +691,7 @@ $('.get-groupon').on('click', function() {
         $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
 });
+
+// Google Maps/Places API
+
+

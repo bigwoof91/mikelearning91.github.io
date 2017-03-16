@@ -123,10 +123,12 @@
             <button type="button" id="restartFromOptions" class="btn btn-success" aria-label="Left Align">
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
             </button>
-            <div class="card">
-                <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found music">
+            <div class="row">
+            <div class="card col-sm-12 col-lg-6">
+                <img class="card-img-top" src="assets/images/music.png" height="200" width="200" alt="Moodu found music">
                 <div class="card-block">
                     <h4 class="card-title">Moodü Found Music</h4>
+                    <p class="card-text">I found some music on Spotify that you might like. Check it out!</p>
                     <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content">Go Listen</a>
                 </div>
             </div>
@@ -138,36 +140,39 @@
                     <a href="#" class="btn btn-primary deliver-content">Go Read</a>
                 </div>
             </div> -->
-            <div class="card">
-                <img class="card-img-top" src="assets/images/quotes.png" height="150" width="150" alt="Card image cap">
+            <div class="card col-sm-12 col-lg-6">
+                <img class="card-img-top" src="assets/images/quotes.png" height="200" width="200" alt="Card image cap">
                 <div class="card-block">
                     <h4 class="card-title">Moodü Found Quotes</h4>
-                    <p class="card-text"></p>
+                    <p class="card-text">Maybe one of these quotes I found will make your day (even better)!</p>
                     <a href="#" class="btn btn-primary deliver-content first-quote next-step">Go Read</a>
                 </div>
             </div>
-            <div class="card hiking-card">
-                <img class="card-img-top" src="assets/images/hiking-trails.png" height="150" width="150" alt="Card image cap">
+            </div>
+            <div class="row">
+            <div class="card hiking-card col-sm-12 col-lg-6">
+                <img class="card-img-top" src="assets/images/hiking-trails.png" height="200" width="200" alt="Card image cap">
                 <div class="card-block">
                     <h4 class="card-title">Moodü Found Hiking Trails</h4>
-                    <p class="card-text"></p>
+                    <p class="card-text">Time to get some excercise. Boost those seretonin levels! Let's get you happy!</p>
                     <a id="getTrails" href="#" class="next-step btn btn-primary deliver-content">Go Trailing</a>
                 </div>
             </div>
-            <div class="card">
-                <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Card image cap">
+            <div class="card col-sm-12 col-lg-6">
+                <img class="card-img-top" src="assets/images/music.png" height="200" width="200" alt="Card image cap">
                 <div class="card-block">
-                    <h4 class="card-title">Moodü Found Shopping Spots</h4>
-                    <p class="card-text"></p>
+                    <h4 class="card-title">Moodü Found Shopping Deals</h4>
+                    <p class="card-text">Want to fill an empty void with some shopping? I found some deals?</p>
                     <a href="#" class="btn btn-primary deliver-content get-groupon next-step">Go Shop</a>
                 </div>
             </div>
         </div>
+        </div>
         <!--//step 3 container-->
         <div id="content" class="container text-center box">
             <!-- Step 2 -->
-            <button type="button" id="restartFromContent" class="btn btn-success" aria-label="Left Align">
-                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
+            <button type="button" id="goBackFromContent" class="btn btn-success" aria-label="Left Align">
+                <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
             </button>
             <div id="playerDiv">
                 <button class="btn btn-primary" id="btn-login">Login</button>

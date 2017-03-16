@@ -949,7 +949,7 @@ input[type=password]:hover {
   margin-bottom: 35px;
 }
 #restartFromOptions,
-#restartFromContent {
+#goBackFromContent {
   position: fixed;
   top: -100px;
   left: 50%;
@@ -964,6 +964,7 @@ input[type=password]:hover {
 #chooseContent {
     left: 300%;
     border: none;
+    top: -30px;
 }
 #errorRetake {
   display: none;
@@ -976,6 +977,7 @@ input[type=password]:hover {
 }
 #content {
   left: 450%;
+  top: -20px;
 }
 
 #areYouFeeling {
@@ -983,7 +985,7 @@ input[type=password]:hover {
 }
 
 .card {
-    width: 25rem;
+    width: 50%;
 }
 
 .card {
@@ -1173,10 +1175,14 @@ color: rgba(244, 244, 244, 0.50) !important;
     }
     #chooseContent {
       margin-left: -33.5%;
+      top: -20px;
     }
     #appContainer {
       height: 100%;
     }
+    .card {
+    width: 100%;
+}
 }
 
 
