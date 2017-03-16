@@ -696,26 +696,46 @@ $('.get-groupon').on('click', function() {
 // Google Maps/Places/Books API
 
 $('.go-maps').on('click', function() {
-    $.ajax({
-        type: 'GET',
-        url: "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=-33.8670522,151.1957362&radius=50&types=food&key=AIzaSyCclGQLwgHmpp6DZ1fswbU-qgmMUbpwH2o",
-        header: {
-          "Access-Control-Allow-Origin": "*"
-        },
-        global: false
-    }).done(function(data) {
-        console.log(data);
+    var map;
+      var infowindow;
 
-        $("#maps").prepend("<h2>Check out these Places!</h2><hr>");
+      function initMap() {
+        var pyrmont = {lat: -33.867, lng: 151.195};
 
+        map = new google.maps.Map(document.getElementById('map'), {
+          center: pyrmont,
+          zoom: 15
+        });
 
-        var adjustedHeight = "0";
-        if ($('#groupon').parents('.box').height() > adjustedHeight) {
-            adjustedHeight = $('#trails').parents('.box').height();
+        infowindow = new google.maps.InfoWindow();
+        var service = new google.maps.places.PlacesService(map);
+        service.nearbySearch({
+          location: pyrmont,
+          radius: 500,
+          type: ['store']
+        }, callback);
+      }
+
+      function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+          for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+          }
         }
-        moreHeight = adjustedHeight + 50;
-        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
-    });
+      }
+
+      function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+          map: map,
+          position: place.geometry.location
+        });
+
+        google.maps.event.addListener(marker, 'click', function() {
+          infowindow.setContent(place.name);
+          infowindow.open(map, this);
+        });
+      }
 });
 // animate next step to map
 $('.next-step-maps').click(function() {
