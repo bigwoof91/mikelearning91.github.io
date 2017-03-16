@@ -892,93 +892,7 @@ input[type=password]:hover {
     font-size: 12px;
 }
 
-@media(max-width: 768px) {
-    #profileForm {
-        width: 100%;
-        text-align: left;
-        margin: 0 auto;
-    }
-    .overlay-advice {
-        width: 75%;
-    }
-    .box {
-        width: 75%;
-        margin-left: -37.5%;
-    }
-    .controls {
-        width: 80% !important;
-        margin-left: 10% !important;
-        padding: 0 0 5px 0 !important;
-    }
-    .footer {
-        display: none;
-    }
-    #chooseContent {
-      margin-left: -33.5%;
-    }
-}
 
-
-@media (max-width: 767px) {
-    .header .main-nav button {
-        margin-right: 0;
-    }
-    .header .main-nav .navbar-collapse {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
-    .promo .btns .btn {
-        margin-right: 0;
-        clear: both;
-        display: block;
-        margin-bottom: 30px;
-    }
-    .promo .title {
-        font-size: 66px;
-    }
-    .promo .meta {
-        margin-top: 60px;
-    }
-    .promo .meta li {
-        float: none;
-        display: block;
-        margin-bottom: 5px;
-    }
-    .contact .author-message {
-        text-align: center;
-    }
-    .contact .author-message .profile {
-        position: static;
-        margin: 0 auto;
-        margin-bottom: 30px;
-    }
-    .contact .author-message .speech-bubble {
-        margin-left: 0;
-    }
-    .contact .author-message .speech-bubble:after {
-        display: none;
-    }
-    .contact .social-icons a {
-        width: 36px;
-        height: 36px;
-        padding-top: 7px;
-        margin-right: 2px;
-    }
-    .contact .social-icons a .fa:before {
-        font-size: 18px;
-    }
-}
-@media (min-width: 767px) {
-    #navBarToggle {
-        display: none !important;
-    }
-}
-
-@media (max-width: 640px) {
-    .hideOn640 {
-        display: none;
-    }
-}
 .cam-border {
   border: 2px solid black;
 }
@@ -1010,6 +924,12 @@ input[type=password]:hover {
   display: none;
 }
 #trails {
+  display: none;
+}
+#random-quotes {
+  display: none;
+}
+#groupon {
   display: none;
 }
 .trail-link a {
@@ -1212,7 +1132,96 @@ color: rgba(244, 244, 244, 0.50) !important;
   left: 0;
   bottom: 0;
 }
+@media(max-width: 768px) {
+    #profileForm {
+        width: 100%;
+        text-align: left;
+        margin: 0 auto;
+    }
+    .overlay-advice {
+        width: 75%;
+    }
+    .box {
+        width: 75%;
+        margin-left: -37.5%;
+    }
+    .controls {
+        width: 80% !important;
+        margin-left: 10% !important;
+        padding: 0 0 5px 0 !important;
+    }
+    .footer {
+        display: none;
+    }
+    #chooseContent {
+      margin-left: -33.5%;
+    }
+    #appContainer {
+      height: 100%;
+    }
+}
 
+
+@media (max-width: 767px) {
+    .header .main-nav button {
+        margin-right: 0;
+    }
+    .header .main-nav .navbar-collapse {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+    .promo .btns .btn {
+        margin-right: 0;
+        clear: both;
+        display: block;
+        margin-bottom: 30px;
+    }
+    .promo .title {
+        font-size: 66px;
+    }
+    .promo .meta {
+        margin-top: 60px;
+    }
+    .promo .meta li {
+        float: none;
+        display: block;
+        margin-bottom: 5px;
+    }
+    .contact .author-message {
+        text-align: center;
+    }
+    .contact .author-message .profile {
+        position: static;
+        margin: 0 auto;
+        margin-bottom: 30px;
+    }
+    .contact .author-message .speech-bubble {
+        margin-left: 0;
+    }
+    .contact .author-message .speech-bubble:after {
+        display: none;
+    }
+    .contact .social-icons a {
+        width: 36px;
+        height: 36px;
+        padding-top: 7px;
+        margin-right: 2px;
+    }
+    .contact .social-icons a .fa:before {
+        font-size: 18px;
+    }
+}
+@media (min-width: 767px) {
+    #navBarToggle {
+        display: none !important;
+    }
+}
+
+@media (max-width: 640px) {
+    .hideOn640 {
+        display: none;
+    }
+}
 @keyframes MoveUpDown {
   0% {
     bottom: 0;
@@ -1224,6 +1233,7 @@ color: rgba(244, 244, 244, 0.50) !important;
     bottom: 0;
   }
 }
+
 /* Small devices (tablets, 768px and up) */
 /* Medium devices (desktops, 992px and up) */
 /* Large devices (large desktops, 1200px and up) */

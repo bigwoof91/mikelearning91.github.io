@@ -28,15 +28,15 @@ $('#logoutNow').on('click', function(event) {
 
 
 $('#beginApp').on('click', function(event) {
-  event.preventDefault();
-  $('.bear-message').fadeOut('fast');
+    event.preventDefault();
+    $('.bear-message').fadeOut('fast');
     $('.app').delay(500).fadeIn('slow');
-    $('.moodu-bear-container').animate({ 
-    left: '20px',
-    top: '10%',
-    width: '100px',
-    margin: '0'
-     }, 500);
+    $('.moodu-bear-container').animate({
+        left: '20px',
+        top: '10%',
+        width: '100px',
+        margin: '0'
+    }, 500);
 
 
 });
@@ -250,6 +250,9 @@ $('#restartFromContent').click(function() {
     $(this).parents(".box").prev(".box").prev(".box").css('left', '150%');
     $(this).parents(".box").prev(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
     $('#youAreFeeling').empty();
+    $("#trails").empty();
+    $("#random-quotes").empty();
+    $("#groupon").empty();
     // reset camera
     image.setAttribute('src', "");
     image.classList.remove("visible");
@@ -539,10 +542,9 @@ firebase.auth().onAuthStateChanged(function(user) {
             var hikingTrue = snapshot.val().hiking;
             console.log(hikingTrue);
             if (hikingTrue === "hiking") {
-              $('.hiking-card').show();
-            }
-            else {
-              $('.hiking-card').hide();
+                $('.hiking-card').show();
+            } else {
+                $('.hiking-card').hide();
             }
         });
     }
@@ -588,3 +590,90 @@ $('#getTrails').on('click', function() {
 });
 
 // Forismatic API
+$('.first-quote').on('click', function() {
+
+    var queryURL = "http://api.forismatic.com/api/1.0/";
+
+    $.ajax({
+        url: queryURL,
+        jsonp: "jsonp",
+        dataType: "jsonp",
+        data: {
+            method: "getQuote",
+            lang: "en",
+            format: "jsonp"
+        }
+    }).done(function(response) {
+        console.log(response);
+        console.log(response.quoteText);
+        var quotesContainer = $("#random-quotes");
+        if (response.quoteAuthor == "") {
+            quotesContainer.append('<h3 class="quote">' + response.quoteText + '</h3>')
+            quotesContainer.append('<p class="author">- Unkown Author</p>')
+            quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
+            $("#random-quotes").fadeIn();
+        } else {
+            quotesContainer.append('<h3 class="quote">' + response.quoteText + '</h3>')
+            quotesContainer.append('<p class="author">---' + response.quoteAuthor + '</p>')
+            quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
+            $("#random-quotes").fadeIn();
+        }
+                var adjustedHeight = "0";
+        if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#trails').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+    });
+});
+// fetch new quote function for button in quote content section
+function newQuote() {
+    event.preventDefault();
+    var queryURL = "http://api.forismatic.com/api/1.0/";
+
+    $.ajax({
+        url: queryURL,
+        jsonp: "jsonp",
+        dataType: "jsonp",
+        data: {
+            method: "getQuote",
+            lang: "en",
+            format: "jsonp"
+        }
+    }).done(function(response) {
+        console.log(response);
+        console.log(response.quoteText);
+        if (response.quoteAuthor == "") {
+            $('.quote').html(response.quoteText).fadeIn();
+            $('.author').html('- Unknown Author').fadeIn();
+        } else {
+            $('.quote').html(response.quoteText).fadeIn();
+            $('.author').html(response.quoteAuthor).fadeIn();
+        }
+    });
+};
+
+// Groupon API
+$('.get-groupon').on('click', function() {
+    $.ajax({
+        type: 'GET',
+        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=10",
+        async: false,
+        jsonpCallback: 'jsonCallback',
+        contentType: "application/json",
+        dataType: 'jsonp',
+    }).done(function(data) {
+        console.log(data);
+        $.each(data.deals, function(idx, deal) {
+            var grouponDeals = '<div class="deal"><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><div class="groupon-image"><img src="' + deal.mediumImageUrl + '"></div></div>'
+            $("#groupon").append(grouponDeals);
+            $("#groupon").fadeIn();
+        })
+        var adjustedHeight = "0";
+        if ($('#groupon').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#trails').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+    });
+});
