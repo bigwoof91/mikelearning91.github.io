@@ -223,8 +223,14 @@ header .container {
   .moodu-bear-container {
     top: 100px;
   }
+  .moodu-bear {
+    width: 70px;
+  }
+  .moodu-shadow {
+    width: 45px;
+  }
   .bear-message {
-    padding-top: 70px;
+    padding-top: 40px;
   }
 }
 @media(min-width:768px) {
@@ -246,6 +252,7 @@ header .container {
 
 #listenMusic {
   background: #1bc663;
+  border: 1px solid #1299c5;
 }
 #listenMusic:hover {
   background: #11b355;
@@ -253,6 +260,7 @@ header .container {
 
 #readAQuote {
   background: #e74c3c;
+  border: none;
 }
 #readAQuote:hover {
   background: #cf3929;
@@ -260,6 +268,7 @@ header .container {
 
 #getTrails {
   background: #3752b6;
+  border: none;
 }
 
 #getTrails:hover {
