@@ -600,18 +600,22 @@ $('#getTrails').on('click', function() {
 
 // Forismatic API
 $('.first-quote').on('click', function() {
-    var proxy = 'https://cors-anywhere.herokuapp.com/';
-    var queryURL = "https://api.forismatic.com/api/1.0/";
+
+    var queryURL = "http://api.forismatic.com/api/1.0/";
 
     $.ajax({
-        url: proxy + queryURL,
+        url: queryURL,
         jsonp: "jsonp",
         dataType: "jsonp",
         data: {
             method: "getQuote",
             lang: "en",
             format: "jsonp"
-        }
+        },        
+        header: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        global: false
     }).done(function(response) {
         console.log(response);
         console.log(response.quoteText);
@@ -638,18 +642,21 @@ $('.first-quote').on('click', function() {
 // fetch new quote function for button in quote content section
 function newQuote() {
     event.preventDefault();
-    var proxy = 'https://cors-anywhere.herokuapp.com/';
     var queryURL = "http://api.forismatic.com/api/1.0/";
 
     $.ajax({
-        url: proxy + queryURL,
+        url: queryURL,
         jsonp: "jsonp",
         dataType: "jsonp",
         data: {
             method: "getQuote",
             lang: "en",
             format: "jsonp"
-        }
+        },
+        header: {
+          "Access-Control-Allow-Origin": "*"
+        },
+        global: false
     }).done(function(response) {
         console.log(response);
         console.log(response.quoteText);
@@ -678,6 +685,7 @@ $('.get-groupon').on('click', function() {
         jsonpCallback: 'jsonCallback',
         contentType: "application/json",
         dataType: 'jsonp',
+        global: false
     }).done(function(data) {
         console.log(data);
         $.each(data.deals, function(idx, deal) {
