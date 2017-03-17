@@ -630,7 +630,7 @@ $('.get-groupon').on('click', function() {
 // Google Maps/Places/Books API
 
 var map;
-var infowindow;
+var infoWindow;
 
 pos = {
 
@@ -651,7 +651,7 @@ function initAutocomplete() {
                 lng: position.coords.longitude
             };    
 
-            infowindow = new google.maps.InfoWindow();
+            infoWindow = new google.maps.InfoWindow();
             map.setCenter(pos);
             var service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
@@ -666,8 +666,6 @@ function initAutocomplete() {
     } else {
         handleLocationError(false, infoWindow, map.getCenter());
     }
-
-
 }
 
 function callback(results, status) {
@@ -687,8 +685,8 @@ function createMarker(place) {
     });
 
     google.maps.event.addListener(marker, 'click', function() {
-        infowindow.setContent(place.name);
-        infowindow.open(map, this);
+        infoWindow.setContent(place.name);
+        infoWindow.open(map, this);
         console.log(this);
     });
 };
