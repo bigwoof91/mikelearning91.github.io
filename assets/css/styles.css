@@ -999,20 +999,35 @@ input[type=password]:hover {
   left: 0;
   right: 0;
   height: 400px;
-  width: 50%;
+  width: 55%;
   margin: 0 auto;
   border: 5px solid #413bc1;
 }
 #mapDetails {
   position: fixed !important;
-  bottom: 30%;
+  bottom: 13%;
   left: 0;
   right: 0;
-  height: 400px;
-  width: 50%;
+  height: 200px;
+  overflow-y: scroll;
+  width: 55%;
   margin: 0 auto;
   border: 5px solid #413bc1;
-  display: none;
+  bottom: -100%;
+  background: #efefef;
+}
+#place-cont {
+  position: relative;
+  background: #efefef;
+  border-bottom: 2px solid #3b4251;
+}
+.place-icon {
+  float: right;
+    width: 20px;
+    margin-right: 10px;
+    top: 15px;
+    position: absolute;
+    right: 1px;
 }
 
 #areYouFeeling {
@@ -1129,7 +1144,7 @@ input[type=password]:hover {
         display: none;
     }
     #chooseContent {
-      margin-left: -33.5%;
+      margin-left: -37.5%;
       top: 0;
     }
     #appContainer {

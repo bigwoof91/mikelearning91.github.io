@@ -104,6 +104,7 @@ pre code {
     font-size: 16px;
 }
 
+
 /* ---------------Custom Navbar Toggle------------------ */
 
 .c-hamburger {
@@ -196,6 +197,7 @@ pre code {
 
 
 /* ---------------END Custom Navbar Toggle------------------ */
+
 .header {
     padding: 10px 0;
     background: #17baef;
@@ -456,6 +458,7 @@ pre code {
     color: #fff;
 }
 
+
 /* ======= Contact Section ======= */
 
 .contact {
@@ -501,14 +504,16 @@ pre code {
 }
 
 .btn-group {
-	margin: 5px;
+    margin: 5px;
 }
+
 .btn-success {
-	background: #4c6dee;
-	border: none;
+    background: #4c6dee;
+    border: none;
 }
+
 .btn-success:focus {
-	background: #5cb85c;
+    background: #5cb85c;
 }
 
 .contact .author-message .profile img {
@@ -628,6 +633,7 @@ pre code {
     text-align: center;
     padding: 0;
 }
+
 
 /* ======= Footer ======= */
 
@@ -757,43 +763,6 @@ pre code {
     display: flex;
 }
 
-@media(max-width: 1000px) {
-    .promo .container {
-        margin-bottom: 0;
-    }
-    .container {
-        margin: 20px 40px;
-    }
-    .footer-adjust {
-        width: 90% !important;
-    }
-    .app #start-camera.visible {
-        display: block;
-    }
-    .app .controls a i {
-        font-size: 16px;
-    }
-    .app .controls #take-photo i {
-        font-size: 24px;
-    }
-}
-
-@media(max-width: 600px) {
-    .container {
-        margin: 10px;
-    }
-    .app #error-message {
-        padding: 80px 50px;
-        font-size: 18px;
-    }
-    .app .controls a i {
-        font-size: 12px;
-    }
-    .app .controls #take-photo i {
-        font-size: 18px;
-    }
-}
-
 
 /* Login Popup Modal */
 
@@ -903,126 +872,6 @@ input[type=password]:hover {
     font-size: 12px;
 }
 
-
-.cam-border {
-  border: 2px solid black;
-}
-#appContainer {
-    overflow: hidden;
-    position: absolute;
-    margin: 100px 0 0 0;
-    padding: 50px 0 0 0;
-    width: 100%;
-    height: 87%;
-}
-.box {
-    position: absolute;
-    width: 50%;
-    text-align: center;
-    left: 50%;
-    margin-left: -25%;
-    padding-right: 0 !important;
-    padding-left: 0 !important;
-}
-#areYou {
-    left: 150%;
-    border: none;
-}
-#playerDiv {
-  display: none;
-}
-.hiking-card {
-  display: none;
-}
-#trails {
-  display: none;
-}
-#random-quotes {
-  display: none;
-}
-#groupon {
-  display: none;
-}
-#groupon > div > div.groupon-image > img {
-  max-width: 100%;
-}
-.deal {
-  margin-bottom: 30px;
-  border: 4px solid;
-  padding: 5px;
-  border-radius: 5px;
-}
-.deal-link,
-.trail-link {
-  margin-top: 10px;
-}
-.deal-link a,
-.trail-link a {
-  color: white;
-  font-weight: 400;
-  text-decoration: none;
-}
-.trail-info {
-  margin-bottom: 35px;
-}
-#restartFromOptions,
-#goBackFromContent,
-#goBackFromMaps {
-  position: fixed;
-  top: -100px;
-  left: 50%;
-  right: 50%;
-  z-index: 1;
-  margin-left: -60px;
-  text-align: center;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
-}
-#result-template {
-  display: none;
-}
-#chooseContent {
-    left: 300%;
-    border: none;
-    top: 10px;
-}
-#errorRetake {
-  display: none;
-}
-.spotify-login {
-  background: #2ebd59;
-}
-.spotify-login:hover {
-  background: #1ed760;
-}
-#content {
-  left: 450%;
-  top: -20px;
-}
-#mapContainer{
-  position: fixed !important;
-  top: 500%;
-  left: 0;
-  right: 0;
-  height: 400px;
-  width: 50%;
-  margin: 0 auto;
-  border: 5px solid #413bc1;
-}
-
-#areYouFeeling {
-    display: none;
-}
-
-.card {
-    width: 50%;
-    margin: 0 auto;
-}
-
-.card-block h3 {
-  color: #fff;
-}
-
 .login {
     border: 1px solid #17baef;
     border-radius: 3px;
@@ -1078,75 +927,83 @@ input[type=password]:hover {
 #profileForm {
     width: 90%;
     text-align: left;
-    
 }
 
 .cust {
-  text-align: left;
+    text-align: left;
 }
 
 .cust-title {
-  margin-top: 20px;
-  margin-bottom: 0;
+    margin-top: 20px;
+    margin-bottom: 0;
 }
 
 .cust-subtitle {
-  letter-spacing: 1px;
-  margin-top: 4px;
-  margin-bottom: 25px;
-  color: white;
+    letter-spacing: 1px;
+    margin-top: 4px;
+    margin-bottom: 25px;
+    color: white;
 }
+
 .subtitle-hr {
-	margin-top: 5px;
+    margin-top: 5px;
 }
+
 .input-label {
-	padding-left:8px;
+    padding-left: 8px;
 }
+
 #savedMessage {
-		position: fixed;
-		top: 0;
-		right: 0;
-		bottom: 0;
-		left: 0;
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
 }
+
 .savedText {
-	opacity: 0;
-	position: fixed;
-	top: 7%;
-	left: -100%;
-	font-size: 70px;
-	color: rgba(255, 255, 255, 0.55);
-	z-index: 99;
-	letter-spacing: 1px;
+    opacity: 0;
+    position: fixed;
+    top: 7%;
+    left: -100%;
+    font-size: 70px;
+    color: rgba(255, 255, 255, 0.55);
+    z-index: 99;
+    letter-spacing: 1px;
 }
+
 #profileForm .form-control {
     background: transparent !important;
     border: none !important;
     border-bottom: 4px solid #4c6dee !important;
     border-radius: 0;
     font-size: 17px;
-    padding: 25px 12px;
+    padding: 15px 10px 15px;;
     width: 70%;
-	-webkit-transition: all 0.3s ease;
-	-moz-transition: all 0.3s ease;
-	-o-transition: all 0.3s ease;
-	-ms-transition: all 0.3s ease;
+    -webkit-transition: all 0.3s ease;
+    -moz-transition: all 0.3s ease;
+    -o-transition: all 0.3s ease;
+    -ms-transition: all 0.3s ease;
 }
 
 #profileForm #email:hover,
 #profileForm #displayName:hover {
-  border-bottom: 4px solid #4c6dee !important;
+    border-bottom: 4px solid #4c6dee !important;
 }
 
 #profileForm #email:focus,
 #profileForm #displayName:focus {
-  font-size: 25px;
-  border: none;
+    font-size: 25px;
+    border: none;
+    color: #062f53;
+    background: rgba(208, 211, 255, 0.36) !important;
+    width: 85%;
+    padding: 25px 15px;
 }
 
 #profileForm label {
-  font-weight: 400;
-  letter-spacing: 1px;
+    font-weight: 400;
+    letter-spacing: 1px;
 }
 
 #profileForm input:disabled {
@@ -1156,59 +1013,93 @@ input[type=password]:hover {
     border-radius: 0;
     font-size: 17px;
 }
+
 #profileForm input:-webkit-autofill {
     -webkit-box-shadow: 0 0 0 1000px #17baef inset !important;
 }
 
 #profileForm input::-webkit-input-placeholder {
-color: rgba(244, 244, 244, 0.50) !important;  
+    color: rgba(244, 244, 244, 0.50) !important;
 }
- 
-#profileForm input:-moz-placeholder { 
-color: rgba(244, 244, 244, 0.50) !important;
+
+#profileForm input:-moz-placeholder {
+    color: rgba(244, 244, 244, 0.50) !important;
 }
- 
-#profileForm input:-moz-placeholder {  
-color: rgba(244, 244, 244, 0.50) !important;  
+
+#profileForm input:-moz-placeholder {
+    color: rgba(244, 244, 244, 0.50) !important;
 }
- 
-#profileForm input:-ms-input-placeholder {  
-color: rgba(244, 244, 244, 0.50) !important;  
+
+#profileForm input:-ms-input-placeholder {
+    color: rgba(244, 244, 244, 0.50) !important;
 }
 
 .change-button {
-  color: white;
+    color: white;
 }
-.btn span.glyphicon {         
-  opacity: 0;       
+
+.btn span.glyphicon {
+    opacity: 0;
 }
-.btn.active span.glyphicon {        
-  opacity: 1;       
+
+.btn.active span.glyphicon {
+    opacity: 1;
 }
 
 #profileContainer {
-  padding-bottom: 150px;
+    padding-bottom: 150px;
 }
 
-.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
-    margin: 0;
-    padding: 0;
-    border: none;
-    box-shadow: none;
-    text-align: center;
-}
-.kv-avatar .file-input {
-    display: table-cell;
-    max-width: 220px;
-}
 
 /* Moodu the Bear */
+
 .moodu {
-  animation: MoveUpDown 1s linear infinite;
-  position: absolute;
-  left: 0;
-  bottom: 0;
+    animation: MoveUpDown 1s linear infinite;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
+
+
+/* media queries */
+
+@media(max-width: 1000px) {
+    .promo .container {
+        margin-bottom: 0;
+    }
+    .container {
+        margin: 20px 40px;
+    }
+    .footer-adjust {
+        width: 90% !important;
+    }
+    .app #start-camera.visible {
+        display: block;
+    }
+    .app .controls a i {
+        font-size: 16px;
+    }
+    .app .controls #take-photo i {
+        font-size: 24px;
+    }
+}
+
+@media(max-width: 600px) {
+    .container {
+        margin: 10px;
+    }
+    .app #error-message {
+        padding: 80px 50px;
+        font-size: 18px;
+    }
+    .app .controls a i {
+        font-size: 12px;
+    }
+    .app .controls #take-photo i {
+        font-size: 18px;
+    }
+}
+
 @media(max-width: 768px) {
     #profileForm {
         width: 100%;
@@ -1230,18 +1121,7 @@ color: rgba(244, 244, 244, 0.50) !important;
     .footer {
         display: none;
     }
-    #chooseContent {
-      margin-left: -33.5%;
-      top: 0;
-    }
-    #appContainer {
-      height: 100%;
-    }
-    .card {
-    width: 100%;
 }
-}
-
 
 @media (max-width: 767px) {
     .header .main-nav button {
@@ -1293,7 +1173,6 @@ color: rgba(244, 244, 244, 0.50) !important;
     }
 }
 
-
 @media (min-width: 767px) {
     #navBarToggle {
         display: none !important;
@@ -1305,18 +1184,24 @@ color: rgba(244, 244, 244, 0.50) !important;
         display: none;
     }
 }
+
 @keyframes MoveUpDown {
-  0% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 100px;
-  }
-  100% {
-    bottom: 0;
-  }
+    0% {
+        bottom: 0;
+    }
+    50% {
+        bottom: 100px;
+    }
+    100% {
+        bottom: 0;
+    }
 }
 
+
 /* Small devices (tablets, 768px and up) */
+
+
 /* Medium devices (desktops, 992px and up) */
+
+
 /* Large devices (large desktops, 1200px and up) */

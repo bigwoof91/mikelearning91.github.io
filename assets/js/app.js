@@ -52,7 +52,7 @@ var video = document.querySelector('#camera-stream'),
     error_message = document.querySelector('#error-message'),
     selfie,
     database = firebase.database(),
-    spotifyCategory;
+    placesCategory;
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -256,14 +256,12 @@ $('#goBackFromContent').click(function() {
     $("#groupon").empty();
     $("#playerDiv").empty();
 
-    // reset camera
-    image.setAttribute('src', "");
-    image.classList.remove("visible");
-    // Disable delete and save buttons
-    delete_photo_btn.classList.add("disabled");
-    download_photo_btn.classList.add("disabled");
-    // Resume playback of stream.
-    video.play();
+    var adjustedHeight = "0";
+    if ($(this).parents('.box').prev('.box').height() > adjustedHeight) {
+        adjustedHeight = $(this).parents('.box').prev('.box').height();
+    }
+    moreHeight = adjustedHeight + 50;
+    $("#appContainer").height(moreHeight).css('margin-bottom', '50px');
 });
 
 $('.deliver-content').click(function() {
@@ -387,37 +385,38 @@ function processResult(response) {
     // console.log(max);
     // asks user if the emotion is correct
     if (feelingMeasures[0] == max) {
-        spotifyCategory = "workout";
+        placesCategory = "restaurants"; // setting var category for Google Places API
+                                        // set title/text for content choice
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
     }
     if (feelingMeasures[1] == max) {
-        spotifyCategory = "rock";
+        placesCategory = "rock";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
     }
     if (feelingMeasures[2] == max) {
-        spotifyCategory = "metal";
+        placesCategory = "metal";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
     }
     if (feelingMeasures[3] == max) {
-        spotifyCategory = "toplists";
+        placesCategory = "toplists";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
     }
     if (feelingMeasures[4] == max) {
-        spotifyCategory = "dance";
+        placesCategory = "dance";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("You look surprised? Are you goofin' around?").fadeIn();
     }
     if (feelingMeasures[5] == max) {
-        spotifyCategory = "focus";
+        placesCategory = "focus";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("AHHH! You seem scared, it's sorta' creepy. Do you feel fearful?").fadeIn();
     }
     if (feelingMeasures[6] == max) {
-        spotifyCategory = "country";
+        placesCategory = "country";
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You look bothersome. Are you sad or something?').fadeIn();
     }
@@ -454,62 +453,6 @@ $("#listenMusic").on("click", function(event) {
         $("#playerDiv").append(player);
         $("#playerDiv").fadeIn('slow');
     });
-});
-
-// Trails API if interest hiking is checked in profile
-firebase.auth().onAuthStateChanged(function(user) {
-    if (user) {
-        var user = firebase.auth().currentUser;
-        var userId = user.uid;
-        firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
-            var hikingTrue = snapshot.val().hiking;
-            console.log("hiking: " + hikingTrue);
-            if (hikingTrue === true) {
-                $('.hiking-card').show();
-            } else {
-                $('.hiking-card').hide();
-            }
-        });
-    }
-});
-
-var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=34.1&lon=-105.2&q[activities_activity_type_name_eq]=hiking&radius=50';
-var longitude;
-var latitude;
-$('#getTrails').on('click', function() {
-    $.ajax({
-        url: trailsUrl,
-        dataType: 'JSON',
-        headers: {
-            'X-Mashape-Key': 'rXe4JWi3fImshsUjJwP4gQhzkBFDp1XOF1HjsntrFYaYzWaaYs'
-        },
-        type: "GET",
-        global: false
-    }).done(function(response) {
-        console.log(response);
-        var trailsResponse = response.places;
-        for (var k = 0; k < trailsResponse.length; k++) {
-            var trailInfo = $('<div class="trail-info">').fadeIn();
-            trailInfo.append('<img class="trail-image-holder" width="75" height="75" src="assets/images/trail.png">').fadeIn();
-            trailInfo.append('<h3 class="trail-name">' + trailsResponse[k].name + '</h3>').fadeIn();
-            trailInfo.append('<h4 class="trail-city">' + trailsResponse[k].city + '</h4>').fadeIn();
-            trailInfo.append('<p class="trail-des">' + trailsResponse[k].description + '</p>').fadeIn();
-            trailInfo.append('<button class="btn btn-success trail-link"><a target="_blank" title="Trail Info" href="' + trailsResponse[k].activities["0"].url + '">Go To Trail</a></button>').fadeIn();
-
-            $('#trails').append(trailInfo);
-            $('#trails').fadeIn('slow');
-
-            var adjustedHeight = "0";
-            if ($('#trails').parents('.box').height() > adjustedHeight) {
-                adjustedHeight = $('#trails').parents('.box').height();
-            }
-            moreHeight = adjustedHeight + 50;
-            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
-        }
-    }).fail(function(error) {
-        console.log(error);
-    });
-
 });
 
 // Random Quote API
@@ -642,7 +585,7 @@ pos = {
 function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('mapContainer'), {
         center: { lat: 40.328126, lng: -74.562241 },
-        zoom: 15
+        zoom: 10
     });
 
     if (navigator.geolocation) {
@@ -650,15 +593,15 @@ function initAutocomplete() {
             pos = {
                 lat: position.coords.latitude,
                 lng: position.coords.longitude
-            };    
+            };
 
             infoWindow = new google.maps.InfoWindow();
             map.setCenter(pos);
             var service = new google.maps.places.PlacesService(map);
             service.nearbySearch({
                 location: pos,
-                radius: 500,
-                type: ['restaurant']
+                radius: 3000,
+                type: [placesCategory]
             }, callback);
 
         }, function() {
@@ -674,23 +617,65 @@ function callback(results, status) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
             console.log(results[i]);
+            var placeCont = $('<div id="place-cont">');
+            placeCont.append('<h4 id="place-name">' + results[i].name + '</h4>');
+            placeCont.append('<img class="place-icon" style="float:right" src="' + results[i].icon + '">');
+            placeCont.append('<p id="place-name" class="end" value="' + results[i].vicinity + '">' + results[i].vicinity + '</button>');
+            https: //www.google.com/maps/place/1860+NJ-10,+Parsippany,+NJ+07054
+                $('#mapDetails').append(placeCont);
         }
     }
 }
+var destLoc;
+var onChangeHandler;
 
 function createMarker(place) {
     var placeLoc = place.geometry.location;
     var marker = new google.maps.Marker({
         map: map,
-        position: place.geometry.location
+        position: placeLoc
     });
-
+    var endPoint = $('.end');
     google.maps.event.addListener(marker, 'click', function() {
+        onChangeHandler;
         infoWindow.setContent(place.name);
         infoWindow.open(map, this);
+        destLoc = (place.geometry.location);
+        calculateAndDisplayRoute();
         console.log(this);
     });
+
+
 };
+
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+    onChangeHandler = function() {
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
+    };
+
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
+
+    directionsDisplay.setMap(map);
+
+    directionsService.route({
+        origin: pos,
+        destination: destLoc,
+        travelMode: 'DRIVING'
+    }, function(response, status) {
+        if (status === 'OK') {
+
+            directionsDisplay.setDirections(response);
+
+        } else {
+            window.alert('Directions request failed due to ' + status);
+            console.log(directionsService);
+        }
+    });
+    console.log(pos);
+}
 
 
 // animate next step to map
@@ -699,6 +684,7 @@ $('.next-step-maps').click(function() {
     $('#mapContainer').animate({ top: '12%' }, 800);
     $('#goBackFromMaps').animate({ top: '0' }, 500);
     $("#restartFromOptions").animate({ top: "-150px" });
+    $('#mapDetails').animate({ bottom: '13%' }, 1200);
 });
 // animate back one step from map
 $('#goBackFromMaps').click(function() {
@@ -706,9 +692,64 @@ $('#goBackFromMaps').click(function() {
     $('#appContainer').animate({ top: '0' }, 800);
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: "0" });
+    $('#mapDetails').animate({ bottom: '-200%' }, 800);
 
 
 });
 
 
-// Comic API
+// Trails API if interest hiking is checked in profile
+firebase.auth().onAuthStateChanged(function(user) {
+    if (user) {
+        var user = firebase.auth().currentUser;
+        var userId = user.uid;
+        firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
+            var hikingTrue = snapshot.val().hiking;
+            console.log("hiking: " + hikingTrue);
+            if (hikingTrue === true) {
+                $('.hiking-card').show();
+            } else {
+                $('.hiking-card').hide();
+            }
+        });
+    }
+});
+
+var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=' + pos.lat +'&lon=' + pos.lng + '&q[activities_activity_type_name_eq]=hiking&radius=20';
+var longitude;
+var latitude;
+$('#getTrails').on('click', function() {
+    $.ajax({
+        url: trailsUrl,
+        dataType: 'JSON',
+        headers: {
+            'X-Mashape-Key': 'rXe4JWi3fImshsUjJwP4gQhzkBFDp1XOF1HjsntrFYaYzWaaYs'
+        },
+        type: "GET",
+        global: false
+    }).done(function(response) {
+        console.log(response);
+        var trailsResponse = response.places;
+        for (var k = 0; k < trailsResponse.length; k++) {
+            var trailInfo = $('<div class="trail-info">').fadeIn();
+            trailInfo.append('<img class="trail-image-holder" width="75" height="75" src="assets/images/trail.png">').fadeIn();
+            trailInfo.append('<h3 class="trail-name">' + trailsResponse[k].name + '</h3>').fadeIn();
+            trailInfo.append('<h4 class="trail-city">' + trailsResponse[k].city + '</h4>').fadeIn();
+            trailInfo.append('<p class="trail-des">' + trailsResponse[k].description + '</p>').fadeIn();
+            trailInfo.append('<button class="btn btn-success trail-link"><a target="_blank" title="Trail Info" href="' + trailsResponse[k].activities["0"].url + '">Go To Trail</a></button>').fadeIn();
+
+            $('#trails').append(trailInfo);
+            $('#trails').fadeIn('slow');
+
+            var adjustedHeight = "0";
+            if ($('#trails').parents('.box').height() > adjustedHeight) {
+                adjustedHeight = $('#trails').parents('.box').height();
+            }
+            moreHeight = adjustedHeight + 50;
+            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+        }
+    }).fail(function(error) {
+        console.log(error);
+    });
+
+});
