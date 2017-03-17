@@ -26,10 +26,10 @@ firebase.auth().onAuthStateChanged(function(user) {
 
         firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
             var hikingTrue = snapshot.val().hiking;
-            console.log(hikingTrue);
+            console.log("hiking: " + hikingTrue);
 
-            if (hikingTrue == "hiking") {
-                $('#hiking').prop('checked', true);
+            if (hikingTrue == true) {
+                $('#hiking').addClass('active');
             }
         });
         // populate display name and email/username inputs current firebase auth details
@@ -103,7 +103,7 @@ $('#saveProfile').on('click', function(e) {
     var newName = $('#displayName').val().trim();
     var newEmail = $('#email').val().trim();
     var userId = user.uid;
-    var hiking = $('#hiking:checked').val() || $('#hiking').val();
+    var hiking = $('#hiking').hasClass('active');
 
     user.updateProfile({
         displayName: newName,

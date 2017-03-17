@@ -26,6 +26,7 @@
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
     <!-- Preloader CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/preloader.css">
+
     <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
       <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
@@ -130,7 +131,7 @@
                     <div class="card-block">
                         <h3 class="card-title">Moodü Found Music</h3>
                         <p class="card-text"></p>
-                        <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content">Go Listen</a>
+                        <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content go-listen">Go Listen</a>
                     </div>
                 </div>
                 <div class="card col-sm-12 col-lg-6">
@@ -185,7 +186,18 @@
             <button type="button" id="goBackFromContent" class="btn btn-success" aria-label="Left Align">
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
             </button>
-            <div id="playerDiv">
+            <div id="playerDiv">    <div id="commands">
+         <h1>Play songs through voice commands</h1>
+         <p>This demo uses speech recognition and the <a href="https://developer.spotify.com/web-api/">Spotify Web API</a> to play songs. Try it using some of the commands below. Remember to allow the use of the microphone.</p>
+        <p>For instance "Play Some Nights"</p>
+        
+        <h2>Voice commands</h2>
+        <ul>
+            <li>Play {song name}</li>
+            <li>Play {song name} by {artist name}</li>
+        </ul>
+    </div>
+    <div id="conversation"></div>
             </div>
             <div id="groupon"></div>
             <div id="mapShoes"></div>
@@ -224,7 +236,9 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCclGQLwgHmpp6DZ1fswbU-qgmMUbpwH2o&libraries=places&callback=initMap" async defer></script>
+    <script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/annyang/1.4.0/annyang.min.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>
+    
 </body>
 
 </html>

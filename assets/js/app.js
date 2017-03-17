@@ -436,47 +436,90 @@ $("#listenMusic").on("click", function(event) {
     // Preventing the button from trying to submit the form
     event.preventDefault();
 
-    // console.log("hi");
-    var categoryURL = "https://api.spotify.com/v1/browse/categories/" + spotifyCategory + "/playlists";
-    console.log(spotifyCategory)
-    $.ajax({
-        url: categoryURL,
-        dataType: 'json',
-        headers: {
-            "Authorization": "Bearer BQAu76xcs9fHczdZNchgSb3g9tkxsM4ir6budWONx8zxue9VdUZWGaUQloArFel3dGm-vN8-oUinb1ZgpPFgkPwrIZ2rd1K9WluSQHVI66w6JOWlTk5sqheR0X_szka-LNtDtJAdxXVvkGKIhqDbp44xQ5TRxGzq7G8r1j7K193wTABgUknw8f90MMyrq5Gk-BV9VSym4dQWZg2VCCvIlWxKxJroxhKP_1mFlDyCYrHlaYPh4Dm-PWTUseQjTnR2LF-kpiosVj5PHiuHQKXFavAudRVDpJqj8kTvwEstnsngDQ0V"
-        },
-        method: "GET",
-        global: false
-    }).done(function(categoryResponse) {
-        console.log(categoryResponse);
-        playList = categoryResponse.playlists.items["0"].id;
-        var user_id = categoryResponse.playlists.items["0"].owner.id;
+   (function () {
+    var audio = new Audio();
 
-        var playListURL = "https://api.spotify.com/v1/users/" + user_id + "/playlists/" + playList;
-        console.log(playListURL);
-
+    function searchTracks(query) {
         $.ajax({
-            url: playListURL,
-            dataType: 'json',
-            headers: {
-                "Authorization": "Bearer BQAu76xcs9fHczdZNchgSb3g9tkxsM4ir6budWONx8zxue9VdUZWGaUQloArFel3dGm-vN8-oUinb1ZgpPFgkPwrIZ2rd1K9WluSQHVI66w6JOWlTk5sqheR0X_szka-LNtDtJAdxXVvkGKIhqDbp44xQ5TRxGzq7G8r1j7K193wTABgUknw8f90MMyrq5Gk-BV9VSym4dQWZg2VCCvIlWxKxJroxhKP_1mFlDyCYrHlaYPh4Dm-PWTUseQjTnR2LF-kpiosVj5PHiuHQKXFavAudRVDpJqj8kTvwEstnsngDQ0V"
+            url: 'https://api.spotify.com/v1/search',
+            data: {
+                q: query,
+                type: 'track'
             },
-            method: "GET",
-            global: false
-        }).done(function(playlistResponse) {
-            console.log(playlistResponse);
-
-            var trackId = playlistResponse.tracks.items["1"].track.id;
-            // need to figure out how to use this iframe - work with group on thursday!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-            var playlistiFrame = '<iframe src="https://embed.spotify.com/?uri=spotify:' + playList + '%3A2PXdUld4Ueio2pHcB6sM8j&theme=white" width="300" height="380" frameborder="0" allowtransparency="true"></iframe>';
-            var player = "<iframe src='https://embed.spotify.com/?uri=spotify:track:" +
-                trackId + "' frameborder='0' allowtransparency='true'></iframe>";
-            // Appending the new player into the HTML
-            $("#playerDiv").append(playlistiFrame);
-            $("#playerDiv").append(player);
-            $('#result-template').fadeIn('slow');
+            success: function (response) {
+                if (response.tracks.items.length) {
+                    var track = response.tracks.items[0];
+                    audio.src = track.preview_url;
+                    audio.play();
+                    communicateAction('<div>Playing ' + track.name + ' by ' + track.artists[0].name + '</div><img width="150" src="' + track.album.images[1].url + '">');
+                }
+            }
         });
+    }
+
+    function playSong(songName, artistName) {
+        var query = songName;
+        if (artistName) {
+            query += ' artist:' + artistName;
+        }
+
+        searchTracks(query);
+    }
+
+    function communicateAction(text) {
+        var rec = document.getElementById('conversation');
+        rec.innerHTML += '<div class="action">' + text + '</div>';
+    }
+
+    function recognized(text) {
+        var rec = document.getElementById('conversation');
+        rec.innerHTML += '<div class="recognized"><div>' + text + '</div></div>';
+    }
+
+    if (annyang) {
+        // Let's define our first command. First the text we expect, and then the function it should call
+        var commands = {
+            'stop': function () {
+                audio.pause();
+            },
+                'play track *song': function (song) {
+                recognized('Play track ' + song);
+                playSong(song);
+            },
+                'play *song by *artist': function (song, artist) {
+                recognized('Play song ' + song + ' by ' + artist);
+                playSong(song, artist);
+            },
+                'play song *song': function (song) {
+                recognized('Play song ' + song);
+                playSong(song);
+            },
+                'play *song': function (song) {
+                recognized('Play ' + song);
+                playSong(song);
+            },
+
+                ':nomatch': function (message) {
+                recognized(message);
+                communicateAction('Sorry, I don\'t understand this action');
+            }
+        };
+
+        // Add our commands to annyang
+        annyang.addCommands(commands);
+
+        // Start listening. You can call this here, or attach this call to an event, button, etc.
+        annyang.start();
+    }
+
+    annyang.addCallback('error', function () {
+        communicateAction('error');
     });
+})();
+});
+
+$('.go-listen').on('click', function() {
+  $('#playerDiv').show();
 });
 
 // Trails API if interest hiking is checked in profile
@@ -486,8 +529,8 @@ firebase.auth().onAuthStateChanged(function(user) {
         var userId = user.uid;
         firebase.database().ref('temp/users/' + userId).on('value', function(snapshot) {
             var hikingTrue = snapshot.val().hiking;
-            console.log(hikingTrue);
-            if (hikingTrue === "hiking") {
+            console.log("hiking: " + hikingTrue);
+            if (hikingTrue === true) {
                 $('.hiking-card').show();
             } else {
                 $('.hiking-card').hide();
@@ -546,10 +589,16 @@ $('.first-quote').on('click', function() {
         },
         url: quoteUrl,
         global: false,
+        beforeSend: function() {
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Quotes</span>");
+        },
         success: function(response) {
             console.log(response);
-
+            $('#preloader').hide();
+            $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
             var quotesContainer = $("#random-quotes");
+            quotesContainer.append('<h1 class="quote-title">Hope this makes you feel beary good</h1><hr>')
             if (response.contents.author == "") {
                 quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
                 quotesContainer.append('<p class="author">- Unkown Author</p>')
@@ -583,16 +632,27 @@ function newQuote() {
         },
         url: quoteUrl,
         global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Quotes</span>");
+        },
         success: function(response) {
-            // console.log(response);
-            // console.log(response.quoteText);
+            $('#preloader').hide();
+            $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
 
+            var quotesContainer = $("#random-quotes");
+            quotesContainer.append('<h1 class="quote-title">This should make you feel beary beary good</h1><hr>')
             if (response.contents.author == "") {
-                $('.quote').html(response.contents.quote).fadeIn();
-                $('.author').html('- Unknown Author').fadeIn();
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">- Unkown Author</p>')
+                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
+                $("#random-quotes").fadeIn();
             } else {
-                $('.quote').html(response.contents.quote).fadeIn();
-                $('.author').html(response.contents.author).fadeIn();
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>')
+                quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
+                $("#random-quotes").fadeIn();
             }
             var adjustedHeight = "0";
             if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
@@ -603,6 +663,8 @@ function newQuote() {
         }
     });
 };
+
+
 
 // Groupon API
 $('.get-groupon').on('click', function() {
@@ -672,23 +734,26 @@ function createMarker(place) {
     google.maps.event.addListener(marker, 'click', function() {
         infowindow.setContent(place.name);
         infowindow.open(map, this);
+        console.log(this);
     });
-  };
+};
 
-    // animate next step to map
-    $('.next-step-maps').click(function() {
-        $('#appContainer').animate({ top: '-500%' }, 800);
-        $('#mapContainer').animate({ top: '12%' }, 800);
-        $('#goBackFromMaps').animate({ top: '0' }, 500);
-        $("#restartFromOptions").animate({ top: "-150px" });
-    });
-    // animate back one step from map
-    $('#goBackFromMaps').click(function() {
-        $('#mapContainer').animate({ top: '500%' }, 800);
-        $('#appContainer').animate({ top: '0' }, 800);
-        $(this).animate({ top: "-150px" });
-        $("#restartFromOptions").animate({ top: "0" });
+// animate next step to map
+$('.next-step-maps').click(function() {
+    $('#appContainer').animate({ top: '-500%' }, 800);
+    $('#mapContainer').animate({ top: '12%' }, 800);
+    $('#goBackFromMaps').animate({ top: '0' }, 500);
+    $("#restartFromOptions").animate({ top: "-150px" });
+});
+// animate back one step from map
+$('#goBackFromMaps').click(function() {
+    $('#mapContainer').animate({ top: '500%' }, 800);
+    $('#appContainer').animate({ top: '0' }, 800);
+    $(this).animate({ top: "-150px" });
+    $("#restartFromOptions").animate({ top: "0" });
 
 
-    });
-    // Comic API
+});
+
+
+// Comic API

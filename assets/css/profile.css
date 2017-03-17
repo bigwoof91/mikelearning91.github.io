@@ -500,6 +500,18 @@ pre code {
     height: 100px;
 }
 
+.btn-group {
+	margin: 5px;
+	width: 100%;
+}
+.btn-success {
+	background: #4c6dee;
+	border: none;
+}
+.btn-success:focus {
+	background: #5cb85c;
+}
+
 .contact .author-message .profile img {
     -webkit-border-radius: 50%;
     -moz-border-radius: 50%;
@@ -1090,7 +1102,7 @@ input[type=password]:hover {
 #profileForm .form-control {
     background: transparent !important;
     border: none !important;
-    border-bottom: 4px solid #1b6ab0 !important;
+    border-bottom: 4px solid #4c6dee !important;
     border-radius: 0;
     font-size: 17px;
     padding: 25px 12px;
@@ -1104,10 +1116,9 @@ input[type=password]:hover {
 
 #profileForm #email:focus,
 #profileForm #displayName:focus {
-  border-bottom: 4px solid #4c6dee !important;
-  border-top: 2px solid #4c6dee !important;
-  border-right: 2px solid #4c6dee !important;
-  border-left: 2px solid #4c6dee !important;
+  font-size: 20px;
+  border: none;
+
 }
 
 #profileForm label {
@@ -1258,6 +1269,8 @@ color: rgba(244, 244, 244, 0.50) !important;
         font-size: 18px;
     }
 }
+
+
 @media (min-width: 767px) {
     #navBarToggle {
         display: none !important;
