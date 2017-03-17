@@ -434,92 +434,25 @@ $(document).ready(function() {
 //------------------ Spotify API ------------------//
 $("#listenMusic").on("click", function(event) {
     // Preventing the button from trying to submit the form
-    event.preventDefault();
+    var queryURL = "https://api.discogs.com/releases/249504";
+    $.ajax({
+        url: queryURL,
+        header: { 'X-Frame-Options': 'GOFORIT' },
+        method: "GET",
+        global: false
+    }).done(function(response) {
+        console.log(response);
+        console.log(response.videos[1].uri)
 
-   (function () {
-    var audio = new Audio();
+        var songSource = response.videos[1].uri;
+        var songSourceNew = songSource.replace("watch?v=", "embed/");
+        console.log(songSource);
+        console.log(songSourceNew);
+        var player = "<iframe src='" + songSourceNew + "' frameborder='0' allowfullscreen></iframe>";
 
-    function searchTracks(query) {
-        $.ajax({
-            url: 'https://api.spotify.com/v1/search',
-            data: {
-                q: query,
-                type: 'track'
-            },
-            success: function (response) {
-                if (response.tracks.items.length) {
-                    var track = response.tracks.items[0];
-                    audio.src = track.preview_url;
-                    audio.play();
-                    communicateAction('<div>Playing ' + track.name + ' by ' + track.artists[0].name + '</div><img width="150" src="' + track.album.images[1].url + '">');
-                }
-            }
-        });
-    }
-
-    function playSong(songName, artistName) {
-        var query = songName;
-        if (artistName) {
-            query += ' artist:' + artistName;
-        }
-
-        searchTracks(query);
-    }
-
-    function communicateAction(text) {
-        var rec = document.getElementById('conversation');
-        rec.innerHTML += '<div class="action">' + text + '</div>';
-    }
-
-    function recognized(text) {
-        var rec = document.getElementById('conversation');
-        rec.innerHTML += '<div class="recognized"><div>' + text + '</div></div>';
-    }
-
-    if (annyang) {
-        // Let's define our first command. First the text we expect, and then the function it should call
-        var commands = {
-            'stop': function () {
-                audio.pause();
-            },
-                'play track *song': function (song) {
-                recognized('Play track ' + song);
-                playSong(song);
-            },
-                'play *song by *artist': function (song, artist) {
-                recognized('Play song ' + song + ' by ' + artist);
-                playSong(song, artist);
-            },
-                'play song *song': function (song) {
-                recognized('Play song ' + song);
-                playSong(song);
-            },
-                'play *song': function (song) {
-                recognized('Play ' + song);
-                playSong(song);
-            },
-
-                ':nomatch': function (message) {
-                recognized(message);
-                communicateAction('Sorry, I don\'t understand this action');
-            }
-        };
-
-        // Add our commands to annyang
-        annyang.addCommands(commands);
-
-        // Start listening. You can call this here, or attach this call to an event, button, etc.
-        annyang.start();
-    }
-
-    annyang.addCallback('error', function () {
-        communicateAction('error');
+        $("#playerDiv").append(player);
+        $("#playerDiv").fadeIn('slow');
     });
-})();
-});
-
-$('.go-listen').on('click', function() {
-  $('#playerDiv').show();
 });
 
 // Trails API if interest hiking is checked in profile
@@ -699,27 +632,49 @@ $('.get-groupon').on('click', function() {
 var map;
 var infowindow;
 
-function initMap() {
-    var pyrmont = { lat: -33.867, lng: 151.195 };
+pos = {
 
+    lat: 40.328126,
+    lng: -74.562241
+};
+
+function initAutocomplete() {
     map = new google.maps.Map(document.getElementById('mapContainer'), {
-        center: pyrmont,
+        center: { lat: 40.328126, lng: -74.562241 },
         zoom: 15
     });
 
-    infowindow = new google.maps.InfoWindow();
-    var service = new google.maps.places.PlacesService(map);
-    service.nearbySearch({
-        location: pyrmont,
-        radius: 500,
-        type: ['store']
-    }, callback);
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };    
+
+            infowindow = new google.maps.InfoWindow();
+            map.setCenter(pos);
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: pos,
+                radius: 500,
+                type: ['restaurant']
+            }, callback);
+
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
+        });
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+
+
 }
 
 function callback(results, status) {
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
             createMarker(results[i]);
+            console.log(results[i]);
         }
     }
 }
@@ -737,6 +692,7 @@ function createMarker(place) {
         console.log(this);
     });
 };
+
 
 // animate next step to map
 $('.next-step-maps').click(function() {
