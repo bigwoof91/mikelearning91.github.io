@@ -115,6 +115,9 @@ $('#saveProfile').on('click', function(e) {
 
     user.updateEmail(newEmail).then(function() {
         console.log('Updated email successfully')
+        $(".savedText").css('left', '18%').animate({ opacity: '.7'}, 2000);
+        $(".savedText").animate({ opacity: '0' }, 500);
+
     }, function(error) {
         // An error happened.
     });
@@ -132,6 +135,7 @@ $('#saveProfile').on('click', function(e) {
             var newRef = database.ref('temp/users/' + uid + '/').set(newUserInfo);
         }
     });
+
 });
 
 // Logout function

@@ -66,6 +66,7 @@
     <section id="profileContainer" class="promo section offset-header">
         <div id="profile" class="container text-center">
             <!-- Step 1 -->
+            <div id="savedMessage"><h1 class="savedText">Boom! Saved Successfully</h1></div>
             <form id="profileForm">
                 <div class="row">
                     <div class="col-lg-6 col-xs-12">
@@ -73,11 +74,11 @@
                         <p class="cust-subtitle">You can change your display name and email. Your email will act as your username and your display name... well, that is sort of self explanatory :)</p>
                         <div class="form-group">
                             <input type="text" class="form-control" id="displayName" placeholder="Choose a Display Name">
-                            <label for="text">Display Name</label>
+                            <label class="input-label" for="text">Display Name</label>
                         </div>
                         <div class="form-group">                            
                             <input type="email" class="form-control" id="email">
-                            <label for="email">Email/Username</label>
+                            <label class="input-label" for="email">Email/Username</label>
                         </div>
                     </div>
                     <div class="col-lg-6 col-xs-12">
@@ -91,7 +92,7 @@
                             <div class="col-lg-4 col-xs-12">
                                 <div class="form-group">
                                     <label>Active/Hobby</label>
-                                    <hr>
+                                    <hr class="subtitle-hr">
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-sm btn-success">
                                             <input id="gym" type="checkbox" value="Gym" disabled>
@@ -140,7 +141,7 @@
                             <div class="col-lg-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleSelect1">Music</label>
-                                    <hr>
+                                    <hr class="subtitle-hr">
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-sm btn-success">
                                             <input id="hiphop" type="checkbox" value="" disabled>
@@ -188,7 +189,7 @@
                             <div class="col-lg-4 col-xs-12">
                                 <div class="form-group">
                                     <label for="exampleSelect1">Miscellaneous</label>
-                                    <hr>
+                                    <hr class="subtitle-hr">
                                     <div class="btn-group" data-toggle="buttons">
                                         <label class="btn btn-sm btn-success">
                                             <input id="business" type="checkbox" value="" disabled>
@@ -244,7 +245,7 @@
                 </div>
                 <div class="row">
                     <div class="col-lg-12">
-                        <button type="submit" id="saveProfile" class="btn btn-primary">Save</button>
+                        <button type="submit" id="saveProfile" class="btn btn-lg btn-primary">Save</button>
                     </div>
                 </div>
             </form>

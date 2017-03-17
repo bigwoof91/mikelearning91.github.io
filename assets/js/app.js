@@ -254,6 +254,7 @@ $('#goBackFromContent').click(function() {
     $("#trails").empty();
     $("#random-quotes").empty();
     $("#groupon").empty();
+    $("#playerDiv").empty();
 
     // reset camera
     image.setAttribute('src', "");
