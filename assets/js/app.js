@@ -386,37 +386,58 @@ function processResult(response) {
     // asks user if the emotion is correct
     if (feelingMeasures[0] == max) {
         placesCategory = "restaurants"; // setting var category for Google Places API
-                                        // set title/text for content choice
+        // set title/text for content choice
+        $('#mapContainer').empty();
+        $('#mapDetails').empty(); 
+        initAutocomplete(); 
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
     }
     if (feelingMeasures[1] == max) {
-        placesCategory = "rock";
+        placesCategory = "gym";
+        $('#mapContainer').empty();
+        $('#mapDetails').empty();
+        initAutocomplete();
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
     }
     if (feelingMeasures[2] == max) {
-        placesCategory = "metal";
+        placesCategory = "meal_delivery";
+        $('#mapContainer').empty();
+        $('#mapDetails').empty();
+        initAutocomplete();
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
     }
     if (feelingMeasures[3] == max) {
-        placesCategory = "toplists";
+        placesCategory = "shopping_mall";
+        $('#mapContainer').empty();
+        $('#mapDetails').empty();
+        initAutocomplete();
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
     }
     if (feelingMeasures[4] == max) {
-        placesCategory = "dance";
+        placesCategory = "night_club";
+        $('#mapContainer').empty();
+        $('#mapDetails').empty();
+        initAutocomplete();
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("You look surprised? Are you goofin' around?").fadeIn();
     }
     if (feelingMeasures[5] == max) {
-        placesCategory = "focus";
+        placesCategory = "police";
+        $('#mapContainer').empty();
+        $('#mapDetails').empty();
+        initAutocomplete();
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("AHHH! You seem scared, it's sorta' creepy. Do you feel fearful?").fadeIn();
     }
     if (feelingMeasures[6] == max) {
-        placesCategory = "country";
+        placesCategory = "library";
+        $('#mapContainer').empty();
+        $('#mapDetails').empty();
+        initAutocomplete();
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You look bothersome. Are you sad or something?').fadeIn();
     }
@@ -572,110 +593,112 @@ $('.get-groupon').on('click', function() {
 });
 
 // Google Maps/Places/Books API
-
-var map;
-var infoWindow;
-
-pos = {
+var pos = {
 
     lat: 40.328126,
     lng: -74.562241
 };
 
-function initAutocomplete() {
-    map = new google.maps.Map(document.getElementById('mapContainer'), {
-        center: { lat: 40.328126, lng: -74.562241 },
-        zoom: 10
-    });
 
-    if (navigator.geolocation) {
-        navigator.geolocation.getCurrentPosition(function(position) {
-            pos = {
-                lat: position.coords.latitude,
-                lng: position.coords.longitude
-            };
+    var map;
+    var infoWindow;
 
-            infoWindow = new google.maps.InfoWindow();
-            map.setCenter(pos);
-            var service = new google.maps.places.PlacesService(map);
-            service.nearbySearch({
-                location: pos,
-                radius: 3000,
-                type: [placesCategory]
-            }, callback);
+    console.log(placesCategory);
 
-        }, function() {
-            handleLocationError(true, infoWindow, map.getCenter());
+    function initAutocomplete() {
+        map = new google.maps.Map(document.getElementById('mapContainer'), {
+            center: { lat: 40.328126, lng: -74.562241 },
+            zoom: 12
         });
-    } else {
-        handleLocationError(false, infoWindow, map.getCenter());
-    }
-}
 
-function callback(results, status) {
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
-            console.log(results[i]);
-            var placeCont = $('<div id="place-cont">');
-            placeCont.append('<h4 id="place-name">' + results[i].name + '</h4>');
-            placeCont.append('<img class="place-icon" style="float:right" src="' + results[i].icon + '">');
-            placeCont.append('<p id="place-name" class="end" value="' + results[i].vicinity + '">' + results[i].vicinity + '</button>');
-            https: //www.google.com/maps/place/1860+NJ-10,+Parsippany,+NJ+07054
-                $('#mapDetails').append(placeCont);
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition(function(position) {
+                pos = {
+                    lat: position.coords.latitude,
+                    lng: position.coords.longitude
+                };
+
+                infoWindow = new google.maps.InfoWindow();
+                map.setCenter(pos);
+                var service = new google.maps.places.PlacesService(map);
+                service.nearbySearch({
+                    location: pos,
+                    radius: 3000,
+                    type: [placesCategory]
+                }, callback);
+
+            }, function() {
+                handleLocationError(true, infoWindow, map.getCenter());
+            });
+        } else {
+            handleLocationError(false, infoWindow, map.getCenter());
         }
     }
-}
-var destLoc;
-var onChangeHandler;
 
-function createMarker(place) {
-    var placeLoc = place.geometry.location;
-    var marker = new google.maps.Marker({
-        map: map,
-        position: placeLoc
-    });
-    var endPoint = $('.end');
-    google.maps.event.addListener(marker, 'click', function() {
-        onChangeHandler;
-        infoWindow.setContent(place.name);
-        infoWindow.open(map, this);
-        destLoc = (place.geometry.location);
-        calculateAndDisplayRoute();
-        console.log(this);
-    });
+    function callback(results, status) {
+        if (status === google.maps.places.PlacesServiceStatus.OK) {
+            for (var i = 0; i < results.length; i++) {
+                createMarker(results[i]);
+                console.log(results[i]);
+                var placeCont = $('<div id="place-cont">');
+                placeCont.append('<h4 id="place-name">' + results[i].name + '</h4>');
+                placeCont.append('<img class="place-icon" style="float:right" src="' + results[i].icon + '">');
+                placeCont.append('<p id="place-name" class="end" value="' + results[i].vicinity + '">' + results[i].vicinity + '</button>');
+                https: //www.google.com/maps/place/1860+NJ-10,+Parsippany,+NJ+07054
+                    $('#mapDetails').append(placeCont);
+            }
+        }
+    }
+    var destLoc;
+    var onChangeHandler;
+
+    function createMarker(place) {
+        var placeLoc = place.geometry.location;
+        var marker = new google.maps.Marker({
+            map: map,
+            position: placeLoc
+        });
+        var endPoint = $('.end');
+        google.maps.event.addListener(marker, 'click', function() {
+            onChangeHandler;
+            infoWindow.setContent(place.name);
+            infoWindow.open(map, this);
+            destLoc = (place.geometry.location);
+            calculateAndDisplayRoute();
+            console.log(this);
+        });
 
 
-};
-
-
-function calculateAndDisplayRoute(directionsService, directionsDisplay) {
-
-    onChangeHandler = function() {
-        calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
 
-    var directionsService = new google.maps.DirectionsService;
-    var directionsDisplay = new google.maps.DirectionsRenderer;
 
-    directionsDisplay.setMap(map);
+    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
-    directionsService.route({
-        origin: pos,
-        destination: destLoc,
-        travelMode: 'DRIVING'
-    }, function(response, status) {
-        if (status === 'OK') {
+        onChangeHandler = function() {
+            calculateAndDisplayRoute(directionsService, directionsDisplay);
+        };
 
-            directionsDisplay.setDirections(response);
+        var directionsService = new google.maps.DirectionsService;
+        var directionsDisplay = new google.maps.DirectionsRenderer;
 
-        } else {
-            window.alert('Directions request failed due to ' + status);
-            console.log(directionsService);
-        }
-    });
-    console.log(pos);
-}
+        directionsDisplay.setMap(map);
+
+        directionsService.route({
+            origin: pos,
+            destination: destLoc,
+            travelMode: 'DRIVING'
+        }, function(response, status) {
+            if (status === 'OK') {
+
+                directionsDisplay.setDirections(response);
+
+            } else {
+                window.alert('Directions request failed due to ' + status);
+                console.log(directionsService);
+            }
+        });
+        console.log(pos);
+    }
 
 
 // animate next step to map
@@ -715,7 +738,7 @@ firebase.auth().onAuthStateChanged(function(user) {
     }
 });
 
-var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=' + pos.lat +'&lon=' + pos.lng + '&q[activities_activity_type_name_eq]=hiking&radius=20';
+var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=' + pos.lat + '&lon=' + pos.lng + '&q[activities_activity_type_name_eq]=hiking&radius=20';
 var longitude;
 var latitude;
 $('#getTrails').on('click', function() {
@@ -731,16 +754,19 @@ $('#getTrails').on('click', function() {
         console.log(response);
         var trailsResponse = response.places;
         for (var k = 0; k < trailsResponse.length; k++) {
+            if (trailsResponse[k].description === null) {
+                continue; // skips "'null' description" locations
+            }
             var trailInfo = $('<div class="trail-info">').fadeIn();
             trailInfo.append('<img class="trail-image-holder" width="75" height="75" src="assets/images/trail.png">').fadeIn();
             trailInfo.append('<h3 class="trail-name">' + trailsResponse[k].name + '</h3>').fadeIn();
             trailInfo.append('<h4 class="trail-city">' + trailsResponse[k].city + '</h4>').fadeIn();
             trailInfo.append('<p class="trail-des">' + trailsResponse[k].description + '</p>').fadeIn();
             trailInfo.append('<button class="btn btn-success trail-link"><a target="_blank" title="Trail Info" href="' + trailsResponse[k].activities["0"].url + '">Go To Trail</a></button>').fadeIn();
-
+            $('#trails').append("<h2 class='quote-title'>I found some trails and parks nearby. <br>Watch out for bears!</h2><hr>");
             $('#trails').append(trailInfo);
             $('#trails').fadeIn('slow');
-
+            // adjusts height of box
             var adjustedHeight = "0";
             if ($('#trails').parents('.box').height() > adjustedHeight) {
                 adjustedHeight = $('#trails').parents('.box').height();
