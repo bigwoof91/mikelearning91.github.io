@@ -392,7 +392,7 @@ function processResult(response) {
     // console.log(max);
     // asks user if the emotion is correct
     if (feelingMeasures[0] == max) {
-        placesCategory = "restaurants"; // setting var category for Google Places API
+        placesCategory = "restaurant"; // setting var category for Google Places API
         booksCategory = "happy"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
