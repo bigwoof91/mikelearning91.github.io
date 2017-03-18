@@ -1057,7 +1057,7 @@ input[type=password]:hover {
 
 #mapDetails {
     position: fixed !important;
-    bottom: 13%;
+    bottom: -400%;
     left: 0;
     right: 0;
     height: 200px;

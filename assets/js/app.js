@@ -740,7 +740,7 @@ $('.next-step-maps').click(function() {
     $('#mapContainer').animate({ top: '12%' }, 800);
     $('#goBackFromMaps').animate({ top: '0' }, 500);
     $("#restartFromOptions").animate({ top: "-150px" });
-    $('#mapDetails').animate({ bottom: '8%' }, 1400);
+    $('#mapDetails').animate({ bottom: '13%' }, 1400);
     $('#mooduComment').html('I found some <br>cool spots...');
     $("#commentContainer").delay(500).animate({ opacity: '1' }, 500);
     $("#commentContainer").delay(5000).animate({ left: '131px', opacity: '0' }, 1000);
@@ -751,7 +751,7 @@ $('#goBackFromMaps').click(function() {
     $('#appContainer').animate({ top: '0' }, 800);
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: "0" });
-    $('#mapDetails').animate({ bottom: '-200%' }, 800);
+    $('#mapDetails').animate({ bottom: '-400%' }, 800);
     $("#commentContainer").css('left', '131px');
 
 
