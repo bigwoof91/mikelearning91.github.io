@@ -104,6 +104,7 @@ pre code {
     font-size: 16px;
 }
 
+
 /* ---------------Custom Navbar Toggle------------------ */
 
 .c-hamburger {
@@ -196,6 +197,7 @@ pre code {
 
 
 /* ---------------END Custom Navbar Toggle------------------ */
+
 .header {
     padding: 10px 0;
     background: #17baef;
@@ -456,6 +458,7 @@ pre code {
     color: #fff;
 }
 
+
 /* ======= Contact Section ======= */
 
 .contact {
@@ -617,6 +620,7 @@ pre code {
     text-align: center;
     padding: 0;
 }
+
 
 /* ======= Footer ======= */
 
@@ -892,10 +896,10 @@ input[type=password]:hover {
     font-size: 12px;
 }
 
-
 .cam-border {
-  border: 2px solid black;
+    border: 2px solid black;
 }
+
 #appContainer {
     overflow: hidden;
     position: absolute;
@@ -904,6 +908,7 @@ input[type=password]:hover {
     width: 100%;
     height: 87%;
 }
+
 .box {
     position: absolute;
     width: 50%;
@@ -913,116 +918,165 @@ input[type=password]:hover {
     padding-right: 0 !important;
     padding-left: 0 !important;
 }
+
 #areYou {
     left: 150%;
     border: none;
 }
+
 #playerDiv {
-  display: none;
+    display: none;
 }
+
 .hiking-card {
-  display: none;
+    display: none;
 }
+
+.force-100 {
+    left: 25% !important;
+}
+
 #trails {
-  display: none;
+    display: none;
 }
+
 #random-quotes {
-  display: none;
+    display: none;
 }
+
+#books {
+    display: none;
+}
+
+#bookDetails {
+    margin-bottom: 40px;
+    background: rgba(187, 220, 255, 0.4);
+    padding: 40px;
+}
+
+.book-info {
+    float: left;
+    text-align: left;
+    width: 60%;
+}
+
 .quote-title {
-  font-weight: 400;
-  color: white;
-  font-size:;
+    font-weight: 400;
+    color: white;
+    font-size: ;
 }
+
+.get-book-info {
+    float: left;
+    clear: both;
+    margin-left: 15px;
+}
+
 #groupon {
-  display: none;
+    display: none;
 }
+
 #groupon > div > div.groupon-image > img {
-  max-width: 100%;
+    max-width: 100%;
 }
+
 .deal {
-  margin-bottom: 30px;
-  border: 4px solid;
-  padding: 5px;
-  border-radius: 5px;
+    margin-bottom: 30px;
+    border: 4px solid;
+    padding: 5px;
+    border-radius: 5px;
 }
+
 .deal-link,
 .trail-link {
-  margin-top: 10px;
+    margin-top: 10px;
 }
+
 .deal-link a,
 .trail-link a {
-  color: white;
-  font-weight: 400;
-  text-decoration: none;
+    color: white;
+    font-weight: 400;
+    text-decoration: none;
 }
+
 .trail-info {
-  margin-bottom: 35px;
+    margin-bottom: 35px;
 }
+
 #restartFromOptions,
 #goBackFromContent,
 #goBackFromMaps {
-  position: fixed;
-  top: -100px;
-  left: 50%;
-  right: 50%;
-  z-index: 1;
-  margin-left: -60px;
-  text-align: center;
-  border-top-right-radius: 0;
-  border-top-left-radius: 0;
+    position: fixed;
+    top: -100px;
+    left: 50%;
+    right: 50%;
+    z-index: 1;
+    margin-left: -60px;
+    text-align: center;
+    border-top-right-radius: 0;
+    border-top-left-radius: 0;
 }
+
 #result-template {
-  display: none;
+    display: none;
 }
+
 #chooseContent {
     left: 300%;
     border: none;
     top: 10px;
 }
+
 #errorRetake {
-  display: none;
+    display: none;
 }
+
 .spotify-login {
-  background: #2ebd59;
+    background: #2ebd59;
 }
+
 .spotify-login:hover {
-  background: #1ed760;
+    background: #1ed760;
 }
+
 #content {
-  left: 450%;
-  top: 20px;
+    left: 450%;
+    top: 20px;
 }
-#mapContainer{
-  position: fixed !important;
-  top: 500%;
-  left: 0;
-  right: 0;
-  height: 400px;
-  width: 55%;
-  margin: 0 auto;
-  border: 5px solid #413bc1;
+
+#mapContainer {
+    position: fixed !important;
+    top: 500%;
+    left: 0;
+    right: 0;
+    height: 400px;
+    width: 55%;
+    margin: 0 auto;
+    border: 5px solid #413bc1;
 }
+
 #mapDetails {
-  position: fixed !important;
-  bottom: 13%;
-  left: 0;
-  right: 0;
-  height: 200px;
-  overflow-y: scroll;
-  width: 55%;
-  margin: 0 auto;
-  bottom: -100%;
-  background: #efefef;
+    position: fixed !important;
+    bottom: 13%;
+    left: 0;
+    right: 0;
+    height: 200px;
+    overflow-y: scroll;
+    width: 55%;
+    margin: 0 auto;
+    bottom: -100%;
+    background: #efefef;
 }
+
 #place-cont {
-  position: relative;
-  background: #efefef;
-  border-bottom: 2px solid #3b4251;
-  padding: 12px;
+    position: relative;
+    background: #efefef;
+    border-bottom: 2px solid #3b4251;
+    padding: 12px;
 }
+
 .place-icon {
-  float: right;
+    float: right;
     width: 20px;
     margin-right: 10px;
     top: 15px;
@@ -1040,7 +1094,7 @@ input[type=password]:hover {
 }
 
 .card-block h3 {
-  color: #fff;
+    color: #fff;
 }
 
 .login {
@@ -1096,32 +1150,37 @@ input[type=password]:hover {
 }
 
 .change-button {
-  color: white;
+    color: white;
 }
 
 #profileContainer {
-  padding-bottom: 150px;
+    padding-bottom: 150px;
 }
 
-.kv-avatar .file-preview-frame,.kv-avatar .file-preview-frame:hover {
+.kv-avatar .file-preview-frame,
+.kv-avatar .file-preview-frame:hover {
     margin: 0;
     padding: 0;
     border: none;
     box-shadow: none;
     text-align: center;
 }
+
 .kv-avatar .file-input {
     display: table-cell;
     max-width: 220px;
 }
 
+
 /* Moodu the Bear */
+
 .moodu {
-  animation: MoveUpDown 1s linear infinite;
-  position: absolute;
-  left: 0;
-  bottom: 0;
+    animation: MoveUpDown 1s linear infinite;
+    position: absolute;
+    left: 0;
+    bottom: 0;
 }
+
 @media(max-width: 768px) {
     #profileForm {
         width: 100%;
@@ -1144,17 +1203,16 @@ input[type=password]:hover {
         display: none;
     }
     #chooseContent {
-      margin-left: -37.5%;
-      top: 0;
+        margin-left: -37.5%;
+        top: 0;
     }
     #appContainer {
-      height: 100%;
+        height: 100%;
     }
     .card {
-    width: 100%;
+        width: 100%;
+    }
 }
-}
-
 
 @media (max-width: 767px) {
     .header .main-nav button {
@@ -1205,6 +1263,7 @@ input[type=password]:hover {
         font-size: 18px;
     }
 }
+
 @media (min-width: 767px) {
     #navBarToggle {
         display: none !important;
@@ -1216,20 +1275,28 @@ input[type=password]:hover {
         display: none;
     }
 }
+
 @keyframes MoveUpDown {
-  0% {
-    bottom: 0;
-  }
-  50% {
-    bottom: 100px;
-  }
-  100% {
-    bottom: 0;
-  }
+    0% {
+        bottom: 0;
+    }
+    50% {
+        bottom: 100px;
+    }
+    100% {
+        bottom: 0;
+    }
 }
+
 #mapContainer > div > div > div > div > div > div > div.gm-style-iw > div > div {
-  color: #3b4251;
+    color: #3b4251;
 }
+
+
 /* Small devices (tablets, 768px and up) */
+
+
 /* Medium devices (desktops, 992px and up) */
+
+
 /* Large devices (large desktops, 1200px and up) */

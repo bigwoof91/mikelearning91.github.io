@@ -52,7 +52,8 @@ var video = document.querySelector('#camera-stream'),
     error_message = document.querySelector('#error-message'),
     selfie,
     database = firebase.database(),
-    placesCategory;
+    placesCategory,
+    booksCategory;
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -201,6 +202,8 @@ $('#contentOptions').on('click', function() {
     var totHeight = biggestHeight + 100;
     $("#appContainer").height(totHeight).css('margin-bottom', '150px');
     $("#restartFromOptions").animate({ top: "0px" });
+    $("#commentContainer").delay(500).animate({ opacity: '1' }, 500);
+    $("#commentContainer").delay(5000).animate({ left: '-2000%', opacity: '0' }, 1000);
 });
 
 // animate steps on next
@@ -234,6 +237,7 @@ $('#restartFromOptions').click(function() {
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
     $('#youAreFeeling').empty();
+    $("#commentContainer").css('left', '131px');
     // reset camera
     image.setAttribute('src', "");
     image.classList.remove("visible");
@@ -250,11 +254,13 @@ $('#goBackFromContent').click(function() {
     $(this).parents(".box").prev(".box").animate({ left: '50%' }, 500);
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: '0' });
+    $("#commentContainer").css('left', '131px');
     $('#youAreFeeling').empty();
     $("#trails").empty();
     $("#random-quotes").empty();
     $("#groupon").empty();
     $("#playerDiv").empty();
+    $("#books").empty();
 
     var adjustedHeight = "0";
     if ($(this).parents('.box').prev('.box').height() > adjustedHeight) {
@@ -386,58 +392,85 @@ function processResult(response) {
     // asks user if the emotion is correct
     if (feelingMeasures[0] == max) {
         placesCategory = "restaurants"; // setting var category for Google Places API
-        // set title/text for content choice
+        booksCategory = "happy"; // setting var category for Google Books API
         $('#mapContainer').empty();
-        $('#mapDetails').empty(); 
-        initAutocomplete(); 
+        $('#mapDetails').empty();
+        initAutocomplete();
+        $('#places-title').html('Moodü Says Go Out to Eat');
+        $('#getPlaces').html('Nearby Food Joints')
+        $('#placesIMG').attr('src', 'assets/images/restaurant.png').attr('alt', 'Restaurants');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
     }
     if (feelingMeasures[1] == max) {
         placesCategory = "gym";
+        booksCategory = "anger"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
+        $('#places-title').html('Moodü Says To "Workout" Your Feelings');
+        $('#getPlaces').html('Go To Nearby Gym')
+        $('#placesIMG').attr('src', 'assets/images/workout.png').attr('alt', 'Gym');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
     }
     if (feelingMeasures[2] == max) {
-        placesCategory = "meal_delivery";
+        placesCategory = "movie_rental";
+        booksCategory = "disgusting"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
+        $('#places-title').html('Moodü Says Go See A Movie');
+        $('#getPlaces').html('Nearby Theaters')
+        $('#placesIMG').attr('src', 'assets/images/movie_theater.png').attr('alt', 'Movie Theaters');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
     }
     if (feelingMeasures[3] == max) {
         placesCategory = "shopping_mall";
+        booksCategory = "fiction"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
+        $('#places-title').html('Moodü Suggests You "Fill Your Void" <br>With Presents For Yourself');
+        $('#getPlaces').html('Nearby Shopping Malls')
+        $('#placesIMG').attr('src', 'assets/images/shopping_mall.png').attr('alt', 'Shopping Malls');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
     }
     if (feelingMeasures[4] == max) {
         placesCategory = "night_club";
+        booksCategory = "happy"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
+        $('#places-title').html('Moodü Found Night Clubs');
+        $('#getPlaces').html('Go Party Tonight')
+        $('#placesIMG').attr('src', 'assets/images/night_club.png').attr('alt', 'Night Clubs');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("You look surprised? Are you goofin' around?").fadeIn();
     }
     if (feelingMeasures[5] == max) {
         placesCategory = "police";
+        booksCategory = "life"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
+        $('#places-title').html('Moodü Found Police Stations');
+        $('#getPlaces').html('Go Be Safe')
+        $('#placesIMG').attr('src', 'assets/images/police.png').attr('alt', 'Police');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("AHHH! You seem scared, it's sorta' creepy. Do you feel fearful?").fadeIn();
     }
     if (feelingMeasures[6] == max) {
-        placesCategory = "library";
+        placesCategory = "meal_delivery";
+        booksCategory = "motivational"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
+        $('#places-title').html('Moodü Found Food Delivery Spots');
+        $('#getPlaces').html('Go Fill Your Void')
+        $('#placesIMG').attr('src', 'assets/images/food_delivery.png').attr('alt', 'Food Delivery Places');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You look bothersome. Are you sad or something?').fadeIn();
     }
@@ -577,10 +610,10 @@ $('.get-groupon').on('click', function() {
     }).done(function(data) {
         console.log(data);
         $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal"><div class="groupon-image"><img src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div>'
+            var grouponDeals = '<div class="deal row"><div class="col-lg12"><div class="groupon-image"><img src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div></div>'
             $("#groupon").append(grouponDeals);
         })
-        $("#groupon").prepend("<h2>Check out these Deals!</h2><hr>");
+        $("#groupon").prepend("<h2 class='quote-title'>Check out these Deals!</h2><hr>");
         $("#groupon").fadeIn();
 
         var adjustedHeight = "0";
@@ -600,105 +633,105 @@ var pos = {
 };
 
 
-    var map;
-    var infoWindow;
+var map;
+var infoWindow;
 
-    console.log(placesCategory);
+console.log(placesCategory);
 
-    function initAutocomplete() {
-        map = new google.maps.Map(document.getElementById('mapContainer'), {
-            center: { lat: 40.328126, lng: -74.562241 },
-            zoom: 12
+function initAutocomplete() {
+    map = new google.maps.Map(document.getElementById('mapContainer'), {
+        center: { lat: 40.328126, lng: -74.562241 },
+        zoom: 10
+    });
+
+    if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(function(position) {
+            pos = {
+                lat: position.coords.latitude,
+                lng: position.coords.longitude
+            };
+
+            infoWindow = new google.maps.InfoWindow();
+            map.setCenter(pos);
+            var service = new google.maps.places.PlacesService(map);
+            service.nearbySearch({
+                location: pos,
+                radius: 8000,
+                type: [placesCategory]
+            }, callback);
+
+        }, function() {
+            handleLocationError(true, infoWindow, map.getCenter());
         });
+    } else {
+        handleLocationError(false, infoWindow, map.getCenter());
+    }
+}
 
-        if (navigator.geolocation) {
-            navigator.geolocation.getCurrentPosition(function(position) {
-                pos = {
-                    lat: position.coords.latitude,
-                    lng: position.coords.longitude
-                };
-
-                infoWindow = new google.maps.InfoWindow();
-                map.setCenter(pos);
-                var service = new google.maps.places.PlacesService(map);
-                service.nearbySearch({
-                    location: pos,
-                    radius: 3000,
-                    type: [placesCategory]
-                }, callback);
-
-            }, function() {
-                handleLocationError(true, infoWindow, map.getCenter());
-            });
-        } else {
-            handleLocationError(false, infoWindow, map.getCenter());
+function callback(results, status) {
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        for (var i = 0; i < results.length; i++) {
+            createMarker(results[i]);
+            console.log(results[i]);
+            var placeCont = $('<div id="place-cont">');
+            placeCont.append('<h4 id="place-name">' + results[i].name + '</h4>');
+            placeCont.append('<img class="place-icon" style="float:right" src="' + results[i].icon + '">');
+            placeCont.append('<p id="place-name" class="end" value="' + results[i].vicinity + '">' + results[i].vicinity + '</button>');
+            https: //www.google.com/maps/place/1860+NJ-10,+Parsippany,+NJ+07054
+                $('#mapDetails').append(placeCont);
         }
     }
+}
+var destLoc;
+var onChangeHandler;
 
-    function callback(results, status) {
-        if (status === google.maps.places.PlacesServiceStatus.OK) {
-            for (var i = 0; i < results.length; i++) {
-                createMarker(results[i]);
-                console.log(results[i]);
-                var placeCont = $('<div id="place-cont">');
-                placeCont.append('<h4 id="place-name">' + results[i].name + '</h4>');
-                placeCont.append('<img class="place-icon" style="float:right" src="' + results[i].icon + '">');
-                placeCont.append('<p id="place-name" class="end" value="' + results[i].vicinity + '">' + results[i].vicinity + '</button>');
-                https: //www.google.com/maps/place/1860+NJ-10,+Parsippany,+NJ+07054
-                    $('#mapDetails').append(placeCont);
-            }
-        }
-    }
-    var destLoc;
-    var onChangeHandler;
-
-    function createMarker(place) {
-        var placeLoc = place.geometry.location;
-        var marker = new google.maps.Marker({
-            map: map,
-            position: placeLoc
-        });
-        var endPoint = $('.end');
-        google.maps.event.addListener(marker, 'click', function() {
-            onChangeHandler;
-            infoWindow.setContent(place.name);
-            infoWindow.open(map, this);
-            destLoc = (place.geometry.location);
-            calculateAndDisplayRoute();
-            console.log(this);
-        });
+function createMarker(place) {
+    var placeLoc = place.geometry.location;
+    var marker = new google.maps.Marker({
+        map: map,
+        position: placeLoc
+    });
+    var endPoint = $('.end');
+    google.maps.event.addListener(marker, 'click', function() {
+        onChangeHandler;
+        infoWindow.setContent(place.name);
+        infoWindow.open(map, this);
+        destLoc = (place.geometry.location);
+        calculateAndDisplayRoute();
+        console.log(this);
+    });
 
 
+};
+
+
+function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+
+    onChangeHandler = function() {
+        calculateAndDisplayRoute(directionsService, directionsDisplay);
     };
 
+    var directionsService = new google.maps.DirectionsService;
+    var directionsDisplay = new google.maps.DirectionsRenderer;
 
-    function calculateAndDisplayRoute(directionsService, directionsDisplay) {
+    directionsDisplay.setMap(map);
 
-        onChangeHandler = function() {
-            calculateAndDisplayRoute(directionsService, directionsDisplay);
-        };
+    directionsService.route({
+        origin: pos,
+        destination: destLoc,
+        travelMode: 'DRIVING'
+    }, function(response, status) {
+        if (status === 'OK') {
 
-        var directionsService = new google.maps.DirectionsService;
-        var directionsDisplay = new google.maps.DirectionsRenderer;
+            directionsDisplay.setDirections(response);
 
-        directionsDisplay.setMap(map);
-
-        directionsService.route({
-            origin: pos,
-            destination: destLoc,
-            travelMode: 'DRIVING'
-        }, function(response, status) {
-            if (status === 'OK') {
-
-                directionsDisplay.setDirections(response);
-
-            } else {
-                window.alert('Directions request failed due to ' + status);
-                console.log(directionsService);
-            }
-        });
-        console.log(pos);
-    }
+        } else {
+            window.alert('Directions request failed due to ' + status);
+            console.log(directionsService);
+        }
+    });
+    console.log(pos);
+}
 
 
 // animate next step to map
@@ -707,7 +740,10 @@ $('.next-step-maps').click(function() {
     $('#mapContainer').animate({ top: '12%' }, 800);
     $('#goBackFromMaps').animate({ top: '0' }, 500);
     $("#restartFromOptions").animate({ top: "-150px" });
-    $('#mapDetails').animate({ bottom: '13%' }, 1200);
+    $('#mapDetails').animate({ bottom: '8%' }, 1400);
+    $('#mooduComment').html('I found some <br>cool spots...');
+    $("#commentContainer").delay(500).animate({ opacity: '1' }, 500);
+    $("#commentContainer").delay(5000).animate({ left: '131px', opacity: '0' }, 1000);
 });
 // animate back one step from map
 $('#goBackFromMaps').click(function() {
@@ -716,6 +752,7 @@ $('#goBackFromMaps').click(function() {
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: "0" });
     $('#mapDetails').animate({ bottom: '-200%' }, 800);
+    $("#commentContainer").css('left', '131px');
 
 
 });
@@ -733,6 +770,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 $('.hiking-card').show();
             } else {
                 $('.hiking-card').hide();
+                $('#center-if').css('width', '100%')
             }
         });
     }
@@ -763,19 +801,66 @@ $('#getTrails').on('click', function() {
             trailInfo.append('<h4 class="trail-city">' + trailsResponse[k].city + '</h4>').fadeIn();
             trailInfo.append('<p class="trail-des">' + trailsResponse[k].description + '</p>').fadeIn();
             trailInfo.append('<button class="btn btn-success trail-link"><a target="_blank" title="Trail Info" href="' + trailsResponse[k].activities["0"].url + '">Go To Trail</a></button>').fadeIn();
-            $('#trails').append("<h2 class='quote-title'>I found some trails and parks nearby. <br>Watch out for bears!</h2><hr>");
             $('#trails').append(trailInfo);
-            $('#trails').fadeIn('slow');
-            // adjusts height of box
-            var adjustedHeight = "0";
-            if ($('#trails').parents('.box').height() > adjustedHeight) {
-                adjustedHeight = $('#trails').parents('.box').height();
-            }
-            moreHeight = adjustedHeight + 50;
-            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+
         }
+        $('#trails').prepend("<h2 class='quote-title'>I found some trails and parks nearby.<hr>");
+        $('#trails').fadeIn('slow');
+        $('#mooduComment').html('Watch out for<br>bears!');
+        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px'}, 500);
+        $("#commentContainer").delay(4000).animate({ left: '-200%', opacity: '0' }, 1000);
+        // adjusts height of box
+        var adjustedHeight = "0";
+        if ($('#trails').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#trails').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     }).fail(function(error) {
         console.log(error);
     });
 
+});
+
+$('#getBooks').on('click', function() {
+    // Google Books API
+
+    $.ajax({
+        url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=20",
+        dataType: "json",
+        global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Books</span>");
+        }
+    }).done(function(result) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
+        for (var p = 0; p < result.items.length; p++) {
+            var bookList = $('#books');
+            var bookDetails = $('<div id="bookDetails" class="row">');
+            console.log(result.items[p]);
+            if (result.items[p].volumeInfo.description === undefined || result.items[p].saleInfo.buyLink === undefined) {
+                continue
+            }
+
+            bookDetails.append('<div class="col-lg-12"><div class="book-info"><h3 class="book-title">' + result.items[p].volumeInfo.title + '</h3><p>' + result.items[p].volumeInfo.description + '</p></div><img alt="cover" src="' + result.items[p].volumeInfo.imageLinks.thumbnail + '"></div>');
+            bookDetails.append('<a title="buy now" class="btn btn-success get-book-info" href="' + result.items[p].volumeInfo.infoLink + '">Get Book Info</a>');
+            bookList.append(bookDetails);
+        }
+        bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>')
+        bookList.fadeIn();
+        $('#mooduComment').html('Look what I <br>found...');
+        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px'}, 500);
+        $("#commentContainer").delay(4000).animate({ left: '-200%', opacity: '0' }, 1000);
+
+        var adjustedHeight = "0";
+        if ($('#books').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#books').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+
+    });
 });

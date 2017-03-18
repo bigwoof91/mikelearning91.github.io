@@ -115,11 +115,21 @@
         </div>
         <!--//step 2 container-->
         <div id="chooseContent" class="container text-center box">
+        <div id="commentContainer"><div id="mooduComment">Check out <br>what I found...</div></div>
             <!-- Step 3 -->
             <button type="button" id="restartFromOptions" class="btn btn-success" aria-label="Left Align">
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
             </button>
-            <div class="row">
+             <div class="row">
+                <div class="card col-sm-12 col-lg-12 force-100">
+                    <img id="placesIMG" class="card-img-top" src="assets/images/places.png" height="150" width="150" alt="Moodu found books">
+                    <div class="card-block">
+                        <h3 id="places-title" class="card-title">Moodü Found Places</h3>
+                        <p class="card-text"></p>
+                        <a id="getPlaces" href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
+                    </div>
+                </div>
+                <!-- /////// Unfinished Feature ///////
                 <div class="card col-sm-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found music">
                     <div class="card-block">
@@ -127,8 +137,11 @@
                         <p class="card-text"></p>
                         <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content">Go Listen</a>
                     </div>
-                </div>
-                <div class="card col-sm-12 col-lg-6">
+                </div> 
+                -->
+            </div>
+            <div class="row">
+                <div class="card col-sm-12 col-md-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/quotes.png" height="150" width="150" alt="Card image cap">
                     <div class="card-block">
                         <h3 class="card-title">Moodü Found Quotes</h3>
@@ -136,38 +149,28 @@
                         <a href="#" id="readAQuote" class="btn btn-primary deliver-content first-quote next-step">Go Read</a>
                     </div>
                 </div>
-            </div>
-            <div class="row">
-                <div class="col-sm-12 col-lg-6">
-                    <img class="card-img-top" src="assets/images/places.png" height="150" width="150" alt="Moodu found books">
+                <div class="card col-sm-12 col-md-12 col-lg-6">
+                    <img class="card-img-top" src="assets/images/books.png" height="150" width="150" alt="Moodu found books">
                     <div class="card-block">
-                        <h3 class="card-title">Moodü Found Places</h3>
+                        <h3 class="card-title">Moodü Found Books</h3>
                         <p class="card-text"></p>
-                        <a id="getPlaces" href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
-                    </div>
-                </div>
-                <div class="col-sm-12 col-lg-6">
-                    <img class="card-img-top" src="assets/images/places.png" height="150" width="150" alt="Moodu found books">
-                    <div class="card-block">
-                        <h3 class="card-title">Moodü Found Comics/Books</h3>
-                        <p class="card-text"></p>
-                        <a id="getPlaces" href="#" class="btn btn-primary">Go See ????</a>
+                        <a id="getBooks" href="#" class="btn btn-primary deliver-content next-step">Go Find Books</a>
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="card hiking-card col-sm-12 col-lg-6">
+                <div class="card hiking-card col-sm-12 col-md-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/hiking-trails.png" height="150" width="150" alt="Card image cap">
                     <div class="card-block">
-                        <h3 class="card-title">Moodü Found Hiking Trails</h3>
+                        <h3 class="card-title">Moodü Found Parks &amp; Trails</h3>
                         <p class="card-text"></p>
                         <a id="getTrails" href="#" class="next-step btn btn-primary deliver-content">Go Trailing</a>
                     </div>
                 </div>
-                <div class="card col-sm-12 col-lg-6">
+                <div id="center-if" class="card col-sm-12 col-md-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/shopping.png" height="150" width="150" alt="Card image cap">
                     <div class="card-block">
-                        <h3 class="card-title">Moodü Found Shopping Deals</h3>
+                        <h3 class="card-title">Moodü Found Deals</h3>
                         <p class="card-text"></p>
                         <a href="#" id="shopGrouponDeals" class="btn btn-primary deliver-content get-groupon next-step">Go Shop</a>
                     </div>
@@ -182,9 +185,7 @@
             </button>
             <div id="playerDiv"></div>
             <div id="groupon"></div>
-            <div id="mapShoes"></div>
-            <div id="mapFood"></div>
-            <div id="mapBakery"></div>
+            <div id="books"></div>
             <div id="random-quotes"></div>
             <div id="trails"></div>
         </div>
