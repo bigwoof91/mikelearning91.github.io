@@ -432,7 +432,7 @@ function processResult(response) {
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
-        $('#places-title').html('Moodü Suggests You "Fill Your Void" <br>With Presents For Yourself');
+        $('#places-title').html('Moodü Suggests You <br>"Fill Your Void" With Presents For Yourself');
         $('#getPlaces').html('Nearby Shopping Malls')
         $('#placesIMG').attr('src', 'assets/images/shopping_mall.png').attr('alt', 'Shopping Malls');
         $('#areYouFeeling').fadeIn();
@@ -610,16 +610,16 @@ $('.get-groupon').on('click', function() {
     }).done(function(data) {
         console.log(data);
         $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal row"><div class="col-lg12"><div class="groupon-image"><img src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div></div>'
+            var grouponDeals = '<div class="deal row"><div class="col-lg-12"><div class="groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div></div>'
             $("#groupon").append(grouponDeals);
-        })
+        });
         $("#groupon").prepend("<h2 class='quote-title'>Check out these Deals!</h2><hr>");
         $("#groupon").fadeIn();
 
         var adjustedHeight = "0";
-        if ($('#groupon').parents('.box').height() > adjustedHeight) {
-            adjustedHeight = $('#trails').parents('.box').height();
-        }
+        if ($('#groupon').parents('#content').height() > adjustedHeight) {
+            adjustedHeight = $('#groupon').parents('#content').height();
+        };
         moreHeight = adjustedHeight + 50;
         $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
@@ -807,7 +807,7 @@ $('#getTrails').on('click', function() {
         $('#trails').prepend("<h2 class='quote-title'>I found some trails and parks nearby.<hr>");
         $('#trails').fadeIn('slow');
         $('#mooduComment').html('Watch out for<br>bears!');
-        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px'}, 500);
+        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
         $("#commentContainer").delay(4000).animate({ left: '-200%', opacity: '0' }, 1000);
         // adjusts height of box
         var adjustedHeight = "0";
@@ -852,7 +852,7 @@ $('#getBooks').on('click', function() {
         bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>')
         bookList.fadeIn();
         $('#mooduComment').html('Look what I <br>found...');
-        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px'}, 500);
+        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
         $("#commentContainer").delay(4000).animate({ left: '-200%', opacity: '0' }, 1000);
 
         var adjustedHeight = "0";
