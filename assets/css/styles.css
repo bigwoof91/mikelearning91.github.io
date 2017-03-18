@@ -1182,6 +1182,9 @@ input[type=password]:hover {
 }
 
 @media(max-width: 768px) {
+    .force-100 {
+        left: 0 !important;
+    }
     #profileForm {
         width: 100%;
         text-align: left;

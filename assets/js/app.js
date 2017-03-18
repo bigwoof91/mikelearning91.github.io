@@ -104,7 +104,7 @@ start_camera.addEventListener("click", function(e) {
     video.play();
     showVideo();
     // Displays photo tip/advice on how to get best results
-    $('.overlay-advice').delay(500).fadeIn('slow').delay(1500).fadeOut('slow');
+    // $('.overlay-advice').delay(500).fadeIn('slow').delay(1500).fadeOut('slow');
 });
 
 // take photo button function
@@ -203,7 +203,7 @@ $('#contentOptions').on('click', function() {
     $("#appContainer").height(totHeight).css('margin-bottom', '150px');
     $("#restartFromOptions").animate({ top: "0px" });
     $("#commentContainer").delay(500).animate({ opacity: '1' }, 500);
-    $("#commentContainer").delay(5000).animate({ left: '-2000%', opacity: '0' }, 1000);
+    $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 500);
 });
 
 // animate steps on next
@@ -237,7 +237,8 @@ $('#restartFromOptions').click(function() {
     $(this).parents(".box").prev(".box").children("#areYouFeeling").css('display', 'none');
     $(this).parents(".box").prev(".box").prev(".box").animate({ left: '50%' }, 500);
     $('#youAreFeeling').empty();
-    $("#commentContainer").css('left', '131px');
+    $("#commentContainer").removeAttr('style');
+    $('#mooduComment').html('I found more <br>stuff for you');
     // reset camera
     image.setAttribute('src', "");
     image.classList.remove("visible");
@@ -254,7 +255,7 @@ $('#goBackFromContent').click(function() {
     $(this).parents(".box").prev(".box").animate({ left: '50%' }, 500);
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: '0' });
-    $("#commentContainer").css('left', '131px');
+    $("#commentContainer").removeAttr('style');
     $('#youAreFeeling').empty();
     $("#trails").empty();
     $("#random-quotes").empty();
@@ -742,8 +743,8 @@ $('.next-step-maps').click(function() {
     $("#restartFromOptions").animate({ top: "-150px" });
     $('#mapDetails').animate({ bottom: '13%' }, 1400);
     $('#mooduComment').html('I found some <br>cool spots...');
-    $("#commentContainer").delay(500).animate({ opacity: '1' }, 500);
-    $("#commentContainer").delay(5000).animate({ left: '131px', opacity: '0' }, 1000);
+    $("#commentContainer").delay(500).animate({ left: '131px', opacity: '1' }, 500);
+    $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
 });
 // animate back one step from map
 $('#goBackFromMaps').click(function() {
@@ -752,9 +753,7 @@ $('#goBackFromMaps').click(function() {
     $(this).animate({ top: "-150px" });
     $("#restartFromOptions").animate({ top: "0" });
     $('#mapDetails').animate({ bottom: '-400%' }, 800);
-    $("#commentContainer").css('left', '131px');
-
-
+    $("#commentContainer").removeAttr('style');
 });
 
 
@@ -808,7 +807,7 @@ $('#getTrails').on('click', function() {
         $('#trails').fadeIn('slow');
         $('#mooduComment').html('Watch out for<br>bears!');
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
-        $("#commentContainer").delay(4000).animate({ left: '-200%', opacity: '0' }, 1000);
+        $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
         // adjusts height of box
         var adjustedHeight = "0";
         if ($('#trails').parents('.box').height() > adjustedHeight) {
@@ -846,14 +845,14 @@ $('#getBooks').on('click', function() {
             }
 
             bookDetails.append('<div class="col-lg-12"><div class="book-info"><h3 class="book-title">' + result.items[p].volumeInfo.title + '</h3><p>' + result.items[p].volumeInfo.description + '</p></div><img alt="cover" src="' + result.items[p].volumeInfo.imageLinks.thumbnail + '"></div>');
-            bookDetails.append('<a title="buy now" class="btn btn-success get-book-info" href="' + result.items[p].volumeInfo.infoLink + '">Get Book Info</a>');
+            bookDetails.append('<a title="buy now" class="btn btn-success get-book-info" target="_blank" href="' + result.items[p].volumeInfo.infoLink + '">Get Book Info</a>');
             bookList.append(bookDetails);
         }
         bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>')
         bookList.fadeIn();
         $('#mooduComment').html('Look what I <br>found...');
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
-        $("#commentContainer").delay(4000).animate({ left: '-200%', opacity: '0' }, 1000);
+        $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
 
         var adjustedHeight = "0";
         if ($('#books').parents('.box').height() > adjustedHeight) {
