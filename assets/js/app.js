@@ -607,14 +607,21 @@ $('.get-groupon').on('click', function() {
         jsonpCallback: 'jsonCallback',
         contentType: "application/json",
         dataType: 'jsonp',
-        global: false
+        global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Deals</span>");
+        }
     }).done(function(data) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
         console.log(data);
         $.each(data.deals, function(idx, deal) {
             var grouponDeals = '<div class="deal row"><div class="col-lg-12"><div class="groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div></div>'
             $("#groupon").append(grouponDeals);
         });
-        $("#groupon").prepend("<h2 class='quote-title'>Check out these Deals!</h2><hr>");
+        $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
         $("#groupon").fadeIn();
 
         var adjustedHeight = "0";
@@ -785,9 +792,16 @@ $('#getTrails').on('click', function() {
         headers: {
             'X-Mashape-Key': 'rXe4JWi3fImshsUjJwP4gQhzkBFDp1XOF1HjsntrFYaYzWaaYs'
         },
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Trails</span>");
+        },
         type: "GET",
         global: false
     }).done(function(response) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
         console.log(response);
         var trailsResponse = response.places;
         for (var k = 0; k < trailsResponse.length; k++) {
