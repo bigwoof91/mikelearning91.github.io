@@ -331,3 +331,12 @@ header .container {
 #getPlaces:hover {
     background: #e08c23;
 }
+
+.mobileAppMenuAdjust {
+    text-align: right;
+    margin-right: 25px !important;
+}
+
+.whiteText {
+    color: white !important;
+}

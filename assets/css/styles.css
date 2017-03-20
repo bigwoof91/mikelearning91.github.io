@@ -1171,16 +1171,6 @@ input[type=password]:hover {
     max-width: 220px;
 }
 
-
-/* Moodu the Bear */
-
-.moodu {
-    animation: MoveUpDown 1s linear infinite;
-    position: absolute;
-    left: 0;
-    bottom: 0;
-}
-
 @media(max-width: 768px) {
     .force-100 {
         left: 0 !important;
@@ -1294,12 +1284,3 @@ input[type=password]:hover {
 #mapContainer > div > div > div > div > div > div > div.gm-style-iw > div > div {
     color: #3b4251;
 }
-
-
-/* Small devices (tablets, 768px and up) */
-
-
-/* Medium devices (desktops, 992px and up) */
-
-
-/* Large devices (large desktops, 1200px and up) */
