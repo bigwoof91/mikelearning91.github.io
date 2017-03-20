@@ -429,6 +429,7 @@ function processResult(response) {
     }
     if (feelingMeasures[3] == max) {
         placesCategory = "shopping_mall";
+        console.log(placesCategory)
         booksCategory = "fiction"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
