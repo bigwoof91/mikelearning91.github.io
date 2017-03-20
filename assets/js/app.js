@@ -416,7 +416,7 @@ function processResult(response) {
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
     }
     if (feelingMeasures[2] == max) {
-        placesCategory = "movie_rental";
+        placesCategory = "movie_theater";
         booksCategory = "disgusting"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
