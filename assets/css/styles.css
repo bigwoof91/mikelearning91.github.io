@@ -976,7 +976,7 @@ input[type=password]:hover {
     display: none;
 }
 
-#groupon > div > div.groupon-image > img {
+.groupon-image > img {
     max-width: 100%;
 }
 
