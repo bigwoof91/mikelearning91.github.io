@@ -64,6 +64,5 @@ jQuery(document).ready(function($) {
     $('.footer').css('padding', '2px 0');
     /* ======= adjust menu text on mobile ======= */
     $('#navbar-collapse > ul > li').addClass('mobileAppMenuAdjust');
-    $('#navbar-collapse > ul > li > a').addClass('whiteText');
 
 });

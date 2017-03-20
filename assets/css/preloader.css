@@ -336,8 +336,3 @@ header .container {
     text-align: right;
     margin-right: 25px !important;
 }
-
-.whiteText {
-    color: white !important;
-    z-index: 10;
-}
