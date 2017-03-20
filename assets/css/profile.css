@@ -32,6 +32,18 @@ a:hover {
     color: #0e98c5;
 }
 
+header {
+    background: #fff !important;
+}
+
+footer {
+    display: none;
+}
+
+.logo-title {
+    color: #17baef !important;
+}
+
 .scroller {
     position: fixed;
     top: 0;
@@ -103,7 +115,6 @@ a.btn-cta-secondary:hover,
 pre code {
     font-size: 16px;
 }
-
 
 /* ---------------Custom Navbar Toggle------------------ */
 
@@ -212,7 +223,7 @@ pre code {
 
 .header.navbar-fixed-top {
     background: #fff;
-    z-index: 9998;
+    z-index: 9999 !important;
     -webkit-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
     -moz-box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);
     box-shadow: 0 0 4px rgba(0, 0, 0, 0.4);

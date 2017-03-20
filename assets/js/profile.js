@@ -150,11 +150,6 @@ $('.login').on('click', function(event) {
 
 });
 
-// Hide Footer {
-$('.footer').hide();
-$('header').css('background', '#fff');
-$('.logo-title').css('color', '#17baef');
-
 // ------------------------- START Need to add forgot password (no mail server) -------------------------//
 // var auth = firebase.auth();
 // var emailAddress = "user@example.com";
