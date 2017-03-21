@@ -454,7 +454,7 @@ function processResult(response) {
     }
     if (feelingMeasures[5] == max) {
         placesCategory = "police";
-        booksCategory = "fear"; // setting var category for Google Books API
+        booksCategory = "life"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
@@ -466,7 +466,7 @@ function processResult(response) {
     }
     if (feelingMeasures[6] == max) {
         placesCategory = "meal_delivery";
-        booksCategory = "motivational"; // setting var category for Google Books API
+        booksCategory = "motivation"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
