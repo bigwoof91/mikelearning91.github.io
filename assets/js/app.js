@@ -454,7 +454,7 @@ function processResult(response) {
     }
     if (feelingMeasures[5] == max) {
         placesCategory = "police";
-        booksCategory = "life"; // setting var category for Google Books API
+        booksCategory = "fear"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
