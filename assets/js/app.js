@@ -336,7 +336,7 @@ function displayErrorMessage(error_msg, error) {
 
     hideUI();
     error_message.classList.add("visible");
-};
+}
 
 
 function hideUI() {
@@ -347,7 +347,7 @@ function hideUI() {
     video.classList.remove("visible");
     snap.classList.remove("visible");
     error_message.classList.remove("visible");
-};
+}
 
 
 function dataURItoBlob(dataURI) {
@@ -368,7 +368,7 @@ function dataURItoBlob(dataURI) {
     }
     // Returns the blob
     return new Blob([ia], { type: mimeString });
-};
+}
 
 // Process microsoft cognitive API results to give users emotional analytics feedback
 function processResult(response) {
@@ -379,10 +379,10 @@ function processResult(response) {
 
     // iterate through feeling measures to only include 7 decimal places for each feeling's measurement
     var x = 0;
-    var len = feelingMeasures.length
+    var len = feelingMeasures.length;
     while (x < len) {
         feelingMeasures[x] = feelingMeasures[x].toFixed(7);
-        x++
+        x++;
     }
 
     // find max in the array of feelings
@@ -398,7 +398,7 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Says Go Out to Eat');
-        $('#getPlaces').html('Nearby Food Joints')
+        $('#getPlaces').html('Nearby Food Joints');
         $('#placesIMG').attr('src', 'assets/images/restaurant.png').attr('alt', 'Restaurants');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
@@ -410,7 +410,7 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Says To "Workout" Your Feelings');
-        $('#getPlaces').html('Go To Nearby Gym')
+        $('#getPlaces').html('Go To Nearby Gym');
         $('#placesIMG').attr('src', 'assets/images/workout.png').attr('alt', 'Gym');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
@@ -422,20 +422,20 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Says Go See A Movie');
-        $('#getPlaces').html('Nearby Theaters')
+        $('#getPlaces').html('Nearby Theaters');
         $('#placesIMG').attr('src', 'assets/images/movie_theater.png').attr('alt', 'Movie Theaters');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
     }
     if (feelingMeasures[3] == max) {
         placesCategory = "shopping_mall";
-        console.log(placesCategory)
+        console.log(placesCategory);
         booksCategory = "fiction"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Suggests You <br>"Fill Your Void" With Presents For Yourself');
-        $('#getPlaces').html('Nearby Shopping Malls')
+        $('#getPlaces').html('Nearby Shopping Malls');
         $('#placesIMG').attr('src', 'assets/images/shopping_mall.png').attr('alt', 'Shopping Malls');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
@@ -447,7 +447,7 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Found Night Clubs');
-        $('#getPlaces').html('Go Party Tonight')
+        $('#getPlaces').html('Go Party Tonight');
         $('#placesIMG').attr('src', 'assets/images/night_club.png').attr('alt', 'Night Clubs');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("You look surprised? Are you goofin' around?").fadeIn();
@@ -459,7 +459,7 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Found Police Stations');
-        $('#getPlaces').html('Go Be Safe')
+        $('#getPlaces').html('Go Be Safe');
         $('#placesIMG').attr('src', 'assets/images/police.png').attr('alt', 'Police');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("AHHH! You seem scared, it's sorta' creepy. Do you feel fearful?").fadeIn();
@@ -471,12 +471,12 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Found Food Delivery Spots');
-        $('#getPlaces').html('Go Fill Your Void')
+        $('#getPlaces').html('Go Fill Your Void');
         $('#placesIMG').attr('src', 'assets/images/food_delivery.png').attr('alt', 'Food Delivery Places');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You look bothersome. Are you sad or something?').fadeIn();
     }
-};
+}
 
 // ajax preloader start & stop for emotion api
 $(document).ready(function() {
@@ -498,7 +498,7 @@ $("#listenMusic").on("click", function(event) {
         global: false
     }).done(function(response) {
         console.log(response);
-        console.log(response.videos[1].uri)
+        console.log(response.videos[1].uri);
 
         var songSource = response.videos[1].uri;
         var songSourceNew = songSource.replace("watch?v=", "embed/");
@@ -531,16 +531,16 @@ $('.first-quote').on('click', function() {
             $('#preloader').hide();
             $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
             var quotesContainer = $("#random-quotes");
-            quotesContainer.append('<h1 class="quote-title">Hope this makes you feel beary good</h1><hr>')
+            quotesContainer.append('<h1 class="quote-title">Hope this makes you feel beary good</h1><hr>');
             if (response.contents.author == "") {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
-                quotesContainer.append('<p class="author">- Unkown Author</p>')
-                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
+                quotesContainer.append('<p class="author">- Unkown Author</p>');
+                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>');
                 $("#random-quotes").fadeIn();
             } else {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
-                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>')
-                quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
+                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>');
+                quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>');
                 $("#random-quotes").fadeIn();
             }
             var adjustedHeight = "0";
@@ -575,15 +575,15 @@ function newQuote() {
             $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
 
             var quotesContainer = $("#random-quotes");
-            quotesContainer.append('<h1 class="quote-title">This should make you feel beary beary good</h1><hr>')
+            quotesContainer.append('<h1 class="quote-title">This should make you feel beary beary good</h1><hr>');
             if (response.contents.author == "") {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
-                quotesContainer.append('<p class="author">- Unkown Author</p>')
-                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
+                quotesContainer.append('<p class="author">- Unkown Author</p>');
+                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>');
                 $("#random-quotes").fadeIn();
             } else {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
-                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>')
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
+                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>');
                 quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
                 $("#random-quotes").fadeIn();
             }
@@ -595,9 +595,7 @@ function newQuote() {
             $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
         }
     });
-};
-
-
+}
 
 // Groupon API
 $('.get-groupon').on('click', function() {
@@ -628,7 +626,7 @@ $('.get-groupon').on('click', function() {
         var adjustedHeight = "0";
         if ($('#groupon').parents('#content').height() > adjustedHeight) {
             adjustedHeight = $('#groupon').parents('#content').height();
-        };
+        }
         moreHeight = adjustedHeight + 50;
         $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
@@ -711,8 +709,7 @@ function createMarker(place) {
     });
 
 
-};
-
+}
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
@@ -777,7 +774,7 @@ firebase.auth().onAuthStateChanged(function(user) {
                 $('.hiking-card').show();
             } else {
                 $('.hiking-card').hide();
-                $('#center-if').css('width', '100%')
+                $('#center-if').css('width', '100%');
             }
         });
     }
@@ -863,7 +860,7 @@ $('#getBooks').on('click', function() {
             bookDetails.append('<a title="buy now" class="btn btn-success get-book-info" target="_blank" href="' + result.items[p].volumeInfo.infoLink + '">Get Book Info</a>');
             bookList.append(bookDetails);
         }
-        bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>')
+        bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>');
         bookList.fadeIn();
         $('#mooduComment').html('Look what I <br>found...');
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
