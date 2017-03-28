@@ -602,7 +602,7 @@ function newQuote() {
 $('#shopGrouponDeals').on('click', function() {
     $.ajax({
         type: 'GET',
-        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=6",
+        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=20",
         async: false,
         jsonpCallback: 'jsonCallback',
         contentType: "application/json",
@@ -626,7 +626,7 @@ $('#shopGrouponDeals').on('click', function() {
 
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
-           $("#appContainer").height('3397px').css('margin-bottom', '150px');
+           $("#appContainer").height('10017px').css('margin-bottom', '150px');
         }
         
 
