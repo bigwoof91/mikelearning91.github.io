@@ -589,7 +589,7 @@ function newQuote() {
             }
             var adjustedHeight = "0";
             if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
-                adjustedHeight = $('#trails').parents('.box').height();
+                adjustedHeight = $('#random-quotes').parents('.box').height();
             }
             moreHeight = adjustedHeight + 50;
             $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
@@ -624,8 +624,8 @@ $('.get-groupon').on('click', function() {
         $("#groupon").fadeIn();
 
         var adjustedHeight = "0";
-        if ($('#groupon').parents('#content').height() > adjustedHeight) {
-            adjustedHeight = $('#groupon').parents('#content').height();
+        if ($('#groupon').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#groupon').parents('.box').height();
         }
         moreHeight = adjustedHeight + 50;
         $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
