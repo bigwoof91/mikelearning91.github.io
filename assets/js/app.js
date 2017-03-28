@@ -263,7 +263,7 @@ $('#goBackFromContent').click(function() {
     $("#groupon").empty();
     $("#playerDiv").empty();
     $("#books").empty();
-
+    // adjust height of app container to fit content
     var adjustedHeight = "0";
     if ($(this).parents('.box').prev('.box').height() > adjustedHeight) {
         adjustedHeight = $(this).parents('.box').prev('.box').height();
@@ -544,6 +544,7 @@ $('.first-quote').on('click', function() {
                 quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>');
                 $("#random-quotes").fadeIn();
             }
+            // adjust height of app container to fit new content
             var adjustedHeight = "0";
             if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
                 adjustedHeight = $('#trails').parents('.box').height();
@@ -588,6 +589,7 @@ function newQuote() {
                 quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
                 $("#random-quotes").fadeIn();
             }
+            // adjust height of app container to fit new content (height is manually set to fit 20 items/deals)
             var adjustedHeight = "0";
             if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
                 adjustedHeight = $('#random-quotes').parents('.box').height();
@@ -624,10 +626,10 @@ $('#shopGrouponDeals').on('click', function() {
         $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
         $("#groupon").fadeIn();
 
+        // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
-            console.log($('#groupon').parents('.box').height());
-           $("#appContainer").height('10017px').css('margin-bottom', '150px');
+           $("#appContainer").height('11430px').css('margin-bottom', '150px');
         }
         
 
@@ -822,7 +824,7 @@ $('#getTrails').on('click', function() {
         $('#mooduComment').html('Watch out for<br>bears!');
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
         $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
-        // adjusts height of box
+        // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#trails').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#trails').parents('.box').height();
@@ -868,6 +870,7 @@ $('#getBooks').on('click', function() {
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
         $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
 
+        // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#books').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#books').parents('.box').height();
