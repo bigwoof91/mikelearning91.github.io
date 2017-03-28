@@ -598,10 +598,10 @@ function newQuote() {
 }
 
 // Groupon API
-$('.get-groupon').on('click', function() {
+$('#shopGrouponDeals').on('click', function() {
     $.ajax({
         type: 'GET',
-        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=10",
+        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=6",
         async: false,
         jsonpCallback: 'jsonCallback',
         contentType: "application/json",
@@ -628,6 +628,7 @@ $('.get-groupon').on('click', function() {
             adjustedHeight = $('#groupon').parents('.box').height();
         }
         moreHeight = adjustedHeight + 50;
+        console.log(moreHeight);
         $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
     });
 });
