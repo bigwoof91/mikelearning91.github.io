@@ -878,3 +878,5 @@ $('#getBooks').on('click', function() {
 
     });
 });
+
+// Activity API
