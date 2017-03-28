@@ -626,6 +626,7 @@ $('#shopGrouponDeals').on('click', function() {
 
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
+            console.log($('#groupon').parents('.box').height());
            $("#appContainer").height('10017px').css('margin-bottom', '150px');
         }
         
