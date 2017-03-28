@@ -600,42 +600,6 @@ function newQuote() {
     });
 }
 
-// Groupon API
-$('#shopGrouponDeals').on('click', function() {
-    $.ajax({
-        type: 'GET',
-        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=20",
-        async: false,
-        jsonpCallback: 'jsonCallback',
-        contentType: "application/json",
-        dataType: 'jsonp',
-        global: false,
-        beforeSend: function() {
-            $('#random-quotes').empty();
-            $('#preloader').show();
-            $('#preloadText').html("Finding <span class='hideOn640'>Deals</span>");
-        }
-    }).done(function(data) {
-        $('#preloader').hide();
-        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
-        console.log(data);
-        $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal"><div class="row"><div class="col-lg-12 groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div>';
-            $("#groupon").append(grouponDeals);
-        });
-        $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
-        $("#groupon").fadeIn();
-
-        // adjust height of app container to fit new content
-        var adjustedHeight = "0";
-        if ($('#groupon').parents('.box').height() > adjustedHeight) {
-           $("#appContainer").height('11430px').css('margin-bottom', '150px');
-        }
-        
-
-    });
-});
-
 // Google Maps/Places/Books API
 var pos = {
 
@@ -783,7 +747,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     }
 });
-
+var grouponUrl = 'https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=' + pos.lat + '&lng=' + pos.lng + '&offset=0&limit=50';
 var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=' + pos.lat + '&lon=' + pos.lng + '&q[activities_activity_type_name_eq]=hiking&radius=20';
 var longitude;
 var latitude;
@@ -837,8 +801,45 @@ $('#getTrails').on('click', function() {
 
 });
 
-$('#getBooks').on('click', function() {
-    // Google Books API
+
+// Groupon API
+$('#shopGrouponDeals').on('click', function() {
+    $.ajax({
+        type: 'GET',
+        url: grouponUrl,
+        async: false,
+        jsonpCallback: 'jsonCallback',
+        contentType: "application/json",
+        dataType: 'jsonp',
+        global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Deals</span>");
+        }
+    }).done(function(data) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
+        console.log(data);
+        $.each(data.deals, function(idx, deal) {
+            var grouponDeals = '<div class="deal"><div class="row"><div class="col-lg-12 groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div>';
+            $("#groupon").append(grouponDeals);
+        });
+        $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
+        $("#groupon").fadeIn();
+
+        // adjust height of app container to fit new content
+        var adjustedHeight = "0";
+        if ($('#groupon').parents('.box').height() > adjustedHeight) {
+           $("#appContainer").height('11430px').css('margin-bottom', '150px');
+        }
+        
+
+    });
+});
+
+// Google Books API
+$('#getBooks').on('click', function() {   
 
     $.ajax({
         url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=20",
