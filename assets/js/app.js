@@ -626,10 +626,11 @@ $('#shopGrouponDeals').on('click', function() {
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#groupon').parents('.box').height();
+            var moreHeight = adjustedHeight + 50;
+            console.log(moreHeight);
+            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
         }
-        moreHeight = adjustedHeight + 50;
-        console.log(moreHeight);
-        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+
     });
 });
 
