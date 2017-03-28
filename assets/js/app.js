@@ -53,7 +53,8 @@ var video = document.querySelector('#camera-stream'),
     selfie,
     database = firebase.database(),
     placesCategory,
-    booksCategory;
+    booksCategory,
+    moreHeight;
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -626,10 +627,11 @@ $('#shopGrouponDeals').on('click', function() {
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#groupon').parents('.box').height();
-            var moreHeight = adjustedHeight + 50;
-            console.log(moreHeight);
-            $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+            console.log(adjustedHeight);
         }
+        moreHeight = adjustedHeight + 50;
+        console.log(moreHeight);
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
 
     });
 });
