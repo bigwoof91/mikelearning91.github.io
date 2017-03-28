@@ -617,7 +617,7 @@ $('#shopGrouponDeals').on('click', function() {
         $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
         console.log(data);
         $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal row"><div class="col-lg-12"><div class="groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div></div>'
+            var grouponDeals = '<div class="deal"><div class="row"><div class="col-lg-12 groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div>';
             $("#groupon").append(grouponDeals);
         });
         $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
