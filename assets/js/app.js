@@ -833,7 +833,7 @@ $('#shopGrouponDeals').on('click', function() {
         // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
-           $("#appContainer").height('11600px').css('margin-bottom', '150px');
+           $("#appContainer").height('11400px').css('margin-bottom', '150px');
         }
         
 
