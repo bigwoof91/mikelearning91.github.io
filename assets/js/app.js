@@ -844,7 +844,7 @@ $('#shopGrouponDeals').on('click', function() {
 $('#getBooks').on('click', function() {   
 
     $.ajax({
-        url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=18",
+        url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=15",
         dataType: "json",
         global: false,
         beforeSend: function() {
