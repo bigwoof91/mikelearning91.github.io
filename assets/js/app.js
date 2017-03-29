@@ -747,7 +747,7 @@ firebase.auth().onAuthStateChanged(function(user) {
         });
     }
 });
-var grouponUrl = 'https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=' + pos.lat + '&lng=' + pos.lng + '&offset=0&limit=50';
+var grouponUrl = 'https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=' + pos.lat + '&lng=' + pos.lng + '&offset=0&limit=20';
 var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=' + pos.lat + '&lon=' + pos.lng + '&q[activities_activity_type_name_eq]=hiking&radius=20';
 var longitude;
 var latitude;
@@ -844,7 +844,7 @@ $('#shopGrouponDeals').on('click', function() {
 $('#getBooks').on('click', function() {   
 
     $.ajax({
-        url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=15",
+        url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=20",
         dataType: "json",
         global: false,
         beforeSend: function() {
