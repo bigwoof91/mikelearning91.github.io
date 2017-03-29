@@ -803,6 +803,8 @@ $('#getTrails').on('click', function() {
 
 
 // Groupon API
+// NEED TO FIX: API is getting deals according to user's current location; need to sort through 
+// details/fineprint data and disallow content to show up that is unnecessary (e.g. <a> tags in fineprint data object that lead to return/refund info)
 $('#shopGrouponDeals').on('click', function() {
     $.ajax({
         type: 'GET',
@@ -831,7 +833,7 @@ $('#shopGrouponDeals').on('click', function() {
         // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
-           $("#appContainer").height('11430px').css('margin-bottom', '150px');
+           $("#appContainer").height('11600px').css('margin-bottom', '150px');
         }
         
 
