@@ -455,7 +455,7 @@ function processResult(response) {
     }
     if (feelingMeasures[5] == max) {
         placesCategory = "police";
-        booksCategory = "life"; // setting var category for Google Books API
+        booksCategory = "fear"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
@@ -833,15 +833,15 @@ $('#shopGrouponDeals').on('click', function() {
         // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#groupon').parents('.box').height() > adjustedHeight) {
-           $("#appContainer").height('11400px').css('margin-bottom', '150px');
+            $("#appContainer").height('11400px').css('margin-bottom', '150px');
         }
-        
+
 
     });
 });
 
 // Google Books API
-$('#getBooks').on('click', function() {   
+$('#getBooks').on('click', function() {
 
     $.ajax({
         url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=20",
