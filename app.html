@@ -17,6 +17,7 @@
     <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
     <!-- Plugins CSS -->
     <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
     <!-- Theme CSS -->
     <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
     <!-- Preloader CSS -->
@@ -120,7 +121,7 @@
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Start Over
             </button>
             <div class="row">
-                <div class="card col-sm-12 col-lg-12 force-100">
+                <div class="card col-sm-12 col-lg-6">
                     <img id="placesIMG" class="card-img-top" src="assets/images/places.png" height="150" width="150" alt="Moodu found books">
                     <div class="card-block">
                         <h3 id="places-title" class="card-title">Moodü Found Places</h3>
@@ -128,16 +129,16 @@
                         <a id="getPlaces" href="#" class="btn btn-primary next-step-maps go-maps">Go See Places</a>
                     </div>
                 </div>
-                <!-- /////// Unfinished Feature ///////
+
                 <div class="card col-sm-12 col-lg-6">
                     <img class="card-img-top" src="assets/images/music.png" height="150" width="150" alt="Moodu found music">
                     <div class="card-block">
-                        <h3 class="card-title">Moodü Found Music</h3>
+                        <h3 class="card-title">Moodü Found Activities</h3>
                         <p class="card-text"></p>
-                        <a id="listenMusic" href="#" class="next-step btn btn-primary deliver-content">Go Listen</a>
+                        <a id="getActivities" href="#" class="next-step btn btn-primary deliver-content next-step">Go Be Active</a>
                     </div>
                 </div> 
-                -->
+               
             </div>
             <div class="row">
                 <div class="card col-sm-12 col-md-12 col-lg-6">
@@ -182,7 +183,7 @@
             <button type="button" id="goBackFromContent" class="btn btn-success" aria-label="Left Align">
                 <span class="glyphicon glyphicon-repeat" aria-hidden="true"></span> Go Back
             </button>
-            <div id="playerDiv"></div>
+            <div id="activities"></div>
             <div id="groupon"></div>
             <div id="books"></div>
             <div id="random-quotes"></div>
@@ -207,13 +208,12 @@
     </footer>
     <!--//footer-->
     <!-- Javascript -->
-<script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.js" integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE=" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-migrate/3.0.0/jquery-migrate.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.js"></script>
     <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-scrollTo/2.1.2/jquery.scrollTo.min.js"></script>
     <script type="text/javascript" src="assets/js/main-app-page.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/2.0.0-alpha.1/handlebars.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
     <script type="text/javascript" src="assets/js/app.js"></script>

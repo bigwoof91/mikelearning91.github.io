@@ -1,2 +1,2 @@
-# allbetter-app
-week 8 - group project
+# moodu
+The app that understands you and what you can do,  in the snap of a photo.

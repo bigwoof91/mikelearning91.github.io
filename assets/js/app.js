@@ -53,8 +53,7 @@ var video = document.querySelector('#camera-stream'),
     selfie,
     database = firebase.database(),
     placesCategory,
-    booksCategory,
-    moreHeight;
+    booksCategory;
 
 
 // The getUserMedia interface is used for handling camera input.
@@ -263,7 +262,7 @@ $('#goBackFromContent').click(function() {
     $("#groupon").empty();
     $("#playerDiv").empty();
     $("#books").empty();
-    // adjust height of app container to fit content
+
     var adjustedHeight = "0";
     if ($(this).parents('.box').prev('.box').height() > adjustedHeight) {
         adjustedHeight = $(this).parents('.box').prev('.box').height();
@@ -337,7 +336,7 @@ function displayErrorMessage(error_msg, error) {
 
     hideUI();
     error_message.classList.add("visible");
-}
+};
 
 
 function hideUI() {
@@ -348,7 +347,7 @@ function hideUI() {
     video.classList.remove("visible");
     snap.classList.remove("visible");
     error_message.classList.remove("visible");
-}
+};
 
 
 function dataURItoBlob(dataURI) {
@@ -369,7 +368,7 @@ function dataURItoBlob(dataURI) {
     }
     // Returns the blob
     return new Blob([ia], { type: mimeString });
-}
+};
 
 // Process microsoft cognitive API results to give users emotional analytics feedback
 function processResult(response) {
@@ -380,10 +379,10 @@ function processResult(response) {
 
     // iterate through feeling measures to only include 7 decimal places for each feeling's measurement
     var x = 0;
-    var len = feelingMeasures.length;
+    var len = feelingMeasures.length
     while (x < len) {
         feelingMeasures[x] = feelingMeasures[x].toFixed(7);
-        x++;
+        x++
     }
 
     // find max in the array of feelings
@@ -399,7 +398,7 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Says Go Out to Eat');
-        $('#getPlaces').html('Nearby Food Joints');
+        $('#getPlaces').html('Nearby Food Joints')
         $('#placesIMG').attr('src', 'assets/images/restaurant.png').attr('alt', 'Restaurants');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Happy!! Are You?').fadeIn();
@@ -411,7 +410,7 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Says To "Workout" Your Feelings');
-        $('#getPlaces').html('Go To Nearby Gym');
+        $('#getPlaces').html('Go To Nearby Gym')
         $('#placesIMG').attr('src', 'assets/images/workout.png').attr('alt', 'Gym');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Angry. Are You?').fadeIn();
@@ -423,20 +422,20 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Says Go See A Movie');
-        $('#getPlaces').html('Nearby Theaters');
+        $('#getPlaces').html('Nearby Theaters')
         $('#placesIMG').attr('src', 'assets/images/movie_theater.png').attr('alt', 'Movie Theaters');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You Seem Disgusted. Are You?').fadeIn();
     }
     if (feelingMeasures[3] == max) {
         placesCategory = "shopping_mall";
-        console.log(placesCategory);
+        console.log(placesCategory)
         booksCategory = "fiction"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Suggests You <br>"Fill Your Void" With Presents For Yourself');
-        $('#getPlaces').html('Nearby Shopping Malls');
+        $('#getPlaces').html('Nearby Shopping Malls')
         $('#placesIMG').attr('src', 'assets/images/shopping_mall.png').attr('alt', 'Shopping Malls');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('Do you feel neutral? Mixed emotions possibly?').fadeIn();
@@ -448,19 +447,19 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Found Night Clubs');
-        $('#getPlaces').html('Go Party Tonight');
+        $('#getPlaces').html('Go Party Tonight')
         $('#placesIMG').attr('src', 'assets/images/night_club.png').attr('alt', 'Night Clubs');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("You look surprised? Are you goofin' around?").fadeIn();
     }
     if (feelingMeasures[5] == max) {
         placesCategory = "police";
-        booksCategory = "fear"; // setting var category for Google Books API
+        booksCategory = "life"; // setting var category for Google Books API
         $('#mapContainer').empty();
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Found Police Stations');
-        $('#getPlaces').html('Go Be Safe');
+        $('#getPlaces').html('Go Be Safe')
         $('#placesIMG').attr('src', 'assets/images/police.png').attr('alt', 'Police');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html("AHHH! You seem scared, it's sorta' creepy. Do you feel fearful?").fadeIn();
@@ -472,12 +471,12 @@ function processResult(response) {
         $('#mapDetails').empty();
         initAutocomplete();
         $('#places-title').html('Moodü Found Food Delivery Spots');
-        $('#getPlaces').html('Go Fill Your Void');
+        $('#getPlaces').html('Go Fill Your Void')
         $('#placesIMG').attr('src', 'assets/images/food_delivery.png').attr('alt', 'Food Delivery Places');
         $('#areYouFeeling').fadeIn();
         return $('#youAreFeeling').hide().html('You look bothersome. Are you sad or something?').fadeIn();
     }
-}
+};
 
 // ajax preloader start & stop for emotion api
 $(document).ready(function() {
@@ -499,7 +498,7 @@ $("#listenMusic").on("click", function(event) {
         global: false
     }).done(function(response) {
         console.log(response);
-        console.log(response.videos[1].uri);
+        console.log(response.videos[1].uri)
 
         var songSource = response.videos[1].uri;
         var songSourceNew = songSource.replace("watch?v=", "embed/");
@@ -532,19 +531,18 @@ $('.first-quote').on('click', function() {
             $('#preloader').hide();
             $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
             var quotesContainer = $("#random-quotes");
-            quotesContainer.append('<h1 class="quote-title">Hope this makes you feel beary good</h1><hr>');
+            quotesContainer.append('<h1 class="quote-title">Hope this makes you feel beary good</h1><hr>')
             if (response.contents.author == "") {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
-                quotesContainer.append('<p class="author">- Unkown Author</p>');
-                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>');
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">- Unkown Author</p>')
+                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
                 $("#random-quotes").fadeIn();
             } else {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
-                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>');
-                quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>');
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>')
+                quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
                 $("#random-quotes").fadeIn();
             }
-            // adjust height of app container to fit new content
             var adjustedHeight = "0";
             if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
                 adjustedHeight = $('#trails').parents('.box').height();
@@ -577,28 +575,64 @@ function newQuote() {
             $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
 
             var quotesContainer = $("#random-quotes");
-            quotesContainer.append('<h1 class="quote-title">This should make you feel beary beary good</h1><hr>');
+            quotesContainer.append('<h1 class="quote-title">This should make you feel beary beary good</h1><hr>')
             if (response.contents.author == "") {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
-                quotesContainer.append('<p class="author">- Unkown Author</p>');
-                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>');
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">- Unkown Author</p>')
+                quotesContainer.append('<button class="btn btn-lg btn-warning new-quote">Get Another Quote</button>')
                 $("#random-quotes").fadeIn();
             } else {
-                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>');
-                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>');
+                quotesContainer.append('<h3 class="quote">' + response.contents.quote + '</h3>')
+                quotesContainer.append('<p class="author">---' + response.contents.author + '</p>')
                 quotesContainer.append('<button id="new-quote" onClick="newQuote();" class="btn btn-lg btn-success">Get Another Quote</button>')
                 $("#random-quotes").fadeIn();
             }
-            // adjust height of app container to fit new content (height is manually set to fit 20 items/deals)
             var adjustedHeight = "0";
             if ($('#random-quotes').parents('.box').height() > adjustedHeight) {
-                adjustedHeight = $('#random-quotes').parents('.box').height();
+                adjustedHeight = $('#trails').parents('.box').height();
             }
             moreHeight = adjustedHeight + 50;
             $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
         }
     });
-}
+};
+
+
+
+// Groupon API
+$('.get-groupon').on('click', function() {
+    $.ajax({
+        type: 'GET',
+        url: "https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&offset=0&limit=10",
+        async: false,
+        jsonpCallback: 'jsonCallback',
+        contentType: "application/json",
+        dataType: 'jsonp',
+        global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Deals</span>");
+        }
+    }).done(function(data) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
+        console.log(data);
+        $.each(data.deals, function(idx, deal) {
+            var grouponDeals = '<div class="deal row"><div class="col-lg-12"><div class="groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div></div>'
+            $("#groupon").append(grouponDeals);
+        });
+        $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
+        $("#groupon").fadeIn();
+
+        var adjustedHeight = "0";
+        if ($('#groupon').parents('#content').height() > adjustedHeight) {
+            adjustedHeight = $('#groupon').parents('#content').height();
+        };
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+    });
+});
 
 // Google Maps/Places/Books API
 var pos = {
@@ -677,7 +711,8 @@ function createMarker(place) {
     });
 
 
-}
+};
+
 
 function calculateAndDisplayRoute(directionsService, directionsDisplay) {
 
@@ -742,12 +777,12 @@ firebase.auth().onAuthStateChanged(function(user) {
                 $('.hiking-card').show();
             } else {
                 $('.hiking-card').hide();
-                $('#center-if').css('width', '100%');
+                $('#center-if').css('width', '100%')
             }
         });
     }
 });
-var grouponUrl = 'https://partner-api.groupon.com/deals.json?tsToken=US_AFF_0_201236_212556_0&lat=' + pos.lat + '&lng=' + pos.lng + '&offset=0&limit=20';
+
 var trailsUrl = 'https://trailapi-trailapi.p.mashape.com/?lat=' + pos.lat + '&lon=' + pos.lng + '&q[activities_activity_type_name_eq]=hiking&radius=20';
 var longitude;
 var latitude;
@@ -788,7 +823,7 @@ $('#getTrails').on('click', function() {
         $('#mooduComment').html('Watch out for<br>bears!');
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
         $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
-        // adjust height of app container to fit new content
+        // adjusts height of box
         var adjustedHeight = "0";
         if ($('#trails').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#trails').parents('.box').height();
@@ -801,47 +836,8 @@ $('#getTrails').on('click', function() {
 
 });
 
-
-// Groupon API
-// NEED TO FIX: API is getting deals according to user's current location; need to sort through 
-// details/fineprint data and disallow content to show up that is unnecessary (e.g. <a> tags in fineprint data object that lead to return/refund info)
-$('#shopGrouponDeals').on('click', function() {
-    $.ajax({
-        type: 'GET',
-        url: grouponUrl,
-        async: false,
-        jsonpCallback: 'jsonCallback',
-        contentType: "application/json",
-        dataType: 'jsonp',
-        global: false,
-        beforeSend: function() {
-            $('#random-quotes').empty();
-            $('#preloader').show();
-            $('#preloadText').html("Finding <span class='hideOn640'>Deals</span>");
-        }
-    }).done(function(data) {
-        $('#preloader').hide();
-        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
-        console.log(data);
-        $.each(data.deals, function(idx, deal) {
-            var grouponDeals = '<div class="deal"><div class="row"><div class="col-lg-12 groupon-image"><img alt="groupon image" src="' + deal.largeImageUrl + '"></div></div><h3>' + deal.announcementTitle + '</h3><div class="fineprint">' + deal.finePrint + '</div><button class="btn btn-success deal-link"><a target="_blank" href="' + deal.dealUrl + '">Get Deal</a></button></div>';
-            $("#groupon").append(grouponDeals);
-        });
-        $("#groupon").prepend("<h2 class='quote-title'>Check Out These Deals!</h2><hr>");
-        $("#groupon").fadeIn();
-
-        // adjust height of app container to fit new content
-        var adjustedHeight = "0";
-        if ($('#groupon').parents('.box').height() > adjustedHeight) {
-            $("#appContainer").height('11400px').css('margin-bottom', '150px');
-        }
-
-
-    });
-});
-
-// Google Books API
 $('#getBooks').on('click', function() {
+    // Google Books API
 
     $.ajax({
         url: "https://www.googleapis.com/books/v1/volumes?q=" + booksCategory + "&maxResults=20",
@@ -867,13 +863,12 @@ $('#getBooks').on('click', function() {
             bookDetails.append('<a title="buy now" class="btn btn-success get-book-info" target="_blank" href="' + result.items[p].volumeInfo.infoLink + '">Get Book Info</a>');
             bookList.append(bookDetails);
         }
-        bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>');
+        bookList.prepend('<h2 class="quote-title">Check These Books Out</h2><hr>')
         bookList.fadeIn();
         $('#mooduComment').html('Look what I <br>found...');
         $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
         $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
 
-        // adjust height of app container to fit new content
         var adjustedHeight = "0";
         if ($('#books').parents('.box').height() > adjustedHeight) {
             adjustedHeight = $('#books').parents('.box').height();
@@ -885,3 +880,32 @@ $('#getBooks').on('click', function() {
 });
 
 // Activity API
+$('#getActivities').on('click', function() {
+$.ajax({
+        url: "http://api.amp.active.com/search?near=Morris%26Plains%2CNJ%2CUS&v=json&radius=50&current_page=1&per_page=10&sort=distance&exclude_children=false&api_key=ff82p44mnsgf8qvvxad33tzv",
+        data: "JSON",
+        global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Activities</span>");
+        }
+    }).done(function(result) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
+        console.log(result);
+
+
+        $('#mooduComment').html('Look what I <br>found...');
+        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
+        $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
+
+        var adjustedHeight = "0";
+        if ($('#books').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#books').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+
+    });
+});

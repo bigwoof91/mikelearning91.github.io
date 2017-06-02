@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>activity test</title>
+</head>
+<body>
+<button id="getActivities">find activities</button>
+<script
+  src="https://code.jquery.com/jquery-3.2.1.js"
+  integrity="sha256-DZAnKJ/6XZ9si04Hgrsxu/8s717jcIzLy3oi35EouyE="
+  crossorigin="anonymous"></script>
+<script type="text/javascript">
+	$('#getActivities').on('click', function() {
+$.ajax({
+        url: "http://api.amp.active.com/v2/search?near=Morris%26Plains%2CNJ%2CUS&radius=50&current_page=1&per_page=10&sort=distance&exclude_children=false&api_key=ff82p44mnsgf8qvvxad33tzv",
+        data: "JSON",
+        global: false,
+        beforeSend: function() {
+            $('#random-quotes').empty();
+            $('#preloader').show();
+            $('#preloadText').html("Finding <span class='hideOn640'>Activities</span>");
+        }
+    }).done(function(result) {
+        $('#preloader').hide();
+        $('#preloadText').html("Analyzing <span class='hideOn640'>Emotions</span>");
+        console.log(result);
+
+
+        $('#mooduComment').html('Look what I <br>found...');
+        $("#commentContainer").delay(200).animate({ opacity: '1', left: '131px' }, 500);
+        $("#commentContainer").delay(3000).animate({ left: '-200%', opacity: '0' }, 800);
+
+        var adjustedHeight = "0";
+        if ($('#books').parents('.box').height() > adjustedHeight) {
+            adjustedHeight = $('#books').parents('.box').height();
+        }
+        moreHeight = adjustedHeight + 50;
+        $("#appContainer").height(moreHeight).css('margin-bottom', '150px');
+
+    });
+});
+</script>
+</body>
+</html>
