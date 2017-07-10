@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<!--[if IE 8]> <html lang="en" class="ie8"> <![endif]-->  
+<!--[if IE 9]> <html lang="en" class="ie9"> <![endif]-->  
+<!--[if !IE]><!--> <html lang="en"> <!--<![endif]-->  
+<head>
+    <title>MOODÜ</title>
+    <!-- Meta -->
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">    
+    <link rel="shortcut icon" href="favicon.ico">  
+    <link href='https://fonts.googleapis.com/css?family=Lato:300,400,300italic,400italic' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'> 
+    <link href='https://fonts.googleapis.com/icon?family=Material+Icons' rel='stylesheet' type='text/css'> 
+    <!-- Global CSS -->
+    <link rel="stylesheet" href="assets/plugins/bootstrap/css/bootstrap.min.css">
+    <!-- Plugins CSS -->    
+    <link rel="stylesheet" href="assets/plugins/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="assets/plugins/prism/prism.css">
+    <!-- Theme CSS -->  
+    <link id="theme-style" rel="stylesheet" href="assets/css/styles.css">
+    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+      <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head> 
+
+<body data-spy="scroll">
+    
+    <!-- ******HEADER****** --> 
+    <header id="header" class="header">  
+        <div class="container">            
+            <h1 class="logo pull-left">
+                <a class="scrollto" href="#promo">
+                    <span class="logo-title">MOODÜ</span>
+                </a>
+            </h1><!--//logo--> 
+            <nav id="main-nav" class="main-nav navbar-right" role="navigation">
+                <div class="navbar-header">
+            </nav><!--//main-nav-->             
+        </div>
+    </header><!--//header-->
+    
+    <!-- ******Login Container****** -->
+    <section id="loginContainer" class="promo section offset-header">
+
+          <div class="modal-dialog">
+                <div class="loginmodal-container login-adjusted">
+                    <h1>Sign In</h1><br>
+
+                  <form>
+                    <p id="loginError"></p>
+                    <label>Email</label>
+                    <input type="email" placeholder="example@gmail.com" id="usernameLogin">
+                     <div id="loginUnErrMes" class="err-mes"></div>
+                    <label>Password</label>
+                    <input type="password" placeholder="******" id="passwordLogin">
+                    <div id="loginPwErrMes" class="err-mes"></div>
+                    <br />
+                    <input type="submit" class="btn btn-secondary loginmodal-submit" id="loginNow" value="Sign In">
+                    <br />
+                    <div class="login-help">
+                        <a id="registerButton" href="#" data-toggle="modal" data-target="#signup-modal">Register</a> | <a href="#">Forgot Password</a>
+                    </div>
+                  </form>
+                
+                </div>
+            </div>
+
+<!-- ******Sign UP Modal****** --> 
+<div class="modal fade" id="signup-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true" style="display: none;">
+          <div class="modal-dialog">
+                <div class="loginmodal-container">
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h1>Create Your Account</h1><br>
+
+                  <form>
+                    <label>Email <span class="small"> (Username)</span></label>
+                    <input type="email" placeholder="example@gmail.com" id="username">
+                    <div id="signupUnErrMes" class="err-mes"></div>
+                    <label>Create Password</label>
+                    <input type="password" placeholder="At least 6 characters" id="password">
+                    <div id="signupPwErrMes" class="err-mes"></div>
+                    <input type="submit" class="btn btn-secondary loginmodal-submit" id="signUpNow" value="CREATE ACCOUNT">
+                  </form>
+                    
+
+                </div>
+            </div>
+          </div>
+
+    </section><!--//Login Container-->
+    
+      
+    <!-- ******FOOTER****** --> 
+    <footer class="footer">
+        <div class="container text-center footer-adjust">
+            <small class="copyright">Built with <i class="fa fa-heart"></i> by <a href="index.html#contact" target="_blank">the MOODÜ Team</a></small>
+        </div><!--//container-->
+    </footer><!--//footer-->
+     
+    <!-- Javascript -->          
+    <script type="text/javascript" src="assets/plugins/jquery-1.11.1.min.js"></script>
+    <script type="text/javascript" src="assets/plugins/jquery-migrate-1.2.1.min.js"></script>    
+    <script type="text/javascript" src="assets/plugins/jquery.easing.1.3.js"></script>   
+    <script type="text/javascript" src="assets/plugins/bootstrap/js/bootstrap.min.js"></script>     
+    <script type="text/javascript" src="assets/plugins/jquery-scrollTo/jquery.scrollTo.min.js"></script> 
+    <script type="text/javascript" src="assets/plugins/prism/prism.js"></script>    
+    <script type="text/javascript" src="assets/js/main-app-page.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+    <script type="text/javascript" src="assets/js/main.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+    <script type="text/javascript" src="assets/js/login.js"></script>
+</body>
+</html> 
+
