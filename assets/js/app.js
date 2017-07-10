@@ -884,7 +884,7 @@ $('#getActivities').on('click', function() {
 $.ajax({
         url: "https://api.amp.active.com/v2/search/?near=Morris%2520Plains&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=ff82p44mnsgf8qvvxad33tzv",
         data: "JSON",
-        headers: {"Access-Control-Allow-Origin": "*"},
+        headers: {"X-Originating-Ip": "67.245.103.245"},
         global: false,
         beforeSend: function() {
             $('#random-quotes').empty();
