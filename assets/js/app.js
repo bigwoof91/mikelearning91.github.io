@@ -883,7 +883,7 @@ $('#getBooks').on('click', function() {
 $('#getActivities').on('click', function() {
 $.ajax({
         url: "https://api.amp.active.com/v2/search/?near=Morris%2520Plains&current_page=1&per_page=10&sort=distance&exclude_children=true&api_key=ff82p44mnsgf8qvvxad33tzv",
-        method: "GET",
+        headers: {"Access-Control-Allow-Origin": "http://www.active.com"},
         global: false,
         beforeSend: function() {
             $('#random-quotes').empty();
