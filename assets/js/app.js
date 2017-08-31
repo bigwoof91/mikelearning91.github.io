@@ -162,7 +162,9 @@ download_photo_btn.addEventListener("click", function(e) {
 
     // `url` is the download URL for 'images/stars.jpg'
     //apiKey: Replace this with your own Project Oxford Emotion API key, please do not use my key. I include it here so you can get up and running quickly but you can get your own key for free at https://www.projectoxford.ai/emotion 
-    var apiKey = "f8c966943aa0419ea6b294f135365d95";
+    // var apiKey = "f8c966943aa0419ea6b294f135365d95";
+    // apiKey: Replace this with your own Project Oxford Emotion API key, please do not use my key.
+    var apiKey = "d978fed9d2534560ad95c153196e593f";
 
     //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
     var apiUrl = "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize";
