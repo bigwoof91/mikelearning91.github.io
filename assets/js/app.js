@@ -165,7 +165,7 @@ download_photo_btn.addEventListener("click", function(e) {
     var apiKey = "f8c966943aa0419ea6b294f135365d95";
 
     //apiUrl: The base URL for the API. Find out what this is for other APIs via the API documentation
-    var apiUrl = "https://api.projectoxford.ai/emotion/v1.0/recognize";
+    var apiUrl = "https://westus.api.cognitive.microsoft.com/emotion/v1.0/recognize";
 
     // redeclaring blob as file
     var file = blob;
